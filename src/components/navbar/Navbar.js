@@ -1,70 +1,53 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import './Navbar.css';
+import { ButtonMenuDown } from './buttonMenuDown/ButtonMenuDown.js'
+import { SearchForm } from './searchForm/SearchForm.js';
 import { Nav } from './nav/Nav.js'
 // import { CloseBurger } from './closeBurger/CloseBurger'
 
 export const Navbar = () => {
-
-    const [divMenu, setDivMenu] =  useState(false);
     
     const [button, setButton] = useState(false);
 
-    useEffect(() => {
-        if (button === true) {
-            document.getElementById('root').addEventListener('click', buttonMenuMethod)
+    // useEffect(() => {
+    //     if (button === true) {
+    //         document.getElementById('root').addEventListener('click', buttonMenuMethod)
     
-            return () => {
-                window.removeEventListener('click', buttonMenuMethod)
-            }
-        }
-    }, [button]);
+    //         return () => {
+                // window.removeEventListener('click', buttonMenuMethod)
+    //         }
+    //     }
+    // }, [button]);
 
-    const buttonMenuMethod = () => {
-        setButton(false);
-    }
+    // const buttonMenuMethod = () => {
+    //     setButton(false);
+    // }
 
     const [fa_2x, setFa_2x] = useState('fa-2x');
-    const [fa_3x, setFa_3x] = useState('fa-3x');
 
     useEffect(() => {
         const media960 = window.matchMedia( "(max-width: 960px)" );
-        media960.addEventListener('change', media)
+        media960.addEventListener('change', media);
         return () => {
-            media960.removeEventListener('change', media)
+            media960.removeEventListener('change', media);
         }
     }, [fa_2x]);
 
     const media = () => {
         const mq = window.matchMedia( "(max-width: 960px)" );
         if (mq.matches) {
-            setFa_3x('fa-2x');
             setFa_2x('');
         } else {
-            setFa_3x('fa-3x');
             setFa_2x('fa-2x');
         }
     }
     
-    
 
 
     const buttonHandleClick = () => {
-        console.log(button)
-        setButton(!button)
-        console.log(button)        
+        setButton(!button)     
     }
-
-    const reddit = async () => {
-        try {
-            const response = await fetch('https://www.reddit.com/r/boottoobig.json', { method: 'GET'});
-            const jsonResponse = await response.json();
-            // console.log(jsonResponse)
-            return jsonResponse;
-        } catch(err) {
-            console.log(err)
-        }
-    }
-    console.log(reddit());
     
     
     let buttonMenu;
@@ -102,36 +85,22 @@ export const Navbar = () => {
         <header>
             <div className="home-nav-div">
                 <Link to="/" className="home-nav-link all-links">
-                    <i className={`fab fa-reddit ${fa_3x}`}></i>
+                    <i className="fab fa-reddit fa-3x"></i>
                     <p className="reddit">redd<span>i</span>t</p>
                 </Link>
             </div>
             
-                <div className="button-div-down">
-                    <button className="button-nav-down" onClick={buttonHandleClick}>
-                        <p className="button-home">
-                            <i className="fas fa-home fa-2x"></i>
-                            <span className="home-span">Home</span>
-                        </p>
-                        {buttonClip1}
-                        {buttonClip2}
-                        <i className="fas fa-chevron-down down-arrow"></i>
-                        
-                    </button>
-                    {buttonMenu}
-                </div>
+            <ButtonMenuDown 
+                // button={button}
+                buttonHandleClick={buttonHandleClick}
+                buttonClip1={buttonClip1}
+                buttonClip2={buttonClip2}
+                buttonMenu={buttonMenu}
+            />
             
             
-            
-            
-            <form className="search-form-wrapper" method="GET">
-                <div className="search-icon-wrapper">
-                  <i className="fas fa-search search-icon"></i>
-                  <input className="search-input" type="search" placeholder="Search" />
-                </div>               
-            </form>
-            <Nav fa_2x={fa_2x} />
-            
+            <SearchForm />
+            <Nav fa_2x={fa_2x} />            
         </header>
     )
     
