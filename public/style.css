@@ -1,0 +1,394 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap");
+
+:root {
+  --white: rgb(255, 255, 255);
+  --text-color: rgb(28, 28, 28);
+  --nice-background-color: rgb(246, 247, 248);
+}
+
+body {
+  background-color: rgb(218, 224, 230);
+  color: var(--text-color);
+  font-family: "Open Sans", sans-serif;
+}
+
+/* Header Section */
+header {
+  height: 10vh;
+  background-color: var(--white);
+  position: fixed;
+  top: 0vh;
+  bottom: 0vh;
+  width: 98vw;
+  z-index: 20;
+  display: flex;
+  left: 0vw;
+  /* flex-wrap: wrap; */
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Reddit Logo */
+.home-nav-div {
+  /* display: inline-block; */
+  margin-top: 5px;
+  width: 7vw;
+  height: 7vh;
+  /* background-color: red; */
+  /* border: 5px solid blue; */
+  position: relative;
+  left: 1vw;
+  /* margin-left: 10px; */
+}
+
+.all-links {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.home-nav-link {
+  position: absolute;
+  left: 0vw;
+  top: 0vh;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.home-nav-link:hover {
+  padding: 10px 5px 0;
+  background-color: var(--nice-background-color);
+}
+
+.home-nav-link p {
+  font-size: 1rem;
+}
+
+.fa-reddit {
+  color: rgb(255, 69, 0);
+}
+
+/* Button Nav-down */
+
+.button-div-down {
+  /* flex: 0 2 500px; */
+  /* background-color: red; */
+  /* display: flex; */
+  /* position: absolute; */
+  /* width: 20vw;  */
+  display: flex;
+}
+
+.button-nav-down {
+  /* display: none; */
+  flex: 0 5 auto;
+  height: 6vh;
+  width: 25vw;
+  display: flex;
+  /* align-content: left; */
+  justify-content: space-evenly;
+  /* background-color: red; */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: inherit;
+  /* position: relative; */
+  /* left: 10px; */
+  /* flex-basis: 20px; */
+  /* flex-shrink: 2; */
+  position: relative;
+  left: 1vw;
+}
+/* #F6F7F8 */
+.button-nav-down:hover {
+  border: 2.5px solid var(--nice-background-color);
+}
+
+.button-nav-down p {
+  flex: 0 3 auto;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.button-home {
+  position: absolute;
+  right: 0vw;
+  left: 1vw;
+  top: 1vh;
+  bottom: 0;
+}
+
+.board-clip {
+  position: absolute;
+  right: 0vw;
+  left: 19vw;
+  top: 3vh;
+  flex: 0 3 auto;
+  /* display: flex; */
+  /* display: none; */
+}
+
+.board-clip-arrow {
+  position: absolute;
+  right: 0vw;
+  left: 21vw;
+  top: 3vh;
+  flex: 0 3 auto;
+  /* display: none; */
+}
+
+.down-arrow {
+  position: absolute;
+  right: 0vw;
+  left: 23vw;
+  top: 3vh;
+  flex: 0 3 auto;
+}
+
+.div-menu {
+  position: absolute;
+  background-color: white;
+  top: 8vh;
+  /* left: 15vw; */
+  /* right: 0vw; */
+  padding-right: 10px;
+  width: 25vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  gap: 10px;
+  border-left: 1px solid var(--nice-background-color);
+  border-right: 2px solid var(--nice-background-color);
+  border-bottom: 1px solid var(--nice-background-color);
+  overflow-y: scroll;
+}
+
+.input-div-menu {
+  width: 80%;
+  height: 30px;
+  margin: 10px 0;
+}
+
+.ul-menu {
+  width: 100%;
+  /* background-color: red; */
+}
+
+.li-menu {
+  color: var(--text-color);
+  line-height: 2.5;
+  font-size: 0.9rem;
+}
+
+.li-menu:hover {
+  background-color: var(--nice-background-color);
+}
+
+.home-span {
+  font-size: 1.1rem;
+}
+
+/* Search Icon Nav section */
+
+.search-form-wrapper {
+  flex: 0 3 50px;
+  /* max-width: 20vw; */
+}
+
+.search-icon-wrapper {
+  position: relative;
+  left: 1vw;
+  /* flex-shrink: 3; */
+}
+
+.search-icon {
+  position: absolute;
+  top: 2vh;
+  left: 0.7vw;
+}
+
+.search-input {
+  width: 24vw;
+  height: 6vh;
+  padding-left: 30px;
+  background-color: var(--nice-background-color);
+  border: 2px solid var(--nice-background-color);
+  border-radius: 10px;
+  font-size: 1.5rem;
+}
+
+/* NAVBAR STYLES */
+
+.navbar {
+  display: flex;
+}
+
+.navbar-ul-first,
+.navbar-ul-second {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  border-right: 5px solid var(--nice-background-color);
+  padding: 0 10px;
+}
+
+.navbar-li:hover {
+  background-color: var(--nice-background-color);
+  padding: 10px;
+}
+
+.user-div {
+  padding-left: 5px;
+  position: relative;
+}
+
+.user-button {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  gap: 5px;
+  position: relative;
+  /* margin-right: 2vw; */
+}
+
+.user-down-arrow {
+  align-self: flex-end;
+}
+
+.small-menu {
+}
+
+.burger {
+  cursor: pointer;
+  display: none;
+}
+
+.small-menu-ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  position: fixed;
+  top: 10vh;
+  right: 0;
+  background-color: red;
+  width: 100%;
+  height: 90vh;
+}
+
+.small-menu-ul li {
+  background-color: var(--nice-background-color);
+}
+
+.inside-menu-logo {
+  align-self: flex-start;
+  justify-self: flex-start;
+}
+
+.small-menu-ul {
+  /* flex-grow: 5; */
+}
+
+@media only screen and (max-width: 1200px) {
+  .search-input {
+    width: 18vw;
+  }
+  .button-nav-down {
+    width: 18vw;
+  }
+  .board-clip {
+    left: 12vw;
+  }
+
+  .board-clip-arrow {
+    left: 14vw;
+  }
+
+  .down-arrow {
+    left: 16vw;
+  }
+  .div-menu {
+    width: 18vw;
+  }
+}
+
+@media only screen and (max-width: 1025px) {
+  .div-menu {
+    /* display: none; */
+  }
+  .search-input {
+    /* width: 30vw; */
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .reddit {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 860px) {
+  .navbar-ul-first,
+  .navbar-ul-second {
+    padding: 0 10px;
+  }
+  .search-input {
+    width: 20vw;
+  }
+}
+@media only screen and (max-width: 820px) {
+  /* Make the nav the hamburger icon and place everything into it flex column */
+  .button-nav-down {
+    display: none;
+  }
+  .search-input {
+    width: 40vw;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .search-input {
+    width: 35vw;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .search-form-wrapper {
+    display: none;
+  }
+  .search-input {
+    width: 80vw;
+    /* border: 3px solid black; */
+  }
+  .li-form-menu-search {
+    border-radius: 5px;
+    /* border: 3px solid black; */
+  }
+  header {
+    justify-content: space-between;
+    align-items: center;
+    /* gap: 0; */
+  }
+  .user-div {
+    justify-self: flex-end;
+    align-self: flex-end;
+  }
+  .navbar-ul {
+    display: none;
+  }
+  .user-link-button {
+    display: none;
+  }
+  .burger {
+    display: block;
+    margin: 0 5vw;
+  }
+}
