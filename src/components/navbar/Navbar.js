@@ -86,7 +86,7 @@ export const Navbar = () => {
             <div className="home-nav-div">
                 <Link to="/" className="home-nav-link all-links">
                     <i className="fab fa-reddit fa-3x"></i>
-                    <p className="reddit">redd<span>i</span>t</p>
+                    <p className="reddit">client</p>
                 </Link>
             </div>
             
