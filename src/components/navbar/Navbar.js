@@ -29,14 +29,17 @@ export const Navbar = () => {
     useEffect(() => {
         const media960 = window.matchMedia( "(max-width: 960px)" );
         media960.addEventListener('change', media);
+        // media960.addEventListener('load', media);
         return () => {
             media960.removeEventListener('change', media);
-        }
+            // media960.removeEventListener('load', media);
+        } // tried the 'load' on the event listener but nothing even with cleanup removeEVent or without still no
     }, [fa_2x]);
 
     const media = () => {
         const mq = window.matchMedia( "(max-width: 960px)" );
         if (mq.matches) {
+            console.log('width below 960')
             setFa_2x('');
         } else {
             setFa_2x('fa-2x');
