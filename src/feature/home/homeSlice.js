@@ -12,7 +12,7 @@ export const homeSubredditThunk = createAsyncThunk(
 const homeSlice = createSlice({
     name: 'home',
     initialState: {
-        homeReddit: {},
+        homeReddit: [],
         isLoading: false,
         hasError: false
     },
@@ -30,7 +30,8 @@ const homeSlice = createSlice({
                     author: child.author,
                     title: child.title,
                     subreddit: child.subreddit,
-                    url: child.url_overridden_by_dest
+                    url: child.url_overridden_by_dest,
+                    prefix: child.subreddit_name_prefixed
             }))
         },
         [homeSubredditThunk.rejected]: (state) => {
@@ -39,6 +40,7 @@ const homeSlice = createSlice({
         }
     }
 });
-console.log(homeSlice)
+// console.log(homeSlice)
+export const isLoading = state => state.home.isLoading;
 export const selectHome = state => state.home.homeReddit;
 export default homeSlice.reducer;

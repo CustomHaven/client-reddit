@@ -1,50 +1,75 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import './Navbar.css';
 import { ButtonMenuDown } from './buttonMenuDown/ButtonMenuDown.js'
 import { SearchForm } from './searchForm/SearchForm.js';
 import { Nav } from './nav/Nav.js'
 // import { CloseBurger } from './closeBurger/CloseBurger'
+import { subredditsThunk, selectSubreddits } from '../../feature/subreddits/subredditsSlice.js';
+import { useMediaQuery } from 'beautiful-react-hooks'; 
 
 export const Navbar = () => {
+
+    const subreddit = useSelector(selectSubreddits);
+    const dispatch = useDispatch();
+
+    
     
     const [button, setButton] = useState(false);
 
-    // useEffect(() => {
-    //     if (button === true) {
-    //         document.getElementById('root').addEventListener('click', buttonMenuMethod)
+    useEffect(() => {
+        if (button === true) {
+            document.getElementById('root').addEventListener('click', buttonMenuMethod)
     
-    //         return () => {
-                // window.removeEventListener('click', buttonMenuMethod)
-    //         }
-    //     }
-    // }, [button]);
+            return () => {
+                window.removeEventListener('click', buttonMenuMethod)
+            }
+        }
+    }, [button]);
 
-    // const buttonMenuMethod = () => {
-    //     setButton(false);
-    // }
+    const buttonMenuMethod = () => {
+        setButton(false);
+    }
 
     const [fa_2x, setFa_2x] = useState('fa-2x');
+    // const media960 = window.matchMedia( "(max-width: 960px)" );
+    // media960.addEventListener('load', () => {
+    //     const mq = window.matchMedia( "(max-width: 960px)" );
+    //     if (mq.matches) {
+    //         console.log('width below 960')
+    //         setFa_2x('');
+    //     } else {
+    //         setFa_2x('fa-2x');
+    //     }
+    // });
+    // const isSmall = useMediaQuery('(max-width: 960px)'); 
+
+    // useEffect(() => {
+        
+
+    //     if (isSmall) {
+    //         setFa_2x('');
+    //     } else {
+    //         setFa_2x('fa-2x')
+    //     }
+    // }, [isSmall])
+
+
+
+    // const isLarge = useMediaQuery('(min-width: 48rem)'); 
 
     useEffect(() => {
+        dispatch(subredditsThunk())
         const media960 = window.matchMedia( "(max-width: 960px)" );
-        media960.addEventListener('change', media);
-        // media960.addEventListener('load', media);
-        return () => {
-            media960.removeEventListener('change', media);
-            // media960.removeEventListener('load', media);
-        } // tried the 'load' on the event listener but nothing even with cleanup removeEVent or without still no
-    }, [fa_2x]);
-
-    const media = () => {
-        const mq = window.matchMedia( "(max-width: 960px)" );
-        if (mq.matches) {
-            console.log('width below 960')
+        if (media960.matches) {
             setFa_2x('');
         } else {
             setFa_2x('fa-2x');
         }
-    }
+    }, [dispatch, fa_2x]);
+
+    console.log(subreddit);
     
 
 
@@ -63,21 +88,13 @@ export const Navbar = () => {
             <div role="menu" className="div-menu">
                 <input className="input-div-menu" type="text" placeholder="Filter REDUX for r/whatever subredit" />
                 <ul className="ul-menu" role="menu">
-                    <Link to="/r/new" className="all-links">
-                        <li className="li-menu" role="menuitem">New</li>
-                    </Link>
-                    <Link to="/r/open" className="all-links">
-                        <li className="li-menu" role="menuitem">Open</li>
-                    </Link>
-                    <Link to="/r/save" className="all-links">
-                        <li className="li-menu" role="menuitem">Save</li>
-                    </Link>
-                    <Link to="/r/close" className="all-links">
-                        <li className="li-menu" role="menuitem">Close</li>
-                    </Link>
-                    <Link to="/r/dontforget" className="all-links">
-                        <li className="li-menu" role="menuitem">DONT FORGET TO SET UP TO THE API LOCATION</li>
-                    </Link>
+                    {
+                        subreddit.map(reddit => 
+                                <Link to={reddit} className="all-links">
+                                    <li className="li-menu" role="menuitem">{reddit}</li>
+                                </Link>
+                        )
+                    }
                 </ul>
             </div>
         )

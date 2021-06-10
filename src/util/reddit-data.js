@@ -29,6 +29,7 @@ const reddit = {
             if (response.ok) {
                 const jsonResponse = await response.json();
                 const children = jsonResponse.data.children.map(child => child.data)
+                // console.log(children)
                 return children;
             }
             throw new Error('Request Failed')
