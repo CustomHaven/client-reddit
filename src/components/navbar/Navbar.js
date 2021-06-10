@@ -5,17 +5,13 @@ import './Navbar.css';
 import { ButtonMenuDown } from './buttonMenuDown/ButtonMenuDown.js'
 import { SearchForm } from './searchForm/SearchForm.js';
 import { Nav } from './nav/Nav.js'
-// import { CloseBurger } from './closeBurger/CloseBurger'
 import { subredditsThunk, selectSubreddits } from '../../feature/subreddits/subredditsSlice.js';
-import { useMediaQuery } from 'beautiful-react-hooks'; 
 
 export const Navbar = () => {
 
     const subreddit = useSelector(selectSubreddits);
     const dispatch = useDispatch();
 
-    
-    
     const [button, setButton] = useState(false);
 
     useEffect(() => {
@@ -33,31 +29,8 @@ export const Navbar = () => {
     }
 
     const [fa_2x, setFa_2x] = useState('fa-2x');
-    // const media960 = window.matchMedia( "(max-width: 960px)" );
-    // media960.addEventListener('load', () => {
-    //     const mq = window.matchMedia( "(max-width: 960px)" );
-    //     if (mq.matches) {
-    //         console.log('width below 960')
-    //         setFa_2x('');
-    //     } else {
-    //         setFa_2x('fa-2x');
-    //     }
-    // });
-    // const isSmall = useMediaQuery('(max-width: 960px)'); 
-
-    // useEffect(() => {
-        
-
-    //     if (isSmall) {
-    //         setFa_2x('');
-    //     } else {
-    //         setFa_2x('fa-2x')
-    //     }
-    // }, [isSmall])
 
 
-
-    // const isLarge = useMediaQuery('(min-width: 48rem)'); 
 
     useEffect(() => {
         dispatch(subredditsThunk())
