@@ -2,10 +2,18 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { Navbar  }from '../components/navbar/Navbar.js';
 import Home from '../components/home/Home.js';
-import { getPopular } from '../util/reddit-data.js'
+import reddit from '../util/reddit-data.js'
 
-console.log(getPopular())
+
+
+// const regexValidation = /\.jpg$/
+// const children = reddit.getPopular();
+// for (let i = 0; i < children.length; i++) {
+//   console.log(children[i].match(regexValidation))
+// }
+// console.log(getPopular())
 function App() {
+  
   return (
     <Router>
       <Navbar />
