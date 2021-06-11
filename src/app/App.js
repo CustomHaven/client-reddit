@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { Navbar  }from '../components/navbar/Navbar.js';
 import Home from '../components/home/Home.js';
 import reddit from '../util/reddit-data.js';
+import Subreddits from '../components/subreddits/Subreddits.js';
 
 
 
@@ -18,9 +19,11 @@ function App() {
     <Router>
       <Navbar />
       <Switch>
-        <Route exact path="/r/Home">
+
+        <Route exact path='/'>
           <Home />
         </Route>
+        <Route exact path='/dragon/:prefix' children={<Subreddits />}></Route>
       </Switch>
     </Router>
   );

@@ -16,12 +16,19 @@ const reddit = {
         return response;
     },
     async getSubreddits() {
-        const response = await fetch(`${API_REDDIT}/subreddits.json`);
-        const jsonResponse = await response.json();
+        try {
+            const response = await fetch(`${API_REDDIT}/subreddits.json`);
+            const jsonResponse = await response.json();
     
-        const children = jsonResponse.data.children.map(child => child.data.url);
-        // console.log(children)
-        return children
+            // console.log(jsonResponse)
+        
+            const children = jsonResponse.data.children.map(child => child.data);
+            console.log(children)
+            return children
+        } catch(error) {
+            console.log(error)
+        }
+
     },
     async getHome() {
         try {
@@ -46,12 +53,23 @@ const reddit = {
 
         const children = jsonResponse.data.children.filter(child => (regexValidation.test(child.data.url_overridden_by_dest) && child.data.url_overridden_by_dest))
 
-        
-        // const testIt = children.forEach((child, index) => child.test(regexValidation))
-        // console.log(children)
-        // console.log(jsonResponse)
         console.log(children)
         return children
+    },
+    async getAnyReddit(data) {
+        try {
+            const response = await fetch(`${API_REDDIT}/r/${data}.json`);
+            if (response.ok) {
+                const jsonResponse = await response.json();
+                const children = jsonResponse.data.children.map(child => child.data)
+                // console.log(children)
+                return children;
+            }
+
+        } catch(error) {
+            console.log(error)
+        }
+
     }
 }
 

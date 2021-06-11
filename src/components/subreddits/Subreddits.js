@@ -1,39 +1,38 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom';
-import { homeSubredditThunk, selectHome, isLoading } from '../../feature/home/homeSlice.js'
+import { subredditsThunk, selectSubIsLoading, selectSubreddits } from '../../feature/subreddits/subredditsSlice.js'
 
-const Home = () => {
+const Subreddits = () => {
 
-    const loading = useSelector(isLoading);
-    const subHome = useSelector(selectHome);
-
-    const param = useParams();
-
-    console.log(param)
-
+    const {prefix} = useParams();
+    console.log(prefix)
+    const redditLoading = useSelector(selectSubIsLoading)
+    const subreddit = useSelector(selectSubreddits);
     const dispatch = useDispatch();
-    
+
     useEffect(() => {
-        dispatch(homeSubredditThunk());
+        dispatch(subredditsThunk(prefix))
     }, [dispatch]);
 
     const regexValidation = /\.(:?jpg|gif|png)$/;
 
-    if (loading === true) {
+    if (redditLoading === true) {
         return <div style={{position: 'relative', top: '180px'}}>Loading...</div>
     }
-    // const regexValidation = /\.jpg$/
+
+
+    // console.log(subreddit)
 
 
     
     return (
         <div style={{position: 'relative', top: '200px'}}>
-            {/* <h1>Welcome to the Home Page {!loading ? subHome[0].prefix : null}</h1> */}
+            <h1>Welcome to any Subreddit Page </h1>
 
             <ul>
                 {
-                    subHome.map(home => 
+                    subreddit.map(home => 
                     <li key={home.id}>
                         <span>{home.subreddit + " subreddit"}</span>
                         <p>{home.title + " title"}</p>
@@ -52,4 +51,4 @@ const Home = () => {
 }
 
 
-export default Home;
+export default Subreddits;

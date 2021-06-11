@@ -1,40 +1,41 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import './Navbar.css';
 import { ButtonMenuDown } from './buttonMenuDown/ButtonMenuDown.js'
 import { SearchForm } from './searchForm/SearchForm.js';
 import { Nav } from './nav/Nav.js'
-import { subredditsThunk, selectSubreddits } from '../../feature/subreddits/subredditsSlice.js';
+import { subredditsListThunk, selectSubredditsList } from '../../feature/subredditsList/subredditsList.js';
 
 export const Navbar = () => {
 
-    const subreddit = useSelector(selectSubreddits);
+    const subreddit = useSelector(selectSubredditsList);
     const dispatch = useDispatch();
 
     const [button, setButton] = useState(false);
 
-    useEffect(() => {
-        if (button === true) {
-            document.getElementById('root').addEventListener('click', buttonMenuMethod)
+    // useEffect(() => {
+    //     if (button === true) {
+    //         document.getElementById('root').addEventListener('click', buttonMenuMethod)
     
-            return () => {
-                window.removeEventListener('click', buttonMenuMethod)
-            }
-        }
-    }, [button]);
+    //         return () => {
+    //             window.removeEventListener('click', buttonMenuMethod)
+    //         }
+    //     }
+    // }, [button]);
 
-    const buttonMenuMethod = () => {
-        setButton(false);
-    }
+    // const buttonMenuMethod = () => {
+    //     setButton(false);
+    // }
 
     const [fa_2x, setFa_2x] = useState('fa-2x');
 
 
 
     useEffect(() => {
-        dispatch(subredditsThunk())
+        dispatch(subredditsListThunk())
         const media960 = window.matchMedia( "(max-width: 960px)" );
+        
         if (media960.matches) {
             setFa_2x('');
         } else {
@@ -42,7 +43,7 @@ export const Navbar = () => {
         }
     }, [dispatch, fa_2x]);
 
-    console.log(subreddit);
+    // console.log(subreddit);
     
 
 
@@ -62,9 +63,9 @@ export const Navbar = () => {
                 <input className="input-div-menu" type="text" placeholder="Filter REDUX for r/whatever subredit" />
                 <ul className="ul-menu" role="menu">
                     {
-                        subreddit.map(reddit => 
-                                <Link to={reddit} className="all-links">
-                                    <li className="li-menu" role="menuitem">{reddit}</li>
+                        subreddit.map((reddit, index) => 
+                                <Link to={`/dragon/${reddit.name}`} className="all-links" key={reddit.id}>
+                                    <li className="li-menu" role="menuitem">{reddit.prefix}</li>
                                 </Link>
                         )
                     }
