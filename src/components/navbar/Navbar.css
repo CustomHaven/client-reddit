@@ -7,7 +7,7 @@
 }
 
 /* Header Section */
-header {
+/* header {
   height: 10vh;
   background-color: var(--white);
   position: fixed;
@@ -22,7 +22,7 @@ header {
   justify-content: space-between;
   margin: 0 auto;
   padding: 0 20px;
-}
+} */
 
 /* Reddit Logo */
 .home-nav-div {

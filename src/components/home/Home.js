@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom';
-import { homeSubredditThunk, selectHome, isLoading } from '../../feature/home/homeSlice.js'
+import './Home.css'
+import { homeSubredditThunk, selectHome, isLoading } from '../../feature/home/homeSlice.js';
+import randomNum from '../../util/randomNumbers.js'
 
 const Home = () => {
 
@@ -20,36 +22,52 @@ const Home = () => {
 
     const regexValidation = /\.(:?jpg|gif|png)$/;
 
-    if (loading === true) {
-        return <div style={{position: 'relative', top: '180px'}}>Loading...</div>
+    if (loading) {
+        return <div style={{position: 'relative', top: '50vh', left: '50vw'}}>Loading...</div>
     }
     // const regexValidation = /\.jpg$/
 
 
     
     return (
-        <div style={{position: 'relative', top: '200px'}}>
-            {/* <h1>Welcome to the Home Page {!loading ? subHome[0].prefix : null}</h1> */}
+        <>
+            <h1 style={{position: 'relative', top: '200px'}}>Welcome to the Home Page </h1>
+            {
+                subHome.map(home => 
+                    
+                    <div 
+                        style={{backgroundColor: `rgba(${randomNum()}, ${randomNum()}, ${randomNum()}, 0.4)`}}
+                        className="reddit-div">
+                        
 
-            <ul>
-                {
-                    subHome.map(home => 
-                    <li key={home.id}>
-                        <span>{home.subreddit + " subreddit"}</span>
-                        <p>{home.title + " title"}</p>
-                        { 
-                            regexValidation.test(home.url) && 
-                            <img src={home.url} alt="no img"/>
-                        }
-                        <p>{home.author + " author"}</p>
-                    </li>)
-                }
-            </ul>
+                        <ul className="reddit-ul" >
+                            
+                                
+                                <li 
+                                // style={{backgroundColor: `rgba(${randomNum()}, ${randomNum()}, ${randomNum()})`}}                                 
+                                className="reddit-li" key={home.id}>
+                                    <p className='reddit-subreddit'>{home.subreddit}</p>
+                                    <p className='reddit-title'>{home.title}</p>
+                                    { 
+                                        regexValidation.test(home.url) && 
+                                        <div className="reddit-img-container" >
+                                        <img src={home.url} alt="no img"/>
+                                        </div>
+                                    }
+                                    <p className='reddit-author'>{home.author}</p>
+                                </li>
+                        
+                        </ul>
 
-            
-        </div>
+                        
+                    </div>
+                )
+            }
+        </>
     )
 }
 
 
 export default Home;
+
+// style={{backgroundColor: `rgba(${randomNum()}, ${randomNum()}, ${randomNum()}, 0.4)`}}

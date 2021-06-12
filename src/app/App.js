@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import './App.css'
 import { Navbar  }from '../components/navbar/Navbar.js';
 import Home from '../components/home/Home.js';
 import reddit from '../util/reddit-data.js';
@@ -17,14 +18,22 @@ function App() {
   
   return (
     <Router>
+      <main className="the-grid">
+      <header>
       <Navbar />
+      </header>
+      <aside>
+          
+      </aside>
       <Switch>
-
+        <section>
         <Route exact path='/'>
           <Home />
         </Route>
-        <Route exact path='/dragon/:prefix' children={<Subreddits />}></Route>
+        <Route path='/dragon/:prefix' children={<Subreddits />}></Route>
+        </section>
       </Switch>
+      </main>
     </Router>
   );
 }

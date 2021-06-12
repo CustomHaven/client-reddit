@@ -1,8 +1,19 @@
 import React from 'react';
+import { ButtonMenu } from './buttonMenu/ButtonMenu.js';
 
 export const ButtonMenuDown = (props) => {
 
-    const { buttonHandleClick, buttonClip1, buttonClip2, buttonMenu } = props;
+    const { button, buttonHandleClick } = props;
+
+    // let buttonClip1;
+    // let buttonClip2;
+    // if (button) {
+    //     buttonClip1 = <i className="fas fa-clipboard-list board-clip"></i>;
+    //     buttonClip2 = <i className="fas fa-chevron-left board-clip-arrow"></i>;
+        // buttonMenu = ( // all will be linked remember when you do the api
+
+        // )
+    
 
     return (
         <div className="button-div-down">
@@ -11,12 +22,18 @@ export const ButtonMenuDown = (props) => {
                     <i className="fas fa-home fa-2x"></i>
                     <span className="home-span">Home</span>
                 </p>
-                {buttonClip1}
-                {buttonClip2}
+                {
+                    button && (
+                    <>
+                        <i className="fas fa-clipboard-list board-clip"></i>
+                        <i className="fas fa-chevron-left board-clip-arrow"></i>
+                    </>
+                    )
+                }
                 <i className="fas fa-chevron-down down-arrow"></i>
                 
             </button>
-            {buttonMenu}
+            {button && <ButtonMenu />}
         </div>
     )
 }

@@ -1,0 +1,24 @@
+.the-grid {
+  display: grid;
+}
+
+main {
+  /* background-color: brown; */
+}
+
+header {
+  height: 80px;
+  background-color: var(--white);
+  position: fixed;
+  top: 0vh;
+  bottom: 0vh;
+  width: 98vw;
+  z-index: 20;
+  display: flex;
+  left: 0vw;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 0 20px;
+}

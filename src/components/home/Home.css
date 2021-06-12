@@ -1,0 +1,107 @@
+/* style={{position: 'relative', top: '200px'}} */
+p,
+span {
+  line-height: 2;
+}
+
+.reddit-div {
+  position: relative;
+  top: 10vh;
+  margin: 20px auto;
+  /* display: inline-block; */
+  /* padding: 50px; */
+  width: 50vw;
+  /* height: 50vh; */
+  border: 5px solid rgba(37, 34, 34, 0.8);
+  border-radius: 20px;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* background-color: brown; */
+}
+
+.reddit-ul {
+  /* display: grid; */
+  /* background-color: yellow; */
+  /* padding: 50px; */
+  /* width: 100px; */
+}
+
+.reddit-li {
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* overflow: hidden; */
+  display: grid;
+  grid-template-columns: 100px 1fr 1fr 1fr 1fr 1fr 1fr 0.5fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    ". title title title title title . subreddit"
+    ". title title title title title . ."
+    "img img img img img img . ."
+    "img img img img img img . ."
+    "img img img img img img . ."
+    "img img img img img img . ."
+    "img img img img img img . ."
+    "img img img img img img . author";
+  /* height: 50vh; */
+
+  /* background-color: red; */
+}
+
+.reddit-subreddit {
+  grid-area: subreddit;
+}
+
+.reddit-title {
+  grid-area: title;
+  /* background-color: blue; */
+}
+
+.reddit-img-container {
+  grid-area: img;
+  /* width: 200px; */
+  /* height: 100%; */
+  height: 50vh;
+  width: 50vw;
+  /* max-width: 100%; */
+  /* max-height: 100%; */
+  /* overflow: hidden; */
+  /* flex: 2 0 80vh; */
+  /* background-color: red; */
+}
+
+.reddit-img-container img {
+  /* max-width: 50%; */
+  /* height: 100%; */
+  height: 100%;
+  width: 100%;
+  /* display: block; */
+  border-radius: 20px;
+  /* overflow: hidden; */
+  /* grid-area: img; */
+  object-fit: fill;
+}
+
+.reddit-author {
+  grid-area: author;
+  color: gold;
+}
+
+@media only screen and (max-width: 700px) {
+  .reddit-div {
+    /* width: 90vw; */
+  }
+  .reddit-subreddit {
+    display: none;
+  }
+  .reddit-li {
+    grid-template-areas:
+      "title title title title title title title title"
+      "title title title title title title title title"
+      "title title title title title title title title"
+      "img img img img img img . ."
+      "img img img img img img . ."
+      "img img img img img img . ."
+      "img img img img img img . ."
+      "img img img img img img . author";
+  }
+}

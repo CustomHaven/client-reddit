@@ -4,13 +4,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import './Navbar.css';
 import { ButtonMenuDown } from './buttonMenuDown/ButtonMenuDown.js'
 import { SearchForm } from './searchForm/SearchForm.js';
-import { Nav } from './nav/Nav.js'
-import { subredditsListThunk, selectSubredditsList } from '../../feature/subredditsList/subredditsList.js';
+import { Nav } from './nav/Nav.js';
+import { ButtonMenu } from './buttonMenuDown/buttonMenu/ButtonMenu.js';
+import { useMediaQuery } from 'beautiful-react-hooks';
 
 export const Navbar = () => {
 
-    const subreddit = useSelector(selectSubredditsList);
-    const dispatch = useDispatch();
+
 
     const [button, setButton] = useState(false);
 
@@ -33,7 +33,7 @@ export const Navbar = () => {
 
 
     useEffect(() => {
-        dispatch(subredditsListThunk())
+
         const media960 = window.matchMedia( "(max-width: 960px)" );
         
         if (media960.matches) {
@@ -41,7 +41,7 @@ export const Navbar = () => {
         } else {
             setFa_2x('fa-2x');
         }
-    }, [dispatch, fa_2x]);
+    }, [fa_2x, button]);
 
     // console.log(subreddit);
     
@@ -52,32 +52,15 @@ export const Navbar = () => {
     }
     
     
-    let buttonMenu;
-    let buttonClip1;
-    let buttonClip2;
-    if (button) {
-        buttonClip1 = <i className="fas fa-clipboard-list board-clip"></i>;
-        buttonClip2 = <i className="fas fa-chevron-left board-clip-arrow"></i>;
-        buttonMenu = ( // all will be linked remember when you do the api
-            <div role="menu" className="div-menu">
-                <input className="input-div-menu" type="text" placeholder="Filter REDUX for r/whatever subredit" />
-                <ul className="ul-menu" role="menu">
-                    {
-                        subreddit.map((reddit, index) => 
-                                <Link to={`/dragon/${reddit.name}`} className="all-links" key={reddit.id}>
-                                    <li className="li-menu" role="menuitem">{reddit.prefix}</li>
-                                </Link>
-                        )
-                    }
-                </ul>
-            </div>
-        )
-    }  
+    // let buttonMenu;
+    // let buttonClip1;
+    // let buttonClip2;
+ 
 
     
     return (
         <header>
-            <div className="home-nav-div">
+            <div className="home-nav-div logo-div">
                 <Link to="/" className="home-nav-link all-links">
                     <i className="fab fa-reddit fa-3x"></i>
                     <p className="reddit">client</p>
@@ -85,11 +68,11 @@ export const Navbar = () => {
             </div>
             
             <ButtonMenuDown 
-                // button={button}
+                button={button}
                 buttonHandleClick={buttonHandleClick}
-                buttonClip1={buttonClip1}
-                buttonClip2={buttonClip2}
-                buttonMenu={buttonMenu}
+                // buttonClip1={buttonClip1}
+                // buttonClip2={buttonClip2}
+                // buttonMenu={buttonMenu}
             />
             
             

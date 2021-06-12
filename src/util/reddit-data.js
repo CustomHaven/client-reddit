@@ -32,7 +32,7 @@ const reddit = {
     },
     async getHome() {
         try {
-            const response = await fetch(`${API_REDDIT}/r/home.json`);
+            const response = await fetch(`${API_REDDIT}/r/meme.json`);
             if (response.ok) {
                 const jsonResponse = await response.json();
                 const children = jsonResponse.data.children.map(child => child.data)
