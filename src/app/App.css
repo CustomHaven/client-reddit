@@ -1,17 +1,9 @@
-.the-grid {
-  display: grid;
-}
-
-main {
-  /* background-color: brown; */
-}
-
 header {
   height: 80px;
   background-color: var(--white);
   position: fixed;
   top: 0vh;
-  bottom: 0vh;
+  /* bottom: 0vh; */
   width: 98vw;
   z-index: 20;
   display: flex;
@@ -19,6 +11,20 @@ header {
   gap: 20px;
   align-items: center;
   justify-content: space-between;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   padding: 0 20px;
+}
+
+.the-flex-container {
+  /* background-color: brown; */
+  display: flex;
+  /* flex-direction: column; */
+  /* align-items: center; */
+  justify-content: center;
+  width: 100vw;
+  position: relative;
+  top: 80px;
+}
+
+.banner-container {
 }

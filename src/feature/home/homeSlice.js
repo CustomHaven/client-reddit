@@ -29,7 +29,7 @@ const homeSlice = createSlice({
                     id: child.id,
                     author: child.author,
                     title: child.title,
-                    subreddit: child.subreddit,
+                    name: child.subreddit,
                     url: child.url_overridden_by_dest,
                     prefix: child.subreddit_name_prefixed
             }))
@@ -44,3 +44,6 @@ const homeSlice = createSlice({
 export const isLoading = state => state.home.isLoading;
 export const selectHome = state => state.home.homeReddit;
 export default homeSlice.reducer;
+
+// mobile_banner_image   --- nice banner img on top level
+// icon_img /r/whatever nice small icon img

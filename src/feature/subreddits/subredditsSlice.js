@@ -29,7 +29,7 @@ const subredditsSlice = createSlice({
                     id: child.id,
                     author: child.author,
                     title: child.title,
-                    subreddit: child.subreddit,
+                    name: child.subreddit,
                     url: child.url_overridden_by_dest,
                     prefix: child.subreddit_name_prefixed
             }))

@@ -1,16 +1,25 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { subredditsListThunk, selectSubredditsList } from '../../../../feature/subredditsList/subredditsList.js';
+import { listOfAllThunk, selectListOfAll } from '../../../../feature/listOfAll/listOfAllSlice.js';
 
 export const ButtonMenu = () => {
 
-    const subreddit = useSelector(selectSubredditsList);
-    const dispatch = useDispatch();
+    const subreddit = useSelector(selectListOfAll);
+    // const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(subredditsListThunk())
-    }, [dispatch]);
+    // useEffect(() => {
+        // window.addEventListener('click', () => {
+            // dispatch(subredditsListThunk())
+        // });
+
+        // return () => {
+            // window.removeEventListener('click', () => {
+                // dispatch(subredditsListThunk())
+            // })
+        // }
+
+    // }, [dispatch]);
 
 
     return (

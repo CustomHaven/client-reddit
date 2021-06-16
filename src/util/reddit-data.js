@@ -12,7 +12,7 @@ const reddit = {
         const access = await fetch('https://www.reddit.com/api/v1/access_token');
         console.log(access + ' the access token?')
         const response = await access.json()
-        console.log(response + ' the response from access.json')
+        console.log(response + ' the response from access.json');
         return response;
     },
     async getSubreddits() {
@@ -23,7 +23,7 @@ const reddit = {
             // console.log(jsonResponse)
         
             const children = jsonResponse.data.children.map(child => child.data);
-            console.log(children)
+            // console.log(children)
             return children
         } catch(error) {
             console.log(error)
@@ -32,7 +32,7 @@ const reddit = {
     },
     async getHome() {
         try {
-            const response = await fetch(`${API_REDDIT}/r/meme.json`);
+            const response = await fetch(`${API_REDDIT}/r/Genshin_Impact.json`);
             if (response.ok) {
                 const jsonResponse = await response.json();
                 const children = jsonResponse.data.children.map(child => child.data)
@@ -53,7 +53,7 @@ const reddit = {
 
         const children = jsonResponse.data.children.filter(child => (regexValidation.test(child.data.url_overridden_by_dest) && child.data.url_overridden_by_dest))
 
-        console.log(children)
+        // console.log(children)
         return children
     },
     async getAnyReddit(data) {
