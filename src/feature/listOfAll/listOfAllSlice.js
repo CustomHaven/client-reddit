@@ -18,12 +18,6 @@ const listOfAllSlice = createSlice({
         subListLoading: false,
         subListError: false
     },
-    // reducers: {
-    //     nameList: (state, action) => {
-    //         // const { name } = action.payload;
-    //         state.nameList = action.payload
-    //     }
-    // },
     extraReducers: {
         [listOfAllThunk.pending]: (state) => {
             state.subListLoading = true;
@@ -52,13 +46,8 @@ const listOfAllSlice = createSlice({
     }
 });
 
-// export const { nameList } = subredditsListSlice.actions;
+
 export const selectListOfAll = state => state.listOfAll.listOfAll;
-// export const selectNameList = state => state.listOfAll.nameList;
 export default listOfAllSlice.reducer;
 
-
-
-// mobile_banner_image   --- nice banner img on top level
-// icon_img /r/whatever nice small icon img
 

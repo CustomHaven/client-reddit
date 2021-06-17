@@ -18,7 +18,7 @@ const Home = () => {
     
     useEffect(() => {
         window.addEventListener('load', () => {
-            
+            dispatch(homeSubredditThunk());
         })
         return () => {
             window.removeEventListener('load', () => {

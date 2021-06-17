@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useLayoutEffect, useCallback } from 'react';
 import './Banner.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectListOfAll, listOfAllThunk } from '../../feature/listOfAll/listOfAllSlice.js';
@@ -12,9 +12,16 @@ const Banner = () => {
     const dispatch = useDispatch();
     const allList = useSelector(selectListOfAll);
 
+    // flag
+    const allListFlag = Object.keys(allList).length;
+
     useEffect(() => {
+        if (allListFlag === 0) {
         dispatch(listOfAllThunk())
-    }, [allList, dispatch]);
+        }
+
+    }, [dispatch, allList]);
+
 
 
     const location = window.location.href;

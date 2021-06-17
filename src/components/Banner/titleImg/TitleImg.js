@@ -5,10 +5,9 @@ const TitleImg = (props) => {
     
     const { idx, allList } = props;
 
-    // console.log('titleIMG');
-    // console.log(allList);
-    // console.log('titleIMG');
-    // const index = allList.findIndex(child => child.name === regex);
+    console.log('titleIMG');
+    console.log(allList);
+    console.log('titleIMG');
 
     return (
         <div className="title-section">
@@ -18,9 +17,16 @@ const TitleImg = (props) => {
         {
             idx !== -1 && allList[idx].iconImg !== null && allList[idx].iconImg.length > 0 
             ?
-            <img src={allList[idx].iconImg} alt="icon-display" />
+            <img 
+                key={allList[idx].id}
+                src={allList[idx].iconImg} 
+                alt="icon-display" />
             :
-            <img src="https://b.thumbs.redditmedia.com/xDPX3Hq8IYJPpEdTsDGDJ_LZCnABwL13cg0DE78HU-w.png" alt="temp" />
+            <img 
+                // key={allList[idx].id}
+                src="https://b.thumbs.redditmedia.com/xDPX3Hq8IYJPpEdTsDGDJ_LZCnABwL13cg0DE78HU-w.png" 
+                alt="temp" 
+            />
         }
 
         </div>

@@ -10,7 +10,7 @@ import '../home/Home.css';
 const Subreddits = () => {
 
     // console.log(window.location.href)
-    const allList = useSelector(selectListOfAll);
+    // const allList = useSelector(selectListOfAll);
     // console.log(allList)
 
     const {prefix} = useParams();

@@ -1,23 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { selectListOfAll } from '../../../feature/listOfAll/listOfAllSlice';
 import randomNum from '../../../util/randomNumbers';
 
 
 const HeaderImg = (props) => {
 
-    // const allList = useSelector(selectListOfAll)
-
     const { idx, allList } = props;
-    // const [list, setList] = useState([]);
 
-    // console.log('headerIMG');
-    // console.log(allList);
-    // console.log('headerIMG');
-    // const index = allList.findIndex(child => child.name === regex);
-    // useEffect(() => {
-        // setList(allList);
-    // }, [allList, list])
+    console.log('headerIMG');
+    console.log(allList);
+    console.log('headerIMG');
 
     return (
         <div 
@@ -26,9 +17,17 @@ const HeaderImg = (props) => {
         {
             idx !== -1 && allList[idx].headerImg !== null 
             ?
-            <img src={allList[idx].headerImg} alt="header-display" />
+            <img 
+                key={allList[idx].id} 
+                src={allList[idx].headerImg} 
+                alt="header-display" 
+            />
             :
-            <img src="https://b.thumbs.redditmedia.com/hOn2BgW06eQdpNY-RvF3UGBtbG_CFbr4XkotMYLWhEc.png" alt="header-display" />
+            <img 
+                // key={allList[idx].id} 
+                src="https://b.thumbs.redditmedia.com/hOn2BgW06eQdpNY-RvF3UGBtbG_CFbr4XkotMYLWhEc.png" 
+                alt="header-display" 
+            />
         }
         </div>
     )
