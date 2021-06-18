@@ -44,7 +44,7 @@ const Banner = () => {
                 idx={index}
                 allList={allList}
             />
-{/*  */}
+            {/*  */}
             <TitleImg 
                 idx={index}
                 allList={allList}
