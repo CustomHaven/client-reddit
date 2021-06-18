@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React from 'react';
 import randomNum from '../../../util/randomNumbers';
 
 
@@ -6,12 +6,6 @@ const BannerImg = (props) => {
 
     const { idx, allList } = props;
 
-    console.log('bannerIMG');
-    console.log(allList);
-    console.log('bannerIMG');
-
-
-    console.log(idx)
 
     return (
         <>

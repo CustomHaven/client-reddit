@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useRef, useLayoutEffect, useCallback } from 'react';
 import './Banner.css';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { selectListOfAll, listOfAllThunk } from '../../feature/listOfAll/listOfAllSlice.js';
 import HeaderImg from './headerImg/HeaderImg.js';
 import BannerImg from './bannerImg/BannerImg.js';
@@ -11,22 +12,22 @@ const Banner = () => {
 
     const dispatch = useDispatch();
     const allList = useSelector(selectListOfAll);
+    let locationPath = useLocation()
+    console.log(locationPath)  
 
-    // flag
-    const allListFlag = Object.keys(allList).length;
 
     useEffect(() => {
-        if (allListFlag === 0) {
-        dispatch(listOfAllThunk())
-        }
+        dispatch(listOfAllThunk());
+    }, [dispatch]);
 
-    }, [dispatch, allList]);
+    const location = locationPath.pathname;
 
+    // const location = window.location.href;
 
+    console.log(location + " the loc")
 
-    const location = window.location.href;
-
-    const regex = /http(s)?:\/\/localhost:3000(\/dragon)?\//i;
+    // const regex = /http(s)?:\/\/localhost:3000(\/dragon)?\//i;
+    const regex = /\/dragon\//i;
 
     const regexResult = location.replace(regex, '');
 
@@ -37,12 +38,13 @@ const Banner = () => {
             <HeaderImg 
                 idx={index}
                 allList={allList}
-            />
-            
+            />            
+            {/*  */}
             <BannerImg 
                 idx={index}
                 allList={allList}
             />
+{/*  */}
             <TitleImg 
                 idx={index}
                 allList={allList}

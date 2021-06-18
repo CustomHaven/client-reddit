@@ -1,14 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import randomNum from '../../../util/randomNumbers';
 
 
 const HeaderImg = (props) => {
 
     const { idx, allList } = props;
-
-    console.log('headerIMG');
-    console.log(allList);
-    console.log('headerIMG');
 
     return (
         <div 

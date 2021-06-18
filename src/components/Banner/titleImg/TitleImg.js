@@ -1,13 +1,8 @@
 import React from 'react';
 
-
 const TitleImg = (props) => {
     
     const { idx, allList } = props;
-
-    console.log('titleIMG');
-    console.log(allList);
-    console.log('titleIMG');
 
     return (
         <div className="title-section">
