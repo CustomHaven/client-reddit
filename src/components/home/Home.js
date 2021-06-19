@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import './Home.css';
 import { homeSubredditThunk, selectHome, isLoading } from '../../feature/home/homeSlice.js';
-import { postThunk, selectPost } from '../../feature/post/postSlice';
+import { postThunk } from '../../feature/post/postSlice';
 import { colorNum, formatter } from '../../util/mathWork.js';
 import Card from './card/Card.js';
 import reddit from '../../util/reddit-data';
@@ -14,7 +14,6 @@ const Home = () => {
 
     const loading = useSelector(isLoading);
     const subHome = useSelector(selectHome);
-    const allPosts = useSelector(selectPost);
     const refDivClick = useRef(null); // might just delete
 
     const dispatch = useDispatch();
