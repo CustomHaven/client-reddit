@@ -10,9 +10,9 @@ const secondPart = 'state=RANDOM_STRING&redirect_uri=URI&duration=DURATION&scope
 const reddit = {
     async getAccess() {
         const access = await fetch('https://www.reddit.com/api/v1/access_token');
-        console.log(access + ' the access token?')
+        // console.log(access + ' the access token?')
         const response = await access.json()
-        console.log(response + ' the response from access.json');
+        // console.log(response + ' the response from access.json');
         return response;
     },
     async getSubreddits() {
@@ -36,25 +36,36 @@ const reddit = {
             if (response.ok) {
                 const jsonResponse = await response.json();
                 const children = jsonResponse.data.children.map(child => child.data)
+                // console.log(jsonResponse)
                 // console.log(children)
                 return children;
             }
-            throw new Error('Request Failed')
+            throw new Error('Request Failed');
         } catch(error) {
             console.log(error)
         }
     },
     async getPopular() {
-        const response = await fetch(`${API_REDDIT}/r/popular.json`);
-        const jsonResponse = await response.json();
-
-        const regexValidation = /\.(:?jpg|gif|png)$/;
-        // const children = jsonResponse.data.children.filter(child => (child.data.url_overridden_by_dest !== undefined && child.data.url_overridden_by_dest.endsWith('jpg')))
-
-        const children = jsonResponse.data.children.filter(child => (regexValidation.test(child.data.url_overridden_by_dest) && child.data.url_overridden_by_dest))
-
-        // console.log(children)
-        return children
+        try {
+            const response = await fetch(`${API_REDDIT}/r/popular.json`);
+            if (response.ok) {
+                const jsonResponse = await response.json();
+    
+                // const regexValidation = /\.(:?jpg|gif|png)$/;
+    
+                
+                // const children = jsonResponse.data.children.filter(child => (child.data.url_overridden_by_dest !== undefined && child.data.url_overridden_by_dest.endsWith('jpg')))
+        
+                // const children = jsonResponse.data.children.filter(child => (regexValidation.test(child.data.url_overridden_by_dest) && child.data.url_overridden_by_dest))
+                const children = jsonResponse.data.children.map(child => child.data);
+        
+                console.log(children)
+                return children
+            }
+            throw new Error('Request Failed');
+        } catch(error) {
+            console.log(error)
+        }
     },
     async getAnyReddit(data) {
         try {
@@ -62,6 +73,7 @@ const reddit = {
             if (response.ok) {
                 const jsonResponse = await response.json();
                 const children = jsonResponse.data.children.map(child => child.data)
+                // console.log(jsonResponse);
                 // console.log(children)
                 return children;
             }
@@ -87,3 +99,6 @@ export default reddit;
 
 
 // for popular ... secure_media_embed then -> media_domain_url
+
+
+// public_description: "r/AskReddit is the place to ask and answer thought-provoking questions."

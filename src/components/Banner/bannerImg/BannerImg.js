@@ -1,5 +1,5 @@
 import React from 'react';
-import randomNum from '../../../util/randomNumbers';
+import { colorNum } from '../../../util/mathWork';
 
 
 const BannerImg = (props) => {
@@ -19,7 +19,7 @@ const BannerImg = (props) => {
             <div 
                 // key={allList[idx].id}
                 className="no-img"
-                style={{backgroundColor: `rgba(${randomNum()}, ${randomNum()}, ${randomNum()}, 0.4)`}}>
+                style={{backgroundColor: `rgba(${colorNum()}, ${colorNum()}, ${colorNum()}, 0.4)`}}>
             </div>
         }
         </>

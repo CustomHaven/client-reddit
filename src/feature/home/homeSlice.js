@@ -26,12 +26,16 @@ const homeSlice = createSlice({
             state.hasError = false;
             
             state.homeReddit = action.payload.map(child => ({
-                    id: child.id,
-                    author: child.author,
-                    title: child.title,
-                    name: child.subreddit,
-                    url: child.url_overridden_by_dest,
-                    prefix: child.subreddit_name_prefixed
+                id: child.id, // id of the tweet
+                author: child.author, // the guy who posted
+                title: child.title, // content message
+                name: child.subreddit, // name of subreddit like "memes"
+                url: child.url_overridden_by_dest, // img or gif
+                prefix: child.subreddit_name_prefixed, // r/memes
+                subId: child.subreddit_id, // "t5_2qjpg"
+                score: child.score, // preformance of the tweet example 51331  // get this to display
+                comments: child.num_comments, // num of comments  // get this to display
+                subscribers: child.subreddit_subscribers // all subscribers  // not needed atm
             }))
         },
         [homeSubredditThunk.rejected]: (state) => {

@@ -27,9 +27,11 @@ const Banner = () => {
     console.log(location + " the loc")
 
     // const regex = /http(s)?:\/\/localhost:3000(\/dragon)?\//i;
-    const regex = /\/dragon\//i;
+    const regex = /(\/dragon)?\//i;
 
     const regexResult = location.replace(regex, '');
+
+    console.log(regexResult);
 
     const index = allList.findIndex(child => child.name === regexResult)
 
@@ -46,6 +48,7 @@ const Banner = () => {
             />
             {/*  */}
             <TitleImg 
+                rgx={regexResult}
                 idx={index}
                 allList={allList}
             />

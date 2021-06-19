@@ -1,5 +1,5 @@
 import React from 'react';
-import randomNum from '../../../util/randomNumbers';
+import { colorNum } from '../../../util/mathWork';
 
 
 const HeaderImg = (props) => {
@@ -9,7 +9,7 @@ const HeaderImg = (props) => {
     return (
         <div 
         className="header-img-wrapper"
-        style={{backgroundColor: `rgba(${randomNum()}, ${randomNum()}, ${randomNum()}, 0.4)`}}>
+        style={{backgroundColor: `rgba(${colorNum()}, ${colorNum()}, ${colorNum()}, 0.4)`}}>
         {
             idx !== -1 && allList[idx].headerImg !== null 
             ?

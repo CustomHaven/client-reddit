@@ -12,7 +12,7 @@ span {
   /* position: relative; */
   /* top: 10vh; */
   margin: 20px auto;
-  width: 30vw;
+  width: 40vw;
   border: 5px solid rgba(37, 34, 34, 0.8);
   border-radius: 20px;
 }
@@ -22,28 +22,35 @@ span {
 
 .reddit-li {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 0.5fr;
+  grid-template-columns: 0.2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 0.5fr;
   grid-template-rows:
-    1fr 1fr minmax(0.5fr 1fr) minmax(0.5fr 1fr) minmax(0.5fr 1fr)
+    1fr 1fr 1fr minmax(0.5fr 1fr) minmax(0.5fr 1fr) minmax(0.5fr 1fr)
     minmax(0.5fr 1fr) minmax(0.5fr 1fr) minmax(0.2fr, 0.4fr);
   grid-template-areas:
-    "title title title title title title . subreddit"
-    "title title title title title title . ."
-    "img img img img img img img img"
-    "img img img img img img img img"
-    "img img img img img img img img"
-    "img img img img img img img img"
-    "img img img img img img img img"
-    ". . . . . . . author";
+    ". . . . . . . . ."
+    ". title title title title title title . subreddit"
+    ". title title title title title title . ."
+    "up img img img img img img img img"
+    "score img img img img img img img img"
+    "score img img img img img img img img"
+    "down img img img img img img img img"
+    ". img img img img img img img img"
+    ". comments comments comments comments comments comments . author";
   /* height: 50vh; */
+}
+
+.reddit-score {
+  grid-area: score;
 }
 
 .reddit-subreddit {
   grid-area: subreddit;
+  margin-right: 1vw;
 }
 
 .reddit-title {
   grid-area: title;
+  /* margin-left: 1vw; */
 }
 
 .reddit-img-container {
@@ -54,14 +61,33 @@ span {
 
 .reddit-img-container img {
   width: 100%;
-  max-height: 100%;
+  height: 100%;
   border-radius: 20px;
   object-fit: fill;
 }
 
+.reddit-symbol {
+  /* grid-area: symbol; */
+  background-color: white;
+  /* color: white; */
+  transform: scale(-1, 1);
+  border-radius: 50%;
+  display: inline-block;
+  /* font-size: 2rem; */
+}
+
+.reddit-comments {
+  grid-area: comments;
+}
+
+.reddit-comments p {
+  display: inline-block;
+}
+
 .reddit-author {
   grid-area: author;
-  color: gold;
+  margin-right: 1vw;
+  color: rgba(255, 215, 0, 1);
 }
 
 @media only screen and (max-width: 1020px) {
@@ -71,7 +97,19 @@ span {
 }
 
 @media only screen and (max-width: 700px) {
-  .reddit-subreddit {
-    display: none;
+  /* .reddit-subreddit { */
+  /* display: none; */
+  /* } */
+  .reddit-li {
+    grid-template-areas:
+      "score . . . . . . . subreddit"
+      "title title title title title title title title title"
+      "title title title title title title title title title"
+      "img img img img img img img img img"
+      "img img img img img img img img img"
+      "img img img img img img img img img"
+      "img img img img img img img img img"
+      "img img img img img img img img img"
+      ". comments comments comments comments comments comments . author";
   }
 }
