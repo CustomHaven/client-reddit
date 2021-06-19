@@ -35,7 +35,8 @@ const subredditsSlice = createSlice({
                     subId: child.subreddit_id, // "t5_2qjpg"
                     score: child.score, // preformance of the tweet example 51331
                     comments: child.num_comments, // num of comments
-                    subscribers: child.subreddit_subscribers // all subscribers
+                    subscribers: child.subreddit_subscribers, // all subscribers
+                    permalink: child.permalink
             }))
         },
         [subredditsThunk.rejected]: (state) => {

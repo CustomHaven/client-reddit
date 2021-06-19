@@ -1,0 +1,6 @@
+.posts-bits {
+  height: 200px;
+  overflow-y: scroll;
+  /* overflow-x: hidden; */
+  /* display: none; */
+}

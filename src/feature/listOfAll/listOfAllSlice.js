@@ -28,6 +28,7 @@ const listOfAllSlice = createSlice({
             state.subListError = false;
             
             state.listOfAll = action.payload.map(child => ({ 
+                description: child.description,
                 url: child.url,
                 id: child.id,
                 name: child.display_name,

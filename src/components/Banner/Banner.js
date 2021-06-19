@@ -13,7 +13,7 @@ const Banner = () => {
     const dispatch = useDispatch();
     const allList = useSelector(selectListOfAll);
     let locationPath = useLocation()
-    console.log(locationPath)  
+    // console.log(locationPath)  
 
 
     useEffect(() => {
@@ -24,7 +24,7 @@ const Banner = () => {
 
     // const location = window.location.href;
 
-    console.log(location + " the loc")
+    // console.log(location + " the loc")
 
     // const regex = /http(s)?:\/\/localhost:3000(\/dragon)?\//i;
     const regex = /(\/dragon)?\//i;

@@ -73,11 +73,14 @@ span {
   transform: scale(-1, 1);
   border-radius: 50%;
   display: inline-block;
+  cursor: pointer;
   /* font-size: 2rem; */
 }
 
 .reddit-comments {
   grid-area: comments;
+  border: 2px solid black;
+  cursor: pointer;
 }
 
 .reddit-comments p {

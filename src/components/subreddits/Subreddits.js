@@ -8,9 +8,9 @@ import '../home/Home.css';
 const Subreddits = () => {
 
     const {prefix} = useParams();
-    // console.log("the prefix")
-    // console.log(prefix)
-    // console.log("the prefix")
+    console.log("the prefix")
+    console.log(prefix)
+    console.log("the prefix")
     const redditLoading = useSelector(selectSubIsLoading)
     const subreddit = useSelector(selectSubreddits);
     const dispatch = useDispatch();

@@ -59,7 +59,7 @@ const reddit = {
                 // const children = jsonResponse.data.children.filter(child => (regexValidation.test(child.data.url_overridden_by_dest) && child.data.url_overridden_by_dest))
                 const children = jsonResponse.data.children.map(child => child.data);
         
-                console.log(children)
+                // console.log(children)
                 return children
             }
             throw new Error('Request Failed');
@@ -77,11 +77,23 @@ const reddit = {
                 // console.log(children)
                 return children;
             }
-
+            throw new Error('Request Failed');
         } catch(error) {
             console.log(error)
         }
 
+    },
+    async getPost(permalink) {
+        try {
+            const response = await fetch(`${API_REDDIT}${permalink}.json`);
+            const jsonResponse = await response.json();
+
+            const children = jsonResponse[1].data.children.map(child => child.data)
+
+            return children;
+        } catch(error) {
+            console.log(error)
+        }
     }
 }
 
