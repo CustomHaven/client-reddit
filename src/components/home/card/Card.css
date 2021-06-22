@@ -1,6 +1,43 @@
 .posts-bits {
-  height: 200px;
+  height: 500px;
   overflow-y: scroll;
   /* overflow-x: hidden; */
   /* display: none; */
+}
+
+.posts-bits:first-child {
+  /* background-color: red; */
+}
+
+/*  post/comments styles */
+
+.comments-div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  box-shadow: var(--box-shadow-display);
+}
+
+.comments-div:hover {
+  box-shadow: none;
+  border: 2px solid black;
+}
+
+.comments-text {
+  margin-top: 10px;
+  align-self: center;
+}
+
+.timeStamp {
+  align-self: center;
+  justify-self: end;
+  color: var(--logo-color);
+}
+
+.post-symbol {
+  align-self: flex-end;
+}
+
+.reply-container {
+  /* height: 200px; */
 }

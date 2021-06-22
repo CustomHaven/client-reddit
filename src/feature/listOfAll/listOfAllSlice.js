@@ -37,7 +37,8 @@ const listOfAllSlice = createSlice({
                 headerImg: child.header_img,
                 iconImg: child.icon_img,
                 bannerImg: child.mobile_banner_image,
-                publicInfo: child.public_description
+                publicInfo: child.public_description,
+                utc: child.created_utc
             }))
  
         },

@@ -1,4 +1,11 @@
 const API_REDDIT = 'https://www.reddit.com';
+const secret = 'Ihok5Qj1ikuGNBJkqEztFiIZkdb-NQ';
+const APPname = 'Mohamed';
+const redirectURI = 'https://xenodochial-kilby-1c5b3b.netlify.app/';
+const developers = 'HavenClub';
+const firstPart = 'https://www.reddit.com/api/v1/authorize?client_id=CLIENT_ID&response_type=TYPE&';
+const secondPart = 'state=RANDOM_STRING&redirect_uri=URI&duration=DURATION&scope=SCOPE_STRING';
+
 
 const reddit = {
     async getAccess() {
@@ -6,8 +13,7 @@ const reddit = {
         // console.log(access + ' the access token?')
         const response = await access.json()
         // console.log(response + ' the response from access.json');
-        return response; /// will delete this whole get access as this is only front end project and this I need to
-        // set up backend for this keep the rest below
+        return response;
     },
     async getSubreddits() {
         try {
@@ -83,6 +89,8 @@ const reddit = {
             const jsonResponse = await response.json();
 
             const children = jsonResponse[1].data.children.map(child => child.data)
+
+            // console.log(children)
 
             return children;
         } catch(error) {

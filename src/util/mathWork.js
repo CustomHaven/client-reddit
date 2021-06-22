@@ -14,4 +14,57 @@ export const formatter = (num) => {
     
 }
 
+export const timeAgo = (old) => {
+
+  // preparing the diff between old time and now as in their UNIX
+  const now = Date.now();
+  const diff = now - old;
+
+  // capturing the milliseconds for these times
+  const msPerMin = 60 * 1000;
+  const msPerHr = msPerMin * 60;
+  const msPerDay = msPerHr * 24;
+  const msPerMonth = msPerDay * 30;
+  const msPerYear = msPerDay * 365;
+
+  // then sending them forth into the conditional statement to take output
+  if (diff < msPerMin) {
+    return Math.round(diff/1000) + ' seconds ago';   //
+  }
+  
+  else if (diff < msPerHr) {
+    return Math.round(diff/msPerMin) + ' minutes ago'; //  
+  }
+  
+  else if (diff < msPerDay ) {
+    return Math.round(diff/msPerHr ) + ' hours ago';   //
+  }
+  
+  else if (diff < msPerDay * 2) {
+    return Math.round(diff/msPerDay) + ' day ago'; //
+  }
+  
+  else if (diff < msPerMonth) {
+    return 'approximately ' + Math.round(diff/msPerDay) + ' days ago';   //
+  }
+  
+  else if (diff < msPerMonth * 2) {
+    return 'approximately ' + Math.round(diff/msPerMonth) + ' month ago';   //
+  }
+  
+  else if (diff < msPerYear) {
+    return 'approximately ' + Math.round(diff/msPerMonth) + ' months ago';  // 
+  }
+  
+  else if (diff < msPerYear * 2) {
+    return 'approximately ' + Math.round(diff/msPerYear) + ' year ago';   //
+  }
+  
+  else {
+    return 'approximately ' + Math.round(diff/msPerYear ) + ' years ago';   
+  }
+  
+}
+
 // export default randomNum;
+

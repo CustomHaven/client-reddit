@@ -4,10 +4,21 @@
   --white: rgb(255, 255, 255);
   --text-color: rgb(28, 28, 28);
   --nice-background-color: rgb(246, 247, 248);
+  --card-background: rgb(252, 252, 252);
+  --logo-color: rgb(255, 69, 0);
+  --box-shadow-display: 0 10px 15px -3px rgba(63, 15, 15, 0.6);
+  --box-shadow-hover: 0 10px 15px -3px rgba(63, 15, 15, 1);
 }
 
 body {
   background-color: rgb(218, 224, 230);
   color: var(--text-color);
   font-family: "Open Sans", sans-serif;
+  background: no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  /* position: relative; */
+  /* z-index: 10; */
 }

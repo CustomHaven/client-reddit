@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { subredditsThunk, selectSubIsLoading, selectSubreddits } from '../../feature/subreddits/subredditsSlice.js';
 import { colorNum, formatter } from '../../util/mathWork.js';
 import '../home/Home.css';
+import { backgroundPics } from '../../util/imagesContainer.js';
 
 const Subreddits = () => {
 
@@ -14,12 +15,28 @@ const Subreddits = () => {
     const redditLoading = useSelector(selectSubIsLoading)
     const subreddit = useSelector(selectSubreddits);
     const dispatch = useDispatch();
+    const [foundImg, setFoundImg] = useState('');
+
+    console.log(typeof prefix)
 
     useEffect(() => {
         
         dispatch(subredditsThunk(prefix));
     }, [dispatch, prefix]);
 
+    const body = document.body;
+
+    const found = backgroundPics.find(d => d.name === prefix);
+
+    useEffect(() => {
+        setFoundImg(found !== undefined ? found.img : backgroundPics[4].img)
+    }, [found, foundImg])
+
+
+    console.log(foundImg);
+
+
+    body.style.backgroundImage = `url(${foundImg}`;
 
     const regexValidation = /\.(:?jpg|gif|png)$/;
 
@@ -32,7 +49,7 @@ const Subreddits = () => {
             {
                 subreddit.map(reddit => 
                     <div 
-                        style={{backgroundColor: `rgba(${colorNum()}, ${colorNum()}, ${colorNum()}, 0.4)`}} 
+                        // style={{backgroundColor: `rgba(${colorNum()}, ${colorNum()}, ${colorNum()}, 0.4)`}} 
                         className="reddit-div">
                         
 

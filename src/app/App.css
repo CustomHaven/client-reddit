@@ -4,7 +4,7 @@ header {
   position: fixed;
   top: 0vh;
   /* bottom: 0vh; */
-  width: 98vw;
+  width: 100vw;
   z-index: 20;
   display: flex;
   left: 0vw;

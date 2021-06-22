@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import reddit from "../../util/reddit-data";
 
 export const postThunk = createAsyncThunk(
-    'post/postThunk',
+    'posts/postThunk',
     async (permalink) => {
         const post = await Promise.resolve(reddit.getPost(permalink))
         return post;
@@ -10,7 +10,7 @@ export const postThunk = createAsyncThunk(
 );
 
 export const repliesThunk = createAsyncThunk(
-    'post/repliesThunk',
+    'posts/repliesThunk',
     async (permalink) => {
         const replies = await Promise.resolve(reddit.getPost(permalink))
         return replies;
@@ -18,12 +18,55 @@ export const repliesThunk = createAsyncThunk(
 );
 
 const postSlice = createSlice({
-    name: 'post',
+    name: 'posts',
     initialState: {
         posts: [],
         replies: [],
+        repeatReplies: [],
         postLoading: false,
         postError: false
+    },
+    reducers: {
+        repliesList(state, action) {
+            state.replies = action.payload.data.children.map(child => ({
+                id: child.data.id,
+                author: child.data.author,
+                body: child.data.body,
+                permalink: child.data.permalink,
+                utc: child.data.created_utc,
+                replies: child.data.replies
+            }))
+        },
+        repeatReplies(state, action) {
+            // console.log("payload")
+            // console.log(action.type);
+            // console.log(action.payload);
+            // console.log(action.type);
+            // console.log("payload")
+            // const index = state.repeatReplies.findIndex(f => f.id === action.payload.id);
+            // const obj = 
+
+            // const {id} = action.payload[0].id
+            const obj = action.payload.map(child => ({
+                id: child.id,
+                author: child.author,
+                body: child.body,
+                permalink: child.permalink,
+                utc: child.created_utc,
+                replies: child.replies
+            }))
+            // console.log("obh")
+            // console.log(obj)
+            // console.log("obh")
+
+            // // state.repeatReplies.concat(obj);
+            // console.log("obj.length")
+            // console.log(obj.length)
+            // console.log("obj.length")
+            Object.assign(state.repeatReplies, obj) /// this is the best way omdzzzzz
+
+            // state.repeatReplies.concat(obj); /// fucking finally looks like we are getting somewhere
+    }
     },
     extraReducers: {
         [postThunk.pending]: (state) => {
@@ -34,12 +77,16 @@ const postSlice = createSlice({
             state.postLoading = false;
             state.postError = false;
 
-            state.posts = action.payload.map(child => ({
-                body: child.body,
-                permalink: child.permalink,
-                replies: child.replies /// try .data.children as data is object and children is what we want
-                // the array of objects
-            }))
+
+                state.posts = (action.payload.map(child => ({
+                    id: child.id,
+                    author: child.author,
+                    body: child.body,
+                    permalink: child.permalink,
+                    utc: child.created_utc,
+                    replies: child.replies
+                })))
+
         },
         [postThunk.rejected]: (state) => {
             state.postLoading = false;
@@ -63,6 +110,9 @@ const postSlice = createSlice({
     }
 })
 
+export const { repliesList, repeatReplies } = postSlice.actions;
 export const selectPostLoading = (state) => state.posts.postLoading;
 export const selectPost = (state) => state.posts.posts;
+export const selectRepliesList = (state) => state.posts.replies;
+export const selectRepeatReplies = (state) => state.posts.repeatReplies;
 export default postSlice.reducer;

@@ -4,6 +4,7 @@ import { useParams, Link } from 'react-router-dom';
 import '../home/Home.css';
 import { selectPopular, selectPopLoading, popularThunk } from '../../feature/popular/popularSlice.js';
 import { colorNum, formatter } from '../../util/mathWork.js';
+import { backgroundPics } from '../../util/imagesContainer.js';
 import reddit from '../../util/reddit-data';
 
 const Popular = () => {
@@ -26,9 +27,8 @@ const Popular = () => {
         }
     }, [dispatch]);
 
-
-
-
+    const body = document.body;
+    body.style.backgroundImage = `url(${backgroundPics[4].img}`;
 
     const regexValidation = /\.(:?jpg|gif|png)$/;
 
@@ -44,7 +44,7 @@ const Popular = () => {
                 popular.map(pop => 
                     
                     <div 
-                        style={{backgroundColor: `rgba(${colorNum()}, ${colorNum()}, ${colorNum()}, 0.4)`}}
+                        style={{backgroundColor: `rgb(${colorNum()}, ${colorNum()}, ${colorNum()})`}}
                         className="reddit-div">
                         
 

@@ -11,9 +11,9 @@ export const NavUsers = (props) => {
             <Link to="/username" className="all-links user-link-button"> 
             <button className="user-button">
                 
-                    <i className={`fab fa-reddit-square ${fa_2x} all-links`}></i>
+                    <i className={`fab fa-reddit-square ${fa_2x} all-links fontA`}></i>
                     <p className="user-name">User Name</p>
-                    <i className="fas fa-chevron-down user-down-arrow"></i>
+                    <i className="fas fa-chevron-down user-down-arrow fontA"></i>
                 
             </button>
             </Link>

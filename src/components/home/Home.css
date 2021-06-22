@@ -7,14 +7,24 @@ span {
 .section-name {
   /* background-color: aqua; */
 }
-
+/* var(--nice-background-color); */
 .reddit-div {
-  /* position: relative; */
+  position: relative;
+  z-index: 10;
   /* top: 10vh; */
+  background-color: var(--card-background);
   margin: 20px auto;
   width: 40vw;
-  border: 5px solid rgba(37, 34, 34, 0.8);
+  /* border: 5px solid rgba(37, 34, 34, 0.8); */
   border-radius: 20px;
+  box-shadow: var(--box-shadow-display);
+}
+
+.reddit-div:hover {
+  box-shadow: var(--box-shadow-hover);
+  border-radius: 0;
+  /* width: 60vw; */
+  /* padding: 10px; */
 }
 
 .reddit-ul {
@@ -36,6 +46,7 @@ span {
     "down img img img img img img img img"
     ". img img img img img img img img"
     ". comments comments comments comments comments comments . author";
+  gap: 10px;
   /* height: 50vh; */
 }
 
@@ -66,6 +77,12 @@ span {
   object-fit: fill;
 }
 
+.reddit-img-container img:hover {
+  box-shadow: var(--box-shadow-hover);
+  border-radius: 0;
+  padding: 10px;
+}
+
 .reddit-symbol {
   /* grid-area: symbol; */
   background-color: white;
@@ -74,12 +91,12 @@ span {
   border-radius: 50%;
   display: inline-block;
   cursor: pointer;
-  /* font-size: 2rem; */
+  font-size: 2rem;
 }
 
 .reddit-comments {
   grid-area: comments;
-  border: 2px solid black;
+  /* border: 2px solid black; */
   cursor: pointer;
 }
 
@@ -90,7 +107,7 @@ span {
 .reddit-author {
   grid-area: author;
   margin-right: 1vw;
-  color: rgba(255, 215, 0, 1);
+  color: var(--logo-color);
 }
 
 @media only screen and (max-width: 1020px) {
