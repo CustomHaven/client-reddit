@@ -9,123 +9,90 @@ const Reply = (props) => {
     const { idx, repliesClick, allReplies } = props;
     const [repeating, setRepeating] = useState(null);
     const [replyRepeat, setReplyRepeat] = useState(null);
-    const [divs, setDivs] = useState(null);
-    const theRepeat = useSelector(selectRepeatReplies);
+    const [divs, setDivs] = useState(null); // creating the JSX from the mapping done inside the recursive function
+    const theRepeat = useSelector(selectRepeatReplies); // grabbing the redux
     const dispatch = useDispatch();
 
     const recursionReplies = (replies, secondReplies = undefined, count = undefined, idx = undefined, reply, repi) => {
+        /* If recursion is no more the reply.replies inside the JSX is "" and certain time its value is 1
+         we making this flag to break the loop */
         if (Object.values(replies).length === 1 || Object.values(replies).length === 0) {
             console.log('Nothing more to loop');
             return;
         }
-        // if (repeating === count) {
-        //     console.log("existing and turning off count repeating");
-        //     setRepeating(null);
-        //     return;
-        // }
 
+        /* looking to see if I have the data I want coming into the function with all of those console.logs
+        some of them I know I dont have value for them in the beginning so I set them to undefined */
         console.log("work");
-        console.log(replies);
+        console.log(replies); // coming from the first map in JSX allReplies.map(reply => reply.replies) in the return
         console.log("work");
         console.log("second replies");
-        console.log(secondReplies);
-        console.log("second replies");
-        console.log(count + " count");
-        console.log(idx + " idx");
+        console.log(secondReplies); // coming from the second map in JSX theRepeat[0].map(repi => repi.replies) 
+        console.log("second replies"); // basically inside this function down below where I am trying to trigger the recursion
+        console.log(count + " count"); // coming from the first map in JSX allReplies.map(reply => reply.count) its indexes
+        console.log(idx + " idx"); // coming from the second map in JSX theRepeat[0].map(repi => repi.idx) its indexes
 
         console.log("reply 1st array");
-        console.log(reply);
+        console.log(reply); // the array from first map --- basically these two arent really needed --- anyways
         console.log("reply 1st array");
         console.log("repi 2nd array");
-        console.log(repi);
+        console.log(repi); // array from second map --- basically these two arent really needed --- anyways
         console.log("repi 2nd array");
 
 
 
         console.log('initial reply')
-        console.log(Object.values(replies).length)
-        console.log(replies)
+        console.log(Object.values(replies).length) // more checking to see of the length is is above 1
+        console.log(replies) // if it is then we go forward
         
         console.log('initial reply')
 
         /// sending the inital data to redux
-        if (secondReplies !== null) {
+        if (secondReplies !== null) { // if secondReplies is not null basically the recursion send its object replies.reply in we do this condition
             if (replyRepeat === idx) {
-                console.log("I have idx but turn me off")
+                console.log("I have idx but turn me off") // trying to turn off the nested div if it is pressed
                 setReplyRepeat(null);
             } else {
-                console.log(secondReplies);
+                console.log(secondReplies); // had some errors earlier but I managed to correct it because children could not me be mapped over now that is corrected
                 console.log("I have idx turn me on")
                 console.log(secondReplies);
                 console.log("I have idx turn me on")
-                setReplyRepeat(idx);
-                dispatch(repeatReplies(secondReplies.data.children.map(child => child.data)))
+                setReplyRepeat(idx); // if it is pressed then show its content
+                dispatch(repeatReplies(secondReplies.data.children.map(child => child.data))) // dispatching the action to redux
             }
         } else {
-            if (repeating === count) {
+            if (repeating === count) { // child secondReplies is null we havent gone down to it then we set the parent
                 console.log("Im parent count but turn me off")
-                setRepeating(null)
+                setRepeating(null) // if it is open then toggle it off
             } else {
                 console.log("Im parent count but turn me on")
-                setRepeating(count)
+                setRepeating(count) // toggle on
                 dispatch(repeatReplies(replies.data.children.map(child => child.data)));
             }
         }
 
-        console.log(repeating + " repeating like the bool for the parent div")
-        console.log(replyRepeat + " replyRepeat like the bool for the child div")
+        console.log(repeating + " repeating like the bool for the parent div") // just checking to see what values they are
+        console.log(replyRepeat + " replyRepeat like the bool for the child div") // just checking to see what values they are
 
-        if (repeating === count) {
-                setDivs(theRepeat.map((repi, idx, repis) =>
-                    // console.log(repi[idx])
+        if (repeating === count) { // In redux the data comes back as [ [ {}, {}, {} ] ] thats why I have theRepeat[0]
+                setDivs(theRepeat[0].map((repi, idx, repis) =>
 
                     <div key={repi.id} className="container-nested-replies">
-                        <p className="repeat-reply-author">{repi.author}</p>
-                        <p className="repeat-reply-text">{repi.body}</p>
-                        <p className="timeStamp">{timeAgo(repi.utc * 1000)}</p>
+                        <p className="repeat-reply-author">{repi?.author}</p>
+                        <p className="repeat-reply-text">{repi?.body}</p>
+                        <p className="timeStamp">{timeAgo(repi?.utc * 1000)}</p>
 
                         {
-                            typeof repi.replies === 'object' &&
-
-                            <TiMessage onClick={(e) => recursionReplies(replies, repi.replies, count, idx, reply, repis)} className="reddit-symbol post-symbol" />
+                            typeof repi?.replies === 'object' &&
+                            // trying to make the recursion Function here the function is calling itself
+                            <TiMessage onClick={(e) => recursionReplies(replies, repi?.replies, count, idx, reply, repis)} className="reddit-symbol post-symbol" />
 
                         }
                     </div>
                 ))
         }
-
-        // theRepeat is the redux with the data try figure out the recursiveness next
-
-        // theRepeat.map()
-
-        // theRepeat.map((repi, idx) => 
-        // // console.log(repi[idx])
-
-        //         <div className="container-nested-replies">
-        //         <p className="repeat-reply-author">{repi[idx].author}</p>
-        //         <p className="repeat-reply-text">{repi[idx].body}</p>
-        //         <p className="timeStamp">{timeAgo(repi[idx].utc * 1000)}</p>
-
-        //         {
-        //                 typeof repi.replies === 'object' &&
-
-        //                 <TiMessage onClick={(e) => recursionReplies(repi[idx].replies, idx)} className="reddit-symbol post-symbol"/>
-
-        //         }
-        //         </div>
-        // )
-
-
-
-        // console.log(theRepeat)
-
-        // making the function recursion loop here below
-        // if (theRepeat.constructor === Array) {
-
-        // }
-        // if (secondReplies !== null) {
-
-        // }
+        
+        ///// tried recursion with this below earlier but deleted this.
         // const repeated = theRepeat.find(rep => rep.replies);
         // const convert = Object.assign({}, repeated);
         // return recursionReplies(convert)
@@ -141,7 +108,7 @@ const Reply = (props) => {
             {
                 repliesClick === idx &&
                 <div className="reply-container">
-                    {
+                    {   // The parent map which it all starts from when a click happens here we try run the recursionfunction
                         allReplies.length > 0 && allReplies.map((reply, count) =>
 
                             <div className="reply-div" key={reply.id}>
@@ -151,33 +118,19 @@ const Reply = (props) => {
 
                                 {
                                     typeof reply.replies === 'object' &&
-
+                                    // first stage of the function when it is pressed
                                     <TiMessage onClick={(e) => recursionReplies(reply.replies, null, count, null, reply, null)} className="reddit-symbol post-symbol" />
 
                                 }
+                                {/* 
+                                below I am trying to deliver the output trying to get the divs to be nested comments 
+                                just like they have it on reddit 
+                                I manage to only get it down to that second replyRepeat === idx && divs
+                                afterwards it doesnt carry on recurring
+                                */}
                                 {repeating === count && divs}
-                                {replyRepeat === idx && divs}
-                                {/* {
-                                    repeating === count &&
-                                    theRepeat.map((repi, idx) =>
-                                        // console.log(repi[idx])
-
-                                        <div key={repi.id} className="container-nested-replies">
-                                            <p className="repeat-reply-author">{repi.author}</p>
-                                            <p className="repeat-reply-text">{repi.body}</p>
-                                            <p className="timeStamp">{timeAgo(repi.utc * 1000)}</p>
-
-                                            {
-                                                typeof repi.replies === 'object' &&
-
-                                                <TiMessage onClick={(e) => recursionReplies(repi.replies, count, idx, reply, repi)} className="reddit-symbol post-symbol" />
-
-                                            }
-                                        </div>
-                                    )
-                                } */}
-
-
+                                {replyRepeat === idx && divs} 
+                                
 
                             </div>
 
@@ -190,40 +143,3 @@ const Reply = (props) => {
 }
 
 export default Reply;
-
-// function Helper() {
-//     return (
-//         <div>
-
-//         </div>
-//     )
-// }
-
-
-// let arr = [
-//     {
-//       id:"h2j3x33",
-//       author:"Zindril",
-//       body:"Glad to help. Hope it helps you clear even faster next reset!",
-//       permalink:"/r/Genshin_Impact/comments/o4t6x5/i_finally_did_it_spiral_abyss_123/h2j3x33/",
-//       utc:1624278978,
-//       replies:""
-//     },
-//     {
-//       id:"33",
-//       author:"highperson",
-//       body:"Im a the best!",
-//       permalink:"/r/thebest/",
-//       utc: 054,
-//       replies: ""
-//     },
-//     {
-//       id:"43",
-//       author:"charizard",
-//       body:"fire burn",
-//       permalink:"/r/dragon/",
-//       utc:342342,
-//       replies: {id: 324, author: "mohamed", body: "handsome", permalink: "owner.com", utc: 1, replies: ""}
-//     }
-// ]
-// for practise trying to do the recursion array

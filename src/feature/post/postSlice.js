@@ -28,6 +28,7 @@ const postSlice = createSlice({
     },
     reducers: {
         repliesList(state, action) {
+            /* this grabs the inital reply from the post when the React.Component dispatches the replies to this payload */
             state.replies = action.payload.data.children.map(child => ({
                 id: child.data.id,
                 author: child.data.author,
@@ -39,15 +40,8 @@ const postSlice = createSlice({
         },
         repeatReplies(state, action) {
             // console.log("payload")
-            // console.log(action.type);
-            // console.log(action.payload);
-            // console.log(action.type);
-            // console.log("payload")
-            // const index = state.repeatReplies.findIndex(f => f.id === action.payload.id);
-            // const obj = 
-
-            // const {id} = action.payload[0].id
-            const obj = action.payload.map(child => ({
+            /* trying to make this reducer the one does the repeat for the replies */
+            const obj = action.payload.map(child => ({ // returns array of object I know
                 id: child.id,
                 author: child.author,
                 body: child.body,
@@ -55,20 +49,14 @@ const postSlice = createSlice({
                 utc: child.created_utc,
                 replies: child.replies
             }))
-            // console.log("obh")
-            // console.log(obj)
-            // console.log("obh")
-
-            // // state.repeatReplies.concat(obj);
-            // console.log("obj.length")
-            // console.log(obj.length)
-            // console.log("obj.length")
-            Object.assign(state.repeatReplies, obj) /// this is the best way omdzzzzz
-
-            // state.repeatReplies.concat(obj); /// fucking finally looks like we are getting somewhere
+            
+            // Object.assign({}, obj) /// this is the best way omdzzzzz
+           
+            state.repeatReplies.push(obj); /// fucking finally looks like we are getting somewhere
+            // state.repeatReplies = state.repeatReplies[0];
     }
     },
-    extraReducers: {
+    extraReducers: { // 
         [postThunk.pending]: (state) => {
             state.postLoading = true;
             state.postError = false;
@@ -92,21 +80,6 @@ const postSlice = createSlice({
             state.postLoading = false;
             state.postError = true;
         },
-
-
-
-        [repliesThunk.pending]: (state) => {
-            state.postLoading = true;
-            state.postError = false;
-        },
-        [repliesThunk.fulfilled]: (state, action) => {
-            state.postLoading = false;
-            state.postError = false;
-        },
-        [repliesThunk.rejected]: (state) => {
-            state.postLoading = false;
-            state.postError = true;
-        }
     }
 })
 
