@@ -9,52 +9,57 @@ const Reply = (props) => {
     const { idx, repliesClick, allReplies } = props;
     const [repeating, setRepeating] = useState(null);
     const [replyRepeat, setReplyRepeat] = useState(null);
+    const [divs, setDivs] = useState(null);
     const theRepeat = useSelector(selectRepeatReplies);
     const dispatch = useDispatch();
 
-    const recursionReplies = (replies, count = undefined, idx = undefined) => {
+    const recursionReplies = (replies, secondReplies = undefined, count = undefined, idx = undefined, reply, repi) => {
         if (Object.values(replies).length === 1 || Object.values(replies).length === 0) {
             console.log('Nothing more to loop');
             return;
         }
-
-        console.log(count + " count")
-        console.log(idx + " idx")
-
-        // if (replies['data']['children'] instanceof Array) {
-        //     console.log("I am an array!")
-        // } else {
-        //     console.log("not an array I am an Object")
+        // if (repeating === count) {
+        //     console.log("existing and turning off count repeating");
+        //     setRepeating(null);
+        //     return;
         // }
+
+        console.log("work");
+        console.log(replies);
+        console.log("work");
+        console.log("second replies");
+        console.log(secondReplies);
+        console.log("second replies");
+        console.log(count + " count");
+        console.log(idx + " idx");
+
+        console.log("reply 1st array");
+        console.log(reply);
+        console.log("reply 1st array");
+        console.log("repi 2nd array");
+        console.log(repi);
+        console.log("repi 2nd array");
+
+
+
         console.log('initial reply')
         console.log(Object.values(replies).length)
         console.log(replies)
-        // // console.log(replies.data) 
-
-
-
-        // // console.log(replies.data.children) 
-        // // console.log(Object.values(replies))
-        // // console.log(Object.values(replies).length) // inital reply has a length of 2 so we are safe
+        
         console.log('initial reply')
-        // // console.log(replies)
-        // // console.log(replies.data)
-        // console.log('initial reply')
 
-
-
-        // console.log(replies)
-        // console.log(count)/
-
-        if (idx !== undefined) {
+        /// sending the inital data to redux
+        if (secondReplies !== null) {
             if (replyRepeat === idx) {
                 console.log("I have idx but turn me off")
                 setReplyRepeat(null);
             } else {
-
+                console.log(secondReplies);
+                console.log("I have idx turn me on")
+                console.log(secondReplies);
                 console.log("I have idx turn me on")
                 setReplyRepeat(idx);
-                dispatch(repeatReplies(replies.data.children.map(child => child.data)))
+                dispatch(repeatReplies(secondReplies.data.children.map(child => child.data)))
             }
         } else {
             if (repeating === count) {
@@ -66,6 +71,32 @@ const Reply = (props) => {
                 dispatch(repeatReplies(replies.data.children.map(child => child.data)));
             }
         }
+
+        console.log(repeating + " repeating like the bool for the parent div")
+        console.log(replyRepeat + " replyRepeat like the bool for the child div")
+
+        if (repeating === count) {
+                setDivs(theRepeat.map((repi, idx, repis) =>
+                    // console.log(repi[idx])
+
+                    <div key={repi.id} className="container-nested-replies">
+                        <p className="repeat-reply-author">{repi.author}</p>
+                        <p className="repeat-reply-text">{repi.body}</p>
+                        <p className="timeStamp">{timeAgo(repi.utc * 1000)}</p>
+
+                        {
+                            typeof repi.replies === 'object' &&
+
+                            <TiMessage onClick={(e) => recursionReplies(replies, repi.replies, count, idx, reply, repis)} className="reddit-symbol post-symbol" />
+
+                        }
+                    </div>
+                ))
+        }
+
+        // theRepeat is the redux with the data try figure out the recursiveness next
+
+        // theRepeat.map()
 
         // theRepeat.map((repi, idx) => 
         // // console.log(repi[idx])
@@ -92,9 +123,12 @@ const Reply = (props) => {
         // if (theRepeat.constructor === Array) {
 
         // }
-        const repeated = theRepeat.find(rep => rep.replies);
-        const convert = Object.assign({}, repeated);
-        return recursionReplies(convert)
+        // if (secondReplies !== null) {
+
+        // }
+        // const repeated = theRepeat.find(rep => rep.replies);
+        // const convert = Object.assign({}, repeated);
+        // return recursionReplies(convert)
     }
 
     useEffect(() => {
@@ -118,10 +152,12 @@ const Reply = (props) => {
                                 {
                                     typeof reply.replies === 'object' &&
 
-                                    <TiMessage onClick={(e) => recursionReplies(reply.replies, count)} className="reddit-symbol post-symbol" />
+                                    <TiMessage onClick={(e) => recursionReplies(reply.replies, null, count, null, reply, null)} className="reddit-symbol post-symbol" />
 
                                 }
-                                {
+                                {repeating === count && divs}
+                                {replyRepeat === idx && divs}
+                                {/* {
                                     repeating === count &&
                                     theRepeat.map((repi, idx) =>
                                         // console.log(repi[idx])
@@ -134,12 +170,12 @@ const Reply = (props) => {
                                             {
                                                 typeof repi.replies === 'object' &&
 
-                                                <TiMessage onClick={(e) => recursionReplies(repi.replies, count, idx)} className="reddit-symbol post-symbol" />
+                                                <TiMessage onClick={(e) => recursionReplies(repi.replies, count, idx, reply, repi)} className="reddit-symbol post-symbol" />
 
                                             }
                                         </div>
                                     )
-                                }
+                                } */}
 
 
 
@@ -155,13 +191,13 @@ const Reply = (props) => {
 
 export default Reply;
 
-function Helper() {
-    return (
-        <div>
+// function Helper() {
+//     return (
+//         <div>
 
-        </div>
-    )
-}
+//         </div>
+//     )
+// }
 
 
 // let arr = [
