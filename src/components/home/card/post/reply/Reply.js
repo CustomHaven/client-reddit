@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { TiMessage } from 'react-icons/ti';
 import { v4 as uuidv4 } from 'uuid';
 import { 
-    repeatReplies, 
-    selectRepeatReplies, 
-    idCollector, 
-    selectIdCollection, 
+    repeatReplies,
+    selectRepeatReplies,
+    idCollector,
+    selectIdCollection,
     idDeleter,
     selectParentCount,
     selectChildCount,
@@ -14,6 +14,7 @@ import {
     parentDelete,
     childAdd,
     childDelete,
+    clearAllReplies,
 } from '../../../../../feature/post/postSlice.js'
 import { timeAgo } from '../../../../../util/mathWork.js';
 
@@ -24,11 +25,24 @@ const Reply = (props) => {
     const theCollector = useSelector(selectIdCollection);
     const parentCount = useSelector(selectParentCount);
     const childCount = useSelector(selectChildCount);
+    const memoryDiv = useRef(null);
+    const prevMemory = useRef();
+    const [grab, setGrab] = useState();
 
     const dispatch = useDispatch();
     // let emptyArray = '';
     useEffect(() => {
+        if (memoryDiv !== null) {
+            setGrab(memoryDiv.current)
+            console.log(theCollector)
+            console.log("grab")
+            console.log(grab)
+            console.log("grab")
+        }
 
+    }, [grab, memoryDiv, theCollector])
+    useEffect(() => {
+        // prevMemory.current = memoryDiv.current
     }, [dispatch, allReplies, theRepeat, parentCount, childCount])
 
     const recursionReplies = (
@@ -92,7 +106,7 @@ const Reply = (props) => {
                 console.log("Im parent count but turn me off this is for deleting")
                 console.log(parentId)
                 console.log("we are in the deleting parent")
-                
+                dispatch(clearAllReplies([]));
                 dispatch(parentDelete(null))
                 dispatch(idDeleter(parentId));
             } else {
@@ -107,19 +121,27 @@ const Reply = (props) => {
     }
     console.log(parentCount)
 
-
+    useEffect(() => {
+        
+    })
     const helperFunction = (repi, idx, parentId) => {
 
+        console.log("memoryDiv.current")
+        console.log(memoryDiv.current)
+        console.log(theCollector)
+        console.log("memoryDiv.current")
+        // let test = memoryDiv.current
         console.log("theCollector")
-        // theCollector.map(va => console.log(va))
+        console.log(theCollector)
         console.log("theCollector")
+
         
         return (
-            !theCollector.includes(repi?.id) && // If not in the id colldector array then give me new JSX
+             // If not in the id colldector array then give me new JSX
             <>
-            { 
+            {  !theCollector.includes(repi?.id) ?
                 
-            <div key={repi?.id} className="container-nested-replies">
+            <div ref={memoryDiv} key={repi?.id} className="container-nested-replies">
                 <p className="repeat-reply-author">{repi?.author}</p>
                 <p className="repeat-reply-text">{repi?.body}</p>
                 <p className="timeStamp">{timeAgo(repi?.utc * 1000)}</p>
@@ -132,10 +154,10 @@ const Reply = (props) => {
                         className="reddit-symbol post-symbol" />
                     
                 }
-            </div>
+            </div> : <> {null} </>
             }
             
-            </>  // How do say here RETURN the previous JSX
+            </> 
             
         )
     }
@@ -176,16 +198,18 @@ const Reply = (props) => {
                                 
                                 {
                                     parentCount === count &&
- 
-                                    theRepeat.map((repi, idx) => 
+                                    theRepeat.map(val =>
+                                        val.map((repi, idx) => 
                                         
                                     <>
                                     {helperFunction(repi, idx, reply.id)}
          
                                     {childCount === idx && helperFunction(repi, idx, reply.id)}
+
+                                    
                                     
                                     </>
-                                    )
+                                    ))
                                 
                               
                                 }

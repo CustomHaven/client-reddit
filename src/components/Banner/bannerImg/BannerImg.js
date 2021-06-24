@@ -10,10 +10,10 @@ const BannerImg = (props) => {
     return (
         <>
         {
-            idx !== -1 && allList[idx].bannerImg.length > 0 
+            idx !== -1 && allList[idx]?.bannerImg?.length > 0 
             ?   
-            <div key={allList[idx].id} className="banner-img-wrapper">           
-            <img src={allList[idx].bannerImg} alt="banner-img" />         
+            <div key={allList[idx]?.id} className="banner-img-wrapper">           
+            <img src={allList[idx]?.bannerImg} alt="banner-img" />         
             </div> 
             : 
             <div 

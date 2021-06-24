@@ -26,14 +26,7 @@ const Home = () => {
     // console.log(refDivClick)
     
     useEffect(() => {
-        window.addEventListener('load', () => {
-            dispatch(homeSubredditThunk());
-        })
-        return () => {
-            window.removeEventListener('load', () => {
-                dispatch(homeSubredditThunk());
-            })
-        }
+        dispatch(homeSubredditThunk());
     }, [dispatch]);
 
 

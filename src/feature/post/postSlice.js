@@ -25,7 +25,7 @@ const postSlice = createSlice({
         repeatReplies: [],
         parentCount: null,
         childCount: null,
-        idCollection: ["fakeID"],
+        idCollection: [],
         postLoading: false,
         postError: false
     },
@@ -44,10 +44,16 @@ const postSlice = createSlice({
 
             state.replies = adding
         },
+        clearAllReplies(state, action) {
+            console.log("action.payload clear all replies")
+            console.log(action.payload)
+            console.log("action.payload clear all replies")
+            state.replies = action.payload; /// basically the payload incoming will be [];
+        },
         repeatReplies(state, action) {
             // console.log("payload")
             /* trying to make this reducer the one does the repeat for the replies */
-            const obj = action.payload.map(child => ({ // returns array of object I know
+            const arrayObject = action.payload.map(child => ({ // returns array of object I know
                 id: child.id,
                 author: child.author,
                 body: child.body,
@@ -58,9 +64,11 @@ const postSlice = createSlice({
             
             // Object.assign({}, obj) /// this is the best way omdzzzzz
 
-            const adding = state.repeatReplies.concat(obj);
+            // const adding = state.repeatReplies.concat(arrayObject).filter(clones => clones !== arrayObject);
+
+            state.repeatReplies.push(arrayObject)
            
-            state.repeatReplies = adding; /// fucking finally looks like we are getting somewhere
+            // state.repeatReplies = adding; /// fucking finally looks like we are getting somewhere
             // state.repeatReplies = state.repeatReplies[0];
         },
         parentAdd(state, action) {
@@ -135,6 +143,7 @@ export const {
     parentDelete,
     childAdd,
     childDelete,
+    clearAllReplies,
 } = postSlice.actions;
 export const selectPostLoading = (state) => state.posts.postLoading;
 export const selectPost = (state) => state.posts.posts;

@@ -27,7 +27,7 @@ const listOfAllSlice = createSlice({
             state.subListLoading = false;
             state.subListError = false;
             
-            state.listOfAll = action.payload.map(child => ({ 
+            state.listOfAll = action.payload?.map(child => ({ 
                 description: child.description,
                 url: child.url,
                 id: child.id,

@@ -17,7 +17,7 @@ const Aside = () => {
         if (subreddit.length === 0) {
             dispatch(subredditsThunk('Home'));
         }
-    }, [dispatch, subreddit.length]);
+    }, [dispatch, subreddit]);
 
     const regex = /(\/dragon)?\//i;
     const regexResult = path.replace(regex, '');
