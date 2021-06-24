@@ -23,13 +23,16 @@ const postSlice = createSlice({
         posts: [],
         replies: [],
         repeatReplies: [],
+        parentCount: null,
+        childCount: null,
+        idCollection: ["fakeID"],
         postLoading: false,
         postError: false
     },
     reducers: {
         repliesList(state, action) {
             /* this grabs the inital reply from the post when the React.Component dispatches the replies to this payload */
-            state.replies = action.payload.data.children.map(child => ({
+            const arrayObject = action.payload.data.children.map(child => ({
                 id: child.data.id,
                 author: child.data.author,
                 body: child.data.body,
@@ -37,6 +40,9 @@ const postSlice = createSlice({
                 utc: child.data.created_utc,
                 replies: child.data.replies
             }))
+            const adding = state.replies.concat(arrayObject);
+
+            state.replies = adding
         },
         repeatReplies(state, action) {
             // console.log("payload")
@@ -51,10 +57,47 @@ const postSlice = createSlice({
             }))
             
             // Object.assign({}, obj) /// this is the best way omdzzzzz
+
+            const adding = state.repeatReplies.concat(obj);
            
-            state.repeatReplies.push(obj); /// fucking finally looks like we are getting somewhere
+            state.repeatReplies = adding; /// fucking finally looks like we are getting somewhere
             // state.repeatReplies = state.repeatReplies[0];
-    }
+        },
+        parentAdd(state, action) {
+            state.parentCount = action.payload;
+        },
+        parentDelete(state, action) {
+            state.parentCount = action.payload;
+        },
+        childAdd(state, action) {
+            state.childCount = action.payload;
+        },
+        childDelete(state, action) {
+            state.childCount = action.payload;
+        },
+        idCollector(state, action) {
+            console.log("action.payload id collector")
+            console.log(action.payload)
+            console.log("action.payload id collector")
+
+            const adding = state.idCollection.concat(action.payload);
+            console.log(adding)
+            state.idCollection = adding;
+        },
+        idDeleter(state, action) {
+
+            console.log("action.payload id deleter")
+            console.log(action.payload)
+            console.log("action.payload id deleter")
+
+            
+            const deletedUpdate = state.idCollection.filter(identity => identity !== action.payload);
+            console.log("deletedUpdate")
+            console.log(deletedUpdate)
+            console.log("deletedUpdate")
+            state.idCollection = deletedUpdate
+            
+        }
     },
     extraReducers: { // 
         [postThunk.pending]: (state) => {
@@ -83,9 +126,21 @@ const postSlice = createSlice({
     }
 })
 
-export const { repliesList, repeatReplies } = postSlice.actions;
+export const { 
+    repliesList, 
+    repeatReplies, 
+    idCollector, 
+    idDeleter,
+    parentAdd,
+    parentDelete,
+    childAdd,
+    childDelete,
+} = postSlice.actions;
 export const selectPostLoading = (state) => state.posts.postLoading;
 export const selectPost = (state) => state.posts.posts;
 export const selectRepliesList = (state) => state.posts.replies;
 export const selectRepeatReplies = (state) => state.posts.repeatReplies;
+export const selectIdCollection = (state) => state.posts.idCollection;
+export const selectParentCount = (state) => state.posts.parentCount;
+export const selectChildCount = (state) => state.posts.childCount;
 export default postSlice.reducer;
