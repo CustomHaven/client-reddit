@@ -1,0 +1,32 @@
+.reply-div {
+  display: block;
+  border-left: 2px solid rgb(211, 211, 211);
+}
+
+.reply-author {
+  font-size: 1.2rem;
+  text-align: left;
+}
+
+.reply-text {
+  /* text-align: center; */
+  /* clear: right; */
+  /* font-size: 0.6rem; */
+}
+
+.utc-time {
+  /* grid-area: utc-reply; */
+  font-size: 0.6rem;
+}
+
+.reply-symbol {
+  /* float: right; */
+}
+
+.reply-div:after {
+  content: "";
+  position: relative;
+  left: 1vw;
+  top: 2vh;
+  border-left: 2px solid lightgray;
+}

@@ -17,6 +17,7 @@ export const repliesThunk = createAsyncThunk(
     }
 );
 
+
 const postSlice = createSlice({
     name: 'posts',
     initialState: {
@@ -44,6 +45,9 @@ const postSlice = createSlice({
 
             state.replies = adding
         },
+        deleteReplyList(state, action) {
+
+        },
         clearAllReplies(state, action) {
             console.log("action.payload clear all replies")
             console.log(action.payload)
@@ -53,7 +57,7 @@ const postSlice = createSlice({
         repeatReplies(state, action) {
             // console.log("payload")
             /* trying to make this reducer the one does the repeat for the replies */
-            const arrayObject = action.payload.map(child => ({ // returns array of object I know
+            const arrayObject = action.payload?.map(child => ({ // returns array of object I know
                 id: child.id,
                 author: child.author,
                 body: child.body,
@@ -64,12 +68,36 @@ const postSlice = createSlice({
             
             // Object.assign({}, obj) /// this is the best way omdzzzzz
 
-            // const adding = state.repeatReplies.concat(arrayObject).filter(clones => clones !== arrayObject);
+            const adding = state.repeatReplies.concat(arrayObject).filter(clones => clones !== arrayObject);
 
-            state.repeatReplies.push(arrayObject)
+            // state.repeatReplies.push(arrayObject)
            
-            // state.repeatReplies = adding; /// fucking finally looks like we are getting somewhere
+            state.repeatReplies = adding; /// fucking finally looks like we are getting somewhere
             // state.repeatReplies = state.repeatReplies[0];
+        },
+        deleteRepeatReplies(state, action) {
+            console.log("the deleting repeat replies")
+            // state.repeatReplies.splice(-1, action.payload);
+            // deleting with slice whatever target index of array
+            /// fix the incoming payload
+            let pin = state.repeatReplies[action.payload]
+            let index = state.repeatReplies.indexOf(pin);
+            console.log("before yesy")
+            console.log(state.repeatReplies)
+            console.log(index)
+            console.log("before yesy")
+
+            // state.repeatReplies.splice(index, 1);
+
+            // close of slice
+            let yesy = [
+            ...state.repeatReplies.slice(0, index),
+            ...state.repeatReplies.slice(index + 1)
+            ]
+            console.log("after yesy")
+            console.log(yesy)
+            console.log("after yesy")
+            state.repeatReplies = yesy         
         },
         parentAdd(state, action) {
             state.parentCount = action.payload;
@@ -84,9 +112,9 @@ const postSlice = createSlice({
             state.childCount = action.payload;
         },
         idCollector(state, action) {
-            console.log("action.payload id collector")
+            // console.log("action.payload id collector")
             console.log(action.payload)
-            console.log("action.payload id collector")
+            // console.log("action.payload id collector")
 
             const adding = state.idCollection.concat(action.payload);
             console.log(adding)
@@ -94,15 +122,15 @@ const postSlice = createSlice({
         },
         idDeleter(state, action) {
 
-            console.log("action.payload id deleter")
+            // console.log("action.payload id deleter")
             console.log(action.payload)
-            console.log("action.payload id deleter")
+            // console.log("action.payload id deleter")
 
             
             const deletedUpdate = state.idCollection.filter(identity => identity !== action.payload);
-            console.log("deletedUpdate")
+            // console.log("deletedUpdate")
             console.log(deletedUpdate)
-            console.log("deletedUpdate")
+            // console.log("deletedUpdate")
             state.idCollection = deletedUpdate
             
         }
@@ -144,6 +172,7 @@ export const {
     childAdd,
     childDelete,
     clearAllReplies,
+    deleteRepeatReplies
 } = postSlice.actions;
 export const selectPostLoading = (state) => state.posts.postLoading;
 export const selectPost = (state) => state.posts.posts;

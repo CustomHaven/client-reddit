@@ -38,6 +38,13 @@ const Post = (props) => {
         
             {  
                 allPost.length > 0 && allPost.map((child, list) => 
+                <>
+
+                {console.log("child inside the post map allPost from Post.js")}
+
+                {console.log(child)}
+                {console.log("child inside the post map allPost from Post.js")}
+
                     
                     <div className="comments-div" key={uuidv4()}>
                     <p className="comments-author">{child.author}</p>
@@ -57,7 +64,7 @@ const Post = (props) => {
                     />
                     
                     
-                    </div>                   
+                    </div>  </>                 
                 )
             }
 

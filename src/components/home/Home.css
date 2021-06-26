@@ -37,26 +37,45 @@ span {
     1fr 1fr 1fr minmax(0.5fr 1fr) minmax(0.5fr 1fr) minmax(0.5fr 1fr)
     minmax(0.5fr 1fr) minmax(0.5fr 1fr) minmax(0.2fr, 0.4fr);
   grid-template-areas:
-    ". . . . . . . . ."
-    ". title title title title title title . subreddit"
-    ". title title title title title title . ."
-    "up img img img img img img img img"
+    "score . subreddit . . . . . ."
+    "score title title title title title title title title"
+    "score title title title title title title title title"
     "score img img img img img img img img"
     "score img img img img img img img img"
-    "down img img img img img img img img"
-    ". img img img img img img img img"
-    ". comments comments comments comments comments comments . author";
+    "score img img img img img img img img"
+    "score img img img img img img img img"
+    "score img img img img img img img img"
+    "score comments comments comments comments comments comments . author";
   gap: 10px;
   /* height: 50vh; */
 }
 
 .reddit-score {
   grid-area: score;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: rgb(248, 249, 250);
 }
 
 .reddit-subreddit {
   grid-area: subreddit;
   margin-right: 1vw;
+  display: flex;
+  align-items: center;
+}
+
+.reddit-subreddit div {
+  width: 18px;
+  height: 18px;
+  background-color: rgb(248, 249, 250);
+  border-radius: 50%;
+}
+
+.reddit-subreddit p {
+  font-size: 0.9rem;
+  font-weight: 700;
 }
 
 .reddit-title {

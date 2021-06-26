@@ -25,8 +25,15 @@ const Card = (props) => {
                     <span>Score: {formatter(home.score)}</span>
                     <TiArrowDownOutline className="icon-action" />
                 </div>
+                <div className='reddit-subreddit'>
+                    <div className="smallsizeImage">
+                        <img 
+                            src="https://b.thumbs.redditmedia.com/rwN0al9P6nYhGSQO-yIJb-FyF5xg-c2v61zjMom4c4E.png" 
+                            alt="noimg" />
+                    </div>
+                    <p>{home.prefix}</p>
+                </div>
                 
-                <p className='reddit-subreddit'>{home.name}</p>
                 <p className='reddit-title'>{home.title}</p>
                 { 
                     rgx.test(home.url) && 
