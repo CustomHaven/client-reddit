@@ -1,15 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import './Home.css';
-import { v4 as uuidv4 } from 'uuid';
 import { Spinner } from "@chakra-ui/react";
-import { IconName, TiArrowUpOutline, TiArrowDownOutline } from "react-icons/ti";
 import { homeSubredditThunk, selectHome, isLoading } from '../../feature/home/homeSlice.js';
-import { postThunk, repliesList } from '../../feature/post/postSlice';
-import { colorNum, formatter } from '../../util/mathWork.js';
-import Card from './card/Card.js';
+import { postThunk, repliesList, clearAllReplies, indexReset } from '../../feature/post/postSlice';
+import { formatter } from '../../util/mathWork.js';
+import Card from '../card/Card.js';
 import { backgroundPics } from '../../util/imagesContainer.js';
-import reddit from '../../util/reddit-data';
 
 const Home = () => {
 
@@ -32,9 +29,13 @@ const Home = () => {
 
     /// THIS SECTION HERE IS THE CLICK HANDLER
     const commentsHandler = (perma, index) => {
-        if (divPress === index){
+        if (divPress === index) {
+            dispatch(clearAllReplies([]));
+            dispatch(indexReset(0));
             setDivPress(null)
         } else {
+            dispatch(clearAllReplies([]));
+            dispatch(indexReset(0));
             setDivPress(index)
             dispatch(postThunk(perma));
         }
@@ -42,8 +43,12 @@ const Home = () => {
 
     const replyHandler = (replies, index) => {
         if (repliesClick === index){
-            setRepliesClick(null)
+            dispatch(clearAllReplies([]));
+            dispatch(indexReset(0));
+            setRepliesClick(null);
         } else {
+            dispatch(clearAllReplies([]));
+            dispatch(indexReset(0));
             setRepliesClick(index)
             dispatch(repliesList(replies));
         }
@@ -77,7 +82,7 @@ const Home = () => {
                         <Card 
                             // key={uuidv4()}
                             index={index}
-                            home={home}
+                            subreddit={home}
                             rgx={regexValidation}
                             formatter={formatter}
                             commentsHandler={commentsHandler}

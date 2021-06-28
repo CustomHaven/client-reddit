@@ -24,9 +24,9 @@ const postSlice = createSlice({
         posts: [],
         replies: [],
         repeatReplies: [],
-        parentCount: null,
-        childCount: null,
+        repeatCount: null,
         idCollection: [],
+        indexCount: 0,
         postLoading: false,
         postError: false
     },
@@ -45,19 +45,13 @@ const postSlice = createSlice({
 
             state.replies = adding
         },
-        deleteReplyList(state, action) {
-
-        },
-        clearAllReplies(state, action) {
-            console.log("action.payload clear all replies")
-            console.log(action.payload)
-            console.log("action.payload clear all replies")
-            state.replies = action.payload; /// basically the payload incoming will be [];
+        clearAllReplies(state, action) { // basically incoming payload will be [] so we just reset the state;
+            state.replies = action.payload;
+            state.repeatReplies = action.payload;
+            state.idCollection = action.payload;
         },
         repeatReplies(state, action) {
-            // console.log("payload")
-            /* trying to make this reducer the one does the repeat for the replies */
-            const arrayObject = action.payload?.map(child => ({ // returns array of object I know
+            const arrayObject = action.payload?.map(child => ({
                 id: child.id,
                 author: child.author,
                 body: child.body,
@@ -66,73 +60,27 @@ const postSlice = createSlice({
                 replies: child.replies
             }))
             
-            // Object.assign({}, obj) /// this is the best way omdzzzzz
-
             const adding = state.repeatReplies.concat(arrayObject).filter(clones => clones !== arrayObject);
-
-            // state.repeatReplies.push(arrayObject)
            
-            state.repeatReplies = adding; /// fucking finally looks like we are getting somewhere
-            // state.repeatReplies = state.repeatReplies[0];
+            state.repeatReplies = adding;
         },
-        deleteRepeatReplies(state, action) {
-            console.log("the deleting repeat replies")
-            // state.repeatReplies.splice(-1, action.payload);
-            // deleting with slice whatever target index of array
-            /// fix the incoming payload
-            let pin = state.repeatReplies[action.payload]
-            let index = state.repeatReplies.indexOf(pin);
-            console.log("before yesy")
-            console.log(state.repeatReplies)
-            console.log(index)
-            console.log("before yesy")
-
-            // state.repeatReplies.splice(index, 1);
-
-            // close of slice
-            let yesy = [
-            ...state.repeatReplies.slice(0, index),
-            ...state.repeatReplies.slice(index + 1)
-            ]
-            console.log("after yesy")
-            console.log(yesy)
-            console.log("after yesy")
-            state.repeatReplies = yesy         
+        countAdd(state, action) {
+            state.repeatCount = action.payload;
         },
-        parentAdd(state, action) {
-            state.parentCount = action.payload;
-        },
-        parentDelete(state, action) {
-            state.parentCount = action.payload;
-        },
-        childAdd(state, action) {
-            state.childCount = action.payload;
-        },
-        childDelete(state, action) {
-            state.childCount = action.payload;
+        countDelete(state, action) {
+            state.repeatCount = action.payload;
         },
         idCollector(state, action) {
-            // console.log("action.payload id collector")
-            console.log(action.payload)
-            // console.log("action.payload id collector")
 
             const adding = state.idCollection.concat(action.payload);
             console.log(adding)
             state.idCollection = adding;
         },
-        idDeleter(state, action) {
-
-            // console.log("action.payload id deleter")
-            console.log(action.payload)
-            // console.log("action.payload id deleter")
-
-            
-            const deletedUpdate = state.idCollection.filter(identity => identity !== action.payload);
-            // console.log("deletedUpdate")
-            console.log(deletedUpdate)
-            // console.log("deletedUpdate")
-            state.idCollection = deletedUpdate
-            
+        indexCount(state, action) {
+            state.indexCount += action.payload; // just for fun trying to see how many renders happens
+        },
+        indexReset(state, action) { // reset it incoming payload is 0
+            state.indexCount = action.payload;
         }
     },
     extraReducers: { // 
@@ -144,15 +92,14 @@ const postSlice = createSlice({
             state.postLoading = false;
             state.postError = false;
 
-
-                state.posts = (action.payload.map(child => ({
-                    id: child.id,
-                    author: child.author,
-                    body: child.body,
-                    permalink: child.permalink,
-                    utc: child.created_utc,
-                    replies: child.replies
-                })))
+            state.posts = (action.payload.map(child => ({
+                id: child.id,
+                author: child.author,
+                body: child.body,
+                permalink: child.permalink,
+                utc: child.created_utc,
+                replies: child.replies
+            })))
 
         },
         [postThunk.rejected]: (state) => {
@@ -165,20 +112,18 @@ const postSlice = createSlice({
 export const { 
     repliesList, 
     repeatReplies, 
-    idCollector, 
-    idDeleter,
-    parentAdd,
-    parentDelete,
-    childAdd,
-    childDelete,
+    idCollector,
+    countAdd,
+    countDelete,
     clearAllReplies,
-    deleteRepeatReplies
+    indexCount,
+    indexReset
 } = postSlice.actions;
 export const selectPostLoading = (state) => state.posts.postLoading;
 export const selectPost = (state) => state.posts.posts;
 export const selectRepliesList = (state) => state.posts.replies;
 export const selectRepeatReplies = (state) => state.posts.repeatReplies;
 export const selectIdCollection = (state) => state.posts.idCollection;
-export const selectParentCount = (state) => state.posts.parentCount;
-export const selectChildCount = (state) => state.posts.childCount;
+export const selectRepeatCount = (state) => state.posts.repeatCount;
+export const selectIndexCount = state => state.posts.indexCount;
 export default postSlice.reducer;

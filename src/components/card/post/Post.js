@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { Box, SkeletonCircle, SkeletonText, Flex } from "@chakra-ui/react";
 import { TiMessage, } from "react-icons/ti";
-import { selectPostLoading, selectRepliesList } from '../../../../feature/post/postSlice.js';
+import { selectPostLoading, selectRepliesList } from '../../../feature/post/postSlice.js';
 import Reply from './reply/Reply.js';
-import { timeAgo } from '../../../../util/mathWork.js';
+import { timeAgo } from '../../../util/mathWork.js';
 
 const Post = (props) => {
     const { divPress, allPost, index, repliesClick, replyHandler } = props;
@@ -39,13 +39,7 @@ const Post = (props) => {
             {  
                 allPost.length > 0 && allPost.map((child, list) => 
                 <>
-
-                {console.log("child inside the post map allPost from Post.js")}
-
-                {console.log(child)}
-                {console.log("child inside the post map allPost from Post.js")}
-
-                    
+             
                     <div className="comments-div" key={uuidv4()}>
                     <p className="comments-author">{child.author}</p>
                     <p className="comments-text">{child.body}</p>
@@ -54,7 +48,6 @@ const Post = (props) => {
                         typeof child.replies === 'object' &&
                        
                         <TiMessage onClick={(e) => replyHandler(child.replies, list)} className="reddit-symbol post-symbol"/>
-                        
                     }
 
                     <Reply 

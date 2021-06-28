@@ -14,16 +14,15 @@ span {
   /* top: 10vh; */
   background-color: var(--card-background);
   margin: 20px auto;
-  width: 40vw;
+  width: 60vw;
   /* border: 5px solid rgba(37, 34, 34, 0.8); */
-  border-radius: 20px;
+  /* border-radius: 20px; */
   box-shadow: var(--box-shadow-display);
 }
 
 .reddit-div:hover {
   box-shadow: var(--box-shadow-hover);
   border-radius: 0;
-  /* width: 60vw; */
   /* padding: 10px; */
 }
 
@@ -37,7 +36,7 @@ span {
     1fr 1fr 1fr minmax(0.5fr 1fr) minmax(0.5fr 1fr) minmax(0.5fr 1fr)
     minmax(0.5fr 1fr) minmax(0.5fr 1fr) minmax(0.2fr, 0.4fr);
   grid-template-areas:
-    "score . subreddit . . . . . ."
+    "score . subreddit . . . . . the-utc"
     "score title title title title title title title title"
     "score title title title title title title title title"
     "score img img img img img img img img"
@@ -57,6 +56,12 @@ span {
   align-items: center;
   justify-content: flex-start;
   background-color: rgb(248, 249, 250);
+}
+
+.reddit-time-utc {
+  grid-area: the-utc;
+  color: var(--logo-color);
+  font-size: 0.8rem;
 }
 
 .reddit-subreddit {
@@ -121,18 +126,24 @@ span {
 
 .reddit-comments p {
   display: inline-block;
+  font-size: 0.8rem;
 }
 
 .reddit-author {
   grid-area: author;
+  font-size: 0.8rem;
   margin-right: 1vw;
   color: var(--logo-color);
 }
 
-@media only screen and (max-width: 1020px) {
+/* @media only screen and (max-width: 1020px) {
   .reddit-div {
-    width: 50vh;
+    width: 60vh;
   }
+} */
+
+@media only screen and (max-width: 780px) {
+  /* remove aside section and put the subreddit list inside the navbar */
 }
 
 @media only screen and (max-width: 700px) {
@@ -141,7 +152,7 @@ span {
   /* } */
   .reddit-li {
     grid-template-areas:
-      "score . . . . . . . subreddit"
+      "score . . . subreddit . . . the-utc"
       "title title title title title title title title title"
       "title title title title title title title title title"
       "img img img img img img img img img"

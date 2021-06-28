@@ -1,23 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { Spinner } from "@chakra-ui/react";
 import { subredditsThunk, selectSubIsLoading, selectSubreddits } from '../../feature/subreddits/subredditsSlice.js';
-import { colorNum, formatter } from '../../util/mathWork.js';
+import { postThunk, repliesList, clearAllReplies, indexReset } from '../../feature/post/postSlice.js';
+import { formatter } from '../../util/mathWork.js';
 import '../home/Home.css';
+import Card from '../card/Card.js';
 import { backgroundPics } from '../../util/imagesContainer.js';
 
 const Subreddits = () => {
 
     const {prefix} = useParams();
-    console.log("the prefix")
-    console.log(prefix)
-    console.log("the prefix")
+    const [divPress, setDivPress] = useState(null);
+    const [repliesClick, setRepliesClick] = useState(null);
     const redditLoading = useSelector(selectSubIsLoading)
     const subreddit = useSelector(selectSubreddits);
     const dispatch = useDispatch();
+    const refDivClick = useRef([document.getElementsByClassName('target-divs')]); // might just delete // only sendinf 1 back wtf
     const [foundImg, setFoundImg] = useState('');
-
-    console.log(typeof prefix)
 
     useEffect(() => {
         
@@ -33,7 +34,32 @@ const Subreddits = () => {
     }, [found, foundImg])
 
 
-    console.log(foundImg);
+    /// THIS SECTION HERE IS THE CLICK HANDLER
+    const commentsHandler = (perma, index) => {
+        if (divPress === index) {
+            dispatch(clearAllReplies([]));
+            dispatch(indexReset(0));
+            setDivPress(null)
+        } else {
+            dispatch(clearAllReplies([]));
+            dispatch(indexReset(0));
+            setDivPress(index)
+            dispatch(postThunk(perma));
+        }
+    }
+
+    const replyHandler = (replies, index) => {
+        if (repliesClick === index){
+            dispatch(clearAllReplies([]));
+            dispatch(indexReset(0));
+            setRepliesClick(null);
+        } else {
+            dispatch(clearAllReplies([]));
+            dispatch(indexReset(0));
+            setRepliesClick(index)
+            dispatch(repliesList(replies));
+        }
+    }
 
 
     body.style.backgroundImage = `url(${foundImg}`;
@@ -41,44 +67,36 @@ const Subreddits = () => {
     const regexValidation = /\.(:?jpg|gif|png)$/;
 
     if (redditLoading) {
-        return <div style={{position: 'relative', top: '180px'}}>Loading...</div>
+        return <Spinner
+        thickness="40px"
+        speed="1s"
+        emptyColor="gray.200"
+        color="blue.500"
+        size="xl"
+      />
     }
     
     return (
         <>
             {
-                subreddit.map(reddit => 
+                subreddit.map((reddit, index) => 
                     <div 
                         // style={{backgroundColor: `rgba(${colorNum()}, ${colorNum()}, ${colorNum()}, 0.4)`}} 
                         className="reddit-div">
-                        
+                        <Card 
+                            // key={uuidv4()}
+                            index={index}
+                            subreddit={reddit}
+                            rgx={regexValidation}
+                            formatter={formatter}
+                            commentsHandler={commentsHandler}
+                            replyHandler={replyHandler}
+                            divPress={divPress}
+                            referance={refDivClick}
+                            repliesClick={repliesClick}
+                        /> 
 
-                        <ul className="reddit-ul" >
-                            
-                                
-                                <li className="reddit-li" key={reddit.id}>
-                                    <span className="reddit-score">Score: {formatter(reddit.score)}</span>
-                                    <p className='reddit-subreddit'>{reddit.name}</p>
-                                    <p className='reddit-title'>{reddit.title}</p>
-                                    { 
-                                        regexValidation.test(reddit.url) && 
-                                        <div className="reddit-img-container">
-                                        <img src={reddit.url} alt="no img"/>
-                                        </div>
-                                    }
-
-                                    {
-                                        reddit.comments > 0 &&
-                                        <div className="reddit-comments"><svg className="reddit-symbol" width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 1c-6.338 0-12 4.226-12 10.007 0 2.05.739 4.063 2.047 5.625l-1.993 6.368 6.946-3c1.705.439 3.334.641 4.864.641 7.174 0 12.136-4.439 12.136-9.634 0-5.812-5.701-10.007-12-10.007zm0 1c6.065 0 11 4.041 11 9.007 0 4.922-4.787 8.634-11.136 8.634-1.881 0-3.401-.299-4.946-.695l-5.258 2.271 1.505-4.808c-1.308-1.564-2.165-3.128-2.165-5.402 0-4.966 4.935-9.007 11-9.007zm-5 7.5c.828 0 1.5.672 1.5 1.5s-.672 1.5-1.5 1.5-1.5-.672-1.5-1.5.672-1.5 1.5-1.5zm5 0c.828 0 1.5.672 1.5 1.5s-.672 1.5-1.5 1.5-1.5-.672-1.5-1.5.672-1.5 1.5-1.5zm5 0c.828 0 1.5.672 1.5 1.5s-.672 1.5-1.5 1.5-1.5-.672-1.5-1.5.672-1.5 1.5-1.5z"/></svg>
-                                        <p>Comments {formatter(reddit.comments)}</p></div>
-                                    }
-
-                                    <p className='reddit-author'>{reddit.author}</p>
-                                </li>
-                        
-                        </ul>
-
-                        
+                                    
                     </div>
                 )
             }

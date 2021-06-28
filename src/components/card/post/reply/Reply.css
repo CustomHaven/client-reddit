@@ -1,32 +1,32 @@
 .reply-div {
-  display: block;
+  /* display: block; */
   border-left: 2px solid rgb(211, 211, 211);
+  margin: 15px 0 15px 5px;
 }
 
 .reply-author {
   font-size: 1.2rem;
   text-align: left;
+  color: var(--logo-color);
 }
 
 .reply-text {
   /* text-align: center; */
   /* clear: right; */
-  /* font-size: 0.6rem; */
+  margin: 0 20px;
+  font-size: 0.9rem;
 }
 
 .utc-time {
   /* grid-area: utc-reply; */
+  text-align: right;
   font-size: 0.6rem;
+  color: var(--logo-color);
 }
 
-.reply-symbol {
-  /* float: right; */
-}
-
-.reply-div:after {
-  content: "";
+.reply-div::after {
   position: relative;
-  left: 1vw;
-  top: 2vh;
-  border-left: 2px solid lightgray;
+  left: 20px;
+  top: 15px;
+  border-left: 2px solid rgb(211, 211, 211);
 }

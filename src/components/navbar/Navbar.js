@@ -9,27 +9,25 @@ import { ButtonMenu } from './buttonMenuDown/buttonMenu/ButtonMenu.js';
 import { useMediaQuery } from 'beautiful-react-hooks';
 
 export const Navbar = () => {
+    
+    /// comeback to this 
+    const [main, setMain] = useState(document.getElementsByClassName('the-flex-container'))
 
-
+    console.log(main)
 
     const [button, setButton] = useState(false);
 
-    // useEffect(() => {
-    //     if (button === true) {
-    //         document.getElementById('root').addEventListener('click', buttonMenuMethod)
     
-    //         return () => {
-    //             window.removeEventListener('click', buttonMenuMethod)
-    //         }
-    //     }
-    // }, [button]);
-
-    // const buttonMenuMethod = () => {
-    //     setButton(false);
-    // }
-
     const [fa_2x, setFa_2x] = useState('fa-2x');
 
+    useEffect(() => {
+        main[0].addEventListener('click', fu)
+
+    }, [main])
+
+    const fu = () => {
+        return setButton(false)
+    }
 
 
     useEffect(() => {
@@ -43,20 +41,11 @@ export const Navbar = () => {
         }
     }, [fa_2x, button]);
 
-    // console.log(subreddit);
-    
-
-
+   
     const buttonHandleClick = () => {
         setButton(!button)     
     }
     
-    
-    // let buttonMenu;
-    // let buttonClip1;
-    // let buttonClip2;
- 
-
     
     return (
         <header>
