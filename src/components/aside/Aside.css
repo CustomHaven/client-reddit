@@ -1,14 +1,18 @@
+.aside-container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  position: sticky;
+  top: 90px;
+}
+
 aside.public-info {
-  width: 300px;
-  /* height: 400px; */
-  /* padding: 0 20px; */
+  width: 25vw;
   border: 2px solid black;
   display: flex;
   flex-direction: column;
   background-color: #fcfcfc;
-  /* justify-content: space-evenly; */
-  /* align-items: center; */
-  /* align-content: space-around; */
 }
 
 .dark-div {
@@ -41,8 +45,6 @@ aside.public-info {
   border-radius: 50%;
 }
 
-/*  bit below this */
-
 .pub-info {
   padding: 10px;
   font-size: 0.9rem;
@@ -61,4 +63,55 @@ aside.public-info {
 
 .total-subs:hover {
   font-size: 1.1rem;
+}
+
+.list-all {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: var(--nice-background-color);
+  border: 2px solid black;
+  height: 450px;
+  overflow-y: scroll;
+}
+
+#aside-title {
+  background-color: rgb(55, 60, 63);
+  padding: 10px;
+}
+
+.aside-title {
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: 0 10px;
+  text-align: center;
+}
+
+.article-map {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  border-bottom: 2px solid black;
+  padding: 10px;
+}
+
+.article-map:last-child {
+  border-bottom: none;
+}
+
+.list-icon-container {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid black;
+}
+
+.list-icon-container img {
+  border-radius: 50%;
+}
+
+.list-iconImg {
+  width: 100%;
+  height: 100%;
 }

@@ -1,12 +1,6 @@
 .posts-bits {
   height: 500px;
   overflow-y: scroll;
-  /* overflow-x: hidden; */
-  /* display: none; */
-}
-
-.posts-bits:first-child {
-  /* background-color: red; */
 }
 
 /*  post/comments styles */
@@ -36,8 +30,4 @@
 
 .post-symbol {
   align-self: flex-end;
-}
-
-.reply-container {
-  /* height: 200px; */
 }

@@ -5,6 +5,7 @@ import { useLocation } from 'react-router';
 import { formatter } from '../../util/mathWork';
 import { selectListOfAll } from '../../feature/listOfAll/listOfAllSlice';
 import { selectSubreddits, subredditsThunk } from '../../feature/subreddits/subredditsSlice';
+import ListOfAllReddit from './listOfAllReddit/ListOfAllReddit';
 
 const Aside = () => {
     const allList = useSelector(selectListOfAll);
@@ -24,6 +25,7 @@ const Aside = () => {
     const index = allList.findIndex(child => child.name === regexResult);
 
     return (
+        <div className="aside-container">
         <aside className="public-info">
             <div className="dark-div">
                 <h2>About Community</h2>
@@ -41,6 +43,10 @@ const Aside = () => {
             
 
         </aside>
+        <ListOfAllReddit
+            allList={allList}
+        />
+        </div>
     )
 }
 

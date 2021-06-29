@@ -1,6 +1,5 @@
 .reply-div {
-  /* display: block; */
-  border-left: 2px solid rgb(211, 211, 211);
+  border-left: var(--reply-border);
   margin: 15px 0 15px 5px;
 }
 
@@ -11,14 +10,11 @@
 }
 
 .reply-text {
-  /* text-align: center; */
-  /* clear: right; */
   margin: 0 20px;
   font-size: 0.9rem;
 }
 
 .utc-time {
-  /* grid-area: utc-reply; */
   text-align: right;
   font-size: 0.6rem;
   color: var(--logo-color);
@@ -28,5 +24,5 @@
   position: relative;
   left: 20px;
   top: 15px;
-  border-left: 2px solid rgb(211, 211, 211);
+  border-left: var(--reply-border);
 }
