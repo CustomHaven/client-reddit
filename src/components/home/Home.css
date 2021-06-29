@@ -33,10 +33,10 @@ span {
   display: grid;
   grid-template-columns: 0.2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 0.5fr;
   grid-template-rows:
-    1fr 1fr 1fr minmax(0.5fr 1fr) minmax(0.5fr 1fr) minmax(0.5fr 1fr)
-    minmax(0.5fr 1fr) minmax(0.5fr 1fr) minmax(0.2fr, 0.4fr);
+    1fr 1fr minmax(0.5fr 1fr) minmax(0.5fr 1fr) minmax(0.5fr 1fr)
+    minmax(0.5fr 1fr) minmax(0.5fr 1fr) minmax(0.2fr, 0.5fr);
   grid-template-areas:
-    "score . subreddit . . . . . the-utc"
+    "score subreddit . . . . . . the-utc"
     "score title title title title title title title title"
     "score title title title title title title title title"
     "score img img img img img img img img"
@@ -44,7 +44,7 @@ span {
     "score img img img img img img img img"
     "score img img img img img img img img"
     "score img img img img img img img img"
-    "score comments comments comments comments comments comments . author";
+    "score comments comments comments comments comments . . author";
   gap: 10px;
   /* height: 50vh; */
 }
@@ -100,6 +100,7 @@ span {
   height: 100%;
   border-radius: 20px;
   object-fit: fill;
+  overflow: hidden;
 }
 
 .reddit-img-container img:hover {
@@ -176,5 +177,8 @@ span {
   }
   .reddit-score {
     font-size: 0.6rem;
+  }
+  .reddit-title {
+    font-size: 0.9rem;
   }
 }
