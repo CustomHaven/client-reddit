@@ -143,7 +143,9 @@ span {
 } */
 
 @media only screen and (max-width: 780px) {
-  /* remove aside section and put the subreddit list inside the navbar */
+  .reddit-div {
+    width: 90vw;
+  }
 }
 
 @media only screen and (max-width: 700px) {
