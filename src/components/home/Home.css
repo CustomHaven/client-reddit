@@ -92,6 +92,7 @@ span {
   grid-area: img;
   /* background-color: red; */
   height: 50vh;
+  overflow: hidden;
 }
 
 .reddit-img-container img {
@@ -152,7 +153,7 @@ span {
   /* .reddit-subreddit { */
   /* display: none; */
   /* } */
-  .reddit-li {
+  /* .reddit-li {
     grid-template-areas:
       "score . . . subreddit . . . the-utc"
       "title title title title title title title title title"
@@ -163,5 +164,17 @@ span {
       "img img img img img img img img img"
       "img img img img img img img img img"
       ". comments comments comments comments comments comments . author";
+  } */
+}
+
+@media only screen and (max-width: 500px) {
+  .reddit-comments p {
+    font-size: 0.7rem;
+  }
+  .reddit-author {
+    font-size: 0.6rem;
+  }
+  .reddit-score {
+    font-size: 0.6rem;
   }
 }
