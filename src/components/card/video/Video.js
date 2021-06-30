@@ -10,11 +10,11 @@ import screenfull from 'screenfull';
 
 const Video = (props) => {
     const { src, duration } = props;
-    const [time, setTime] = useState(0);
-    const [playing, setPlaying] = useState(false);
-    const vidRef = useRef();
-    const sliderRef = useRef();
-    const fullScreen = useRef();
+    // const [time, setTime] = useState(0);
+    // const [playing, setPlaying] = useState(false);
+    // const vidRef = useRef();
+    // const sliderRef = useRef();
+    // const fullScreen = useRef();
 
     // useEffect(() => {
     //     if (vidRef.current !== undefined) {
@@ -53,10 +53,8 @@ const Video = (props) => {
     // }
 
     return (
-        <div className="reddit-img-container" ref={fullScreen} id="video-container">
-            <video ref={vidRef} id="video-player"  className="video" controls loop>
-                <source src={src} type="video/mp4" />
-            </video>
+        <div className="reddit-img-container" id="video-container">
+            <video id="video-player" src={src} type="video/mp4" className="video" controls loop></video>
                 {
                     
                     {/* <div id="video-controls">
