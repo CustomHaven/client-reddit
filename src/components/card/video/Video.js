@@ -49,7 +49,7 @@ const Video = (props) => {
     }, [vidRef, sliderRef])
 
     const toggleFullScreen = () => {
-        screenfull.toggle(fullScreen.current)
+        screenfull.toggle(vidRef.current)
     }
 
     return (
