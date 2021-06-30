@@ -53,7 +53,7 @@ const Video = (props) => {
     }
 
     return (
-        <div ref={fullScreen} id="video-container">
+        <div className="reddit-img-container" ref={fullScreen} id="video-container">
             <video ref={vidRef} id="video-player" src={src} type="video/mp4" className="video" loop></video>
                 {
                     

@@ -55,17 +55,19 @@ const Card = (props) => {
                 
                 <p className='reddit-title'>{subreddit.title}</p>
                 { 
-                    (subreddit?.video !== undefined || rgx.test(subreddit.url)) && 
-                    <div className="reddit-img-container" >
-                    {
+                    (subreddit?.video !== undefined || rgx.test(subreddit.url)) ? 
+                    
+                    
                         subreddit?.video !== undefined ?
                         <Video 
                             src={subreddit?.video}
                             duration={subreddit?.duration}
                         /> :
+                        <div className="reddit-img-container" >
                     <img src={subreddit.url} alt="subreddit img"/>
-                    }
                     </div>
+                    
+                    : null
                 }
 
                 {
