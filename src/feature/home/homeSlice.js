@@ -26,18 +26,20 @@ const homeSlice = createSlice({
             state.hasError = false;
             
             state.homeReddit = action.payload.map(child => ({
-                id: child.id, // id of the tweet
-                author: child.author, // the guy who posted
-                title: child.title, // content message
-                name: child.subreddit, // name of subreddit like "memes"
-                url: child.url_overridden_by_dest, // img or gif
-                prefix: child.subreddit_name_prefixed, // r/memes
-                subId: child.subreddit_id, // "t5_2qjpg"
-                score: child.score, // preformance of the tweet example 51331  // get this to display
-                comments: child.num_comments, // num of comments  // get this to display
-                subscribers: child.subreddit_subscribers, // all subscribers  // not needed atm
+                id: child.id,
+                author: child.author,
+                title: child.title,
+                name: child.subreddit,
+                url: child.url_overridden_by_dest,
+                prefix: child.subreddit_name_prefixed,
+                subId: child.subreddit_id,
+                score: child.score,
+                comments: child.num_comments,
+                subscribers: child.subreddit_subscribers,
                 permalink: child.permalink,
-                utc: child.created_utc
+                utc: child.created_utc,
+                video: child?.secure_media?.reddit_video?.fallback_url,
+                duration: child?.secure_media?.reddit_video?.duration
             }))
         },
         [homeSubredditThunk.rejected]: (state) => {
@@ -46,10 +48,7 @@ const homeSlice = createSlice({
         }
     }
 });
-// console.log(homeSlice)
+
 export const isLoading = state => state.home.isLoading;
 export const selectHome = state => state.home.homeReddit;
 export default homeSlice.reducer;
-
-// mobile_banner_image   --- nice banner img on top level
-// icon_img /r/whatever nice small icon img

@@ -63,8 +63,24 @@ export const timeAgo = (old) => {
   else {
     return 'approximately ' + Math.round(diff/msPerYear ) + ' years ago';   
   }
-  
+
 }
 
-// export default randomNum;
-
+export const clock = (given) => {
+  let timer = given;
+  let count = 0;
+  while (timer >= 60) {
+    timer = timer - 60
+    count++
+  }
+  
+  if (given >= 60 && timer === 0) {
+    return `${count}:${0}${0}`
+  }
+  if (given > 60 && timer < 60) {
+    return `${count}:${timer >= 10 ? timer : `${0}${timer}`}`
+  }
+  if (given < 60) {
+    return `${0}:${given >= 10 ? given : `${0}${given}`}`
+  }
+}

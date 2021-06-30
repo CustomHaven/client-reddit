@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; // try useMemo  for the utc
 import moment from 'moment'; // regardless if i use moment or my own function I have problem with timeAgo maybe useMemo? we will see
 
 const RepeatedReplies = (props) => {

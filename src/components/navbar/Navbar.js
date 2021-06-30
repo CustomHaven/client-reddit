@@ -12,12 +12,7 @@ export const Navbar = () => {
     
     /// comeback to this 
     const [main, setMain] = useState(document.getElementsByClassName('the-flex-container'))
-
-    console.log(main)
-
     const [button, setButton] = useState(false);
-
-    
     const [fa_2x, setFa_2x] = useState('fa-2x');
 
     useEffect(() => {

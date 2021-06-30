@@ -7,7 +7,7 @@
   --card-background: rgb(252, 252, 252);
   --logo-color: rgb(255, 69, 0);
   --box-shadow-display: 0 10px 15px -3px rgba(63, 15, 15, 0.6);
-  --box-shadow-hover: 0 10px 15px -3px rgba(63, 15, 15, 1);
+  --box-shadow-hover: 10px 10px 15px 3px rgba(63, 15, 15, 1);
   --reply-border: 2px solid rgb(211, 211, 211);
 }
 

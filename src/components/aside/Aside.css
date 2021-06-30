@@ -8,10 +8,15 @@
 
 aside.public-info {
   width: 25vw;
-  border: 2px solid black;
+  /* border: 2px solid black; */
   display: flex;
   flex-direction: column;
   background-color: #fcfcfc;
+  box-shadow: var(--box-shadow-display);
+}
+
+aside.public-info:hover {
+  box-shadow: var(--box-shadow-hover);
 }
 
 .dark-div {
@@ -50,7 +55,7 @@ aside.public-info {
 }
 
 .pub-info:hover {
-  font-size: 1.3rem;
+  /* font-size: 1.3rem; */
   font-weight: 700;
 }
 
@@ -69,11 +74,15 @@ aside.public-info {
   flex-direction: column;
   gap: 20px;
   background-color: var(--nice-background-color);
-  border: 2px solid black;
+  box-shadow: var(--box-shadow-display);
   height: 600px;
   overflow-y: scroll;
   position: sticky;
   top: 90px;
+}
+
+.list-all:hover {
+  box-shadow: var(--box-shadow-hover);
 }
 
 #aside-title {

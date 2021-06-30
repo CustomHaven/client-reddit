@@ -17,7 +17,6 @@ export const repliesThunk = createAsyncThunk(
     }
 );
 
-
 const postSlice = createSlice({
     name: 'posts',
     initialState: {
@@ -32,7 +31,6 @@ const postSlice = createSlice({
     },
     reducers: {
         repliesList(state, action) {
-            /* this grabs the inital reply from the post when the React.Component dispatches the replies to this payload */
             const arrayObject = action.payload.data.children.map(child => ({
                 id: child.data.id,
                 author: child.data.author,
@@ -41,11 +39,11 @@ const postSlice = createSlice({
                 utc: child.data.created_utc,
                 replies: child.data.replies
             }))
-            const adding = state.replies.concat(arrayObject);
 
+            const adding = state.replies.concat(arrayObject);
             state.replies = adding
         },
-        clearAllReplies(state, action) { // basically incoming payload will be [] so we just reset the state;
+        clearAllReplies(state, action) {
             state.replies = action.payload;
             state.repeatReplies = action.payload;
             state.idCollection = action.payload;
@@ -60,8 +58,7 @@ const postSlice = createSlice({
                 replies: child.replies
             }))
             
-            const adding = state.repeatReplies.concat(arrayObject).filter(clones => clones !== arrayObject);
-           
+            const adding = state.repeatReplies.concat(arrayObject).filter(clones => clones !== arrayObject);           
             state.repeatReplies = adding;
         },
         countAdd(state, action) {
@@ -71,15 +68,14 @@ const postSlice = createSlice({
             state.repeatCount = action.payload;
         },
         idCollector(state, action) {
-
             const adding = state.idCollection.concat(action.payload);
             console.log(adding)
             state.idCollection = adding;
         },
         indexCount(state, action) {
-            state.indexCount += action.payload; // just for fun trying to see how many renders happens
+            state.indexCount += action.payload;
         },
-        indexReset(state, action) { // reset it incoming payload is 0
+        indexReset(state, action) {
             state.indexCount = action.payload;
         }
     },

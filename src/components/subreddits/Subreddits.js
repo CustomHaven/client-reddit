@@ -20,19 +20,16 @@ const Subreddits = () => {
     const refDivClick = useRef([document.getElementsByClassName('target-divs')]); // might just delete // only sendinf 1 back wtf
     const [foundImg, setFoundImg] = useState('');
 
-    useEffect(() => {
-        
+    useEffect(() => {        
         dispatch(subredditsThunk(prefix));
     }, [dispatch, prefix]);
 
     const body = document.body;
-
     const found = backgroundPics.find(d => d.name === prefix);
 
     useEffect(() => {
         setFoundImg(found !== undefined ? found.img : backgroundPics[4].img)
     }, [found, foundImg])
-
 
     /// THIS SECTION HERE IS THE CLICK HANDLER
     const commentsHandler = (perma, index) => {
@@ -61,9 +58,7 @@ const Subreddits = () => {
         }
     }
 
-
     body.style.backgroundImage = `url(${foundImg}`;
-
     const regexValidation = /\.(:?jpg|gif|png)$/;
 
     if (redditLoading) {
@@ -94,15 +89,12 @@ const Subreddits = () => {
                             divPress={divPress}
                             referance={refDivClick}
                             repliesClick={repliesClick}
-                        /> 
-
-                                    
+                        />       
                     </div>
                 )
             }
         </>
     )
 }
-
 
 export default Subreddits;

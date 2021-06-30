@@ -15,64 +15,54 @@ const Post = (props) => {
 
     return (
         <>
-            { // THEN AFTER THAT AS A RESULT DISPLAY THE BIT BELOW HERE
-            divPress === index ?
+            {
+                divPress === index ?
+                <Box>
+                <Flex justify="space-evenly">
+                <SkeletonCircle size="25" isLoaded={!loading}/>
+                <SkeletonCircle size="25" isLoaded={!loading}/>
+                <SkeletonCircle size="25" isLoaded={!loading}/>
+                </Flex>
 
-            <Box>
-            <Flex justify="space-evenly">
-            <SkeletonCircle size="25" isLoaded={!loading}/>
-            <SkeletonCircle size="25" isLoaded={!loading}/>
-            <SkeletonCircle size="25" isLoaded={!loading}/>
-            </Flex>
+                <SkeletonText 
+                    fadeDuration={3}
+                    colorScheme="blue" 
+                    mt="2" 
+                    noOfLines={7} 
+                    fontSize="lg"
+                    spacing="4"
+                    isLoaded={!loading}
+                >
+                <div className="posts-bits">
+                {  
+                    allPost.length > 0 && allPost.map((child, list) => 
+                    <>
+                
+                        <div className="comments-div" key={uuidv4()}>
+                        <p className="comments-author">{child.author}</p>
+                        <p className="comments-text">{child.body}</p>
+                        <p className="timeStamp">{timeAgo(child.utc * 1000)}</p>
+                        {
+                            typeof child.replies === 'object' &&
+                        
+                            <TiMessage onClick={(e) => replyHandler(child.replies, list)} className="reddit-symbol post-symbol"/>
+                        }
 
-            <SkeletonText 
-                fadeDuration={3}
-                colorScheme="blue" 
-                mt="2" 
-                noOfLines={7} 
-                fontSize="lg"
-                spacing="4"
-                isLoaded={!loading}
-            >
-            <div className="posts-bits">
-        
-            {  
-                allPost.length > 0 && allPost.map((child, list) => 
-                <>
-             
-                    <div className="comments-div" key={uuidv4()}>
-                    <p className="comments-author">{child.author}</p>
-                    <p className="comments-text">{child.body}</p>
-                    <p className="timeStamp">{timeAgo(child.utc * 1000)}</p>
-                    {
-                        typeof child.replies === 'object' &&
-                       
-                        <TiMessage onClick={(e) => replyHandler(child.replies, list)} className="reddit-symbol post-symbol"/>
-                    }
-
-                    <Reply 
-                        allReplies={allReplies}
-                        idx={list}
-                        repliesClick={repliesClick}
-                    />
-                    
-                    
-                    </div>  </>                 
-                )
-            }
-
-            </div>
-            </SkeletonText>
-            </Box>
-            : null
+                        <Reply 
+                            allReplies={allReplies}
+                            idx={list}
+                            repliesClick={repliesClick}
+                        />
+                        </div>  </>                 
+                    )
+                }
+                </div>
+                </SkeletonText>
+                </Box>
+                : null
             }
         </>
     )
 }
 
 export default Post;
-
-
-
-
-    

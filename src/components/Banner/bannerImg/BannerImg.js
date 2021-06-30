@@ -1,11 +1,9 @@
 import React from 'react';
 import { colorNum } from '../../../util/mathWork';
 
-
 const BannerImg = (props) => {
 
     const { idx, allList } = props;
-
 
     return (
         <>

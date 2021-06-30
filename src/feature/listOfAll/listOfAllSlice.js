@@ -9,12 +9,10 @@ export const listOfAllThunk = createAsyncThunk(
     }
 );
 
-
 const listOfAllSlice = createSlice({
     name: 'list',
     initialState: {
         listOfAll: [],
-        // nameList: {},
         subListLoading: false,
         subListError: false
     },
@@ -40,7 +38,6 @@ const listOfAllSlice = createSlice({
                 publicInfo: child.public_description,
                 utc: child.created_utc
             }))
- 
         },
         [listOfAllThunk.rejected]: (state) => {
             state.subListLoading = false;
@@ -49,8 +46,5 @@ const listOfAllSlice = createSlice({
     }
 });
 
-
 export const selectListOfAll = state => state.listOfAll.listOfAll;
 export default listOfAllSlice.reducer;
-
-

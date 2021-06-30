@@ -10,17 +10,14 @@ import { backgroundPics } from '../../util/imagesContainer.js';
 
 const Home = () => {
 
-    // console.log(reddit.getPost());
     const [divPress, setDivPress] = useState(null);
     const [repliesClick, setRepliesClick] = useState(null);
-    // const [divReddit, setDivReddit] = useState('');
 
     const loading = useSelector(isLoading);
     const subHome = useSelector(selectHome);
-    const refDivClick = useRef([document.getElementsByClassName('target-divs')]); // might just delete // only sendinf 1 back wtf
+    const refDivClick = useRef([document.getElementsByClassName('target-divs')]);// will delete see what happens
 
     const dispatch = useDispatch();
-    // console.log(refDivClick)
     
     useEffect(() => {
         dispatch(homeSubredditThunk());
@@ -55,9 +52,7 @@ const Home = () => {
     }
 
     const body = document.body;
-
     body.style.backgroundImage = `url(${backgroundPics[4].img}`;
-
     const regexValidation = /\.(:?jpg|gif|png)$/;
 
     if (loading) {
@@ -70,17 +65,13 @@ const Home = () => {
       />
     }
 
-    
     return (
         <>
-
             {
                 subHome.map((home, index) => 
                     <div 
-                        // style={{backgroundColor: `rgba(${colorNum()}, ${colorNum()}, ${colorNum()}, 0.8)`}}
                         className="reddit-div">
                         <Card 
-                            // key={uuidv4()}
                             index={index}
                             subreddit={home}
                             rgx={regexValidation}
@@ -98,7 +89,4 @@ const Home = () => {
     )
 }
 
-
 export default Home;
-
-// style={{backgroundColor: `rgba(${colorNum()}, ${colorNum()}, ${colorNum()}, 0.4)`}}

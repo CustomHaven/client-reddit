@@ -32,10 +32,8 @@ const Reply = (props) => {
     
     return (
         <>
-
             {
-                repliesClick === idx &&
-                
+                repliesClick === idx &&               
                 <div className="reply-container">
                     {   
                         allReplies.length > 0 && allReplies?.map((reply, index) =>
@@ -46,7 +44,6 @@ const Reply = (props) => {
                                 <p className="reply-author">{reply?.author}</p>
                                 <p className="reply-text">{reply?.body}</p>
                                 <p className="utc-time">{timeAgo(reply?.utc * 1000)}</p>
-
                                 {
                                     typeof reply?.replies === "object" &&
                                     <>
@@ -58,12 +55,10 @@ const Reply = (props) => {
                                     />
                                     
                                     </>
-                                }
-                                
+                                }      
                            </div> } </>
                         )
-                    }
-                     
+                    }            
                 </div>
             }
         </>

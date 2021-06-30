@@ -1,7 +1,6 @@
 import React from 'react';
 import { colorNum } from '../../../util/mathWork';
 
-
 const HeaderImg = (props) => {
 
     const { idx, allList } = props;
