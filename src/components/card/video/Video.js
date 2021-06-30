@@ -48,16 +48,16 @@ const Video = (props) => {
         }
     }, [vidRef, sliderRef])
 
-    // const toggleFullScreen = () => {
-        // screenfull.toggle(vidRef.current)
-    // }
+    const toggleFullScreen = () => {
+        screenfull.toggle(vidRef.current)
+    }
 
     return (
         <div className="reddit-img-container" ref={fullScreen} id="video-container">
-            <video ref={vidRef} id="video-player" src={src} type="video/mp4" className="video" loop></video>
+            <video ref={vidRef} id="video-player" src={src} type="video/mp4" className="video" controls loop></video>
                 {
                     
-                    <div id="video-controls">
+                    {/* <div id="video-controls">
                         <div className="video-controls-background"></div>
                         <Button colorScheme="transparent" 
                             className="video-button video-control"                        
@@ -88,7 +88,7 @@ const Video = (props) => {
                         >
                             <FaCog className="logo-attr" />
                         </Button>
-                        <Button colorScheme="transparent" 
+                        <Button onClick={toggleFullScreen} colorScheme="transparent" 
                             className="video-button video-control"                        
                         >
                             <BiFullscreen className="logo-attr" />
@@ -98,7 +98,7 @@ const Video = (props) => {
                         >
                             <GiSoundOff className="logo-attr sound" />
                         </Button>
-                    </div>
+                    </div> */}
                 }
         </div>
     )
