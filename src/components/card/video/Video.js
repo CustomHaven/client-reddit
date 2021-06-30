@@ -16,45 +16,47 @@ const Video = (props) => {
     const sliderRef = useRef();
     const fullScreen = useRef();
 
-    useEffect(() => {
-        if (vidRef.current !== undefined) {
-            if (playing) {
-                vidRef.current.play()
-            } else {
-                vidRef.current.pause()
-            }
+    // useEffect(() => {
+    //     if (vidRef.current !== undefined) {
+    //         if (playing) {
+    //             vidRef.current.play()
+    //         } else {
+    //             vidRef.current.pause()
+    //         }
 
-        }
-    }, [playing, vidRef]);
+    //     }
+    // }, [playing, vidRef]);
     
 
-    useEffect(() => {
-        if (vidRef.current !== undefined) {
-            vidRef?.current?.addEventListener('timeupdate', (e) => {
-                // console.log(e),
-                setTime(Math.round(vidRef?.current?.currentTime));
-                sliderRef.current.value  = (100 / vidRef?.current?.duration) * vidRef?.current?.currentTime
+    // useEffect(() => {
+    //     if (vidRef.current !== undefined) {
+    //         vidRef?.current?.addEventListener('timeupdate', (e) => {
+    //             // console.log(e),
+    //             setTime(Math.round(vidRef?.current?.currentTime));
+    //             sliderRef.current.value  = (100 / vidRef?.current?.duration) * vidRef?.current?.currentTime
                
-                // console.log(sliderRef)
-                // setSlide(sliderRef.current)
-            })
-            sliderRef?.current?.addEventListener('change', (e) => {
-                // setSlide(Math.round(e.timeStamp))
-                const slideValue = parseInt(sliderRef.current.value);
+    //             // console.log(sliderRef)
+    //             // setSlide(sliderRef.current)
+    //         })
+    //         sliderRef?.current?.addEventListener('change', (e) => {
+    //             // setSlide(Math.round(e.timeStamp))
+    //             const slideValue = parseInt(sliderRef.current.value);
 
-                const point = slideValue / (100 / vidRef?.current?.duration);
-                vidRef.current.currentTime = point
-            })
-        }
-    }, [vidRef, sliderRef])
+    //             const point = slideValue / (100 / vidRef?.current?.duration);
+    //             vidRef.current.currentTime = point
+    //         })
+    //     }
+    // }, [vidRef, sliderRef])
 
-    const toggleFullScreen = () => {
-        screenfull.toggle(vidRef.current)
-    }
+    // const toggleFullScreen = () => {
+    //     screenfull.toggle(vidRef.current)
+    // }
 
     return (
         <div className="reddit-img-container" ref={fullScreen} id="video-container">
-            <video ref={vidRef} id="video-player" src={src} type="video/mp4" className="video" controls loop></video>
+            <video ref={vidRef} id="video-player"  className="video" controls loop>
+                <source src={src} type="video/mp4" />
+            </video>
                 {
                     
                     {/* <div id="video-controls">
