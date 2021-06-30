@@ -61,7 +61,7 @@ const Card = (props) => {
                         subreddit?.video !== undefined ?
                         <Video 
                             src={subreddit?.video}
-                            // duration={subreddit?.duration}
+                            duration={subreddit?.duration}
                         /> :
                         <div className="reddit-img-container" >
                     <img src={subreddit.url} alt="subreddit img"/>
