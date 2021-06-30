@@ -7,7 +7,8 @@ import { FaReddit } from "react-icons/fa";
 import { selectPost } from '../../feature/post/postSlice';
 import { selectListOfAll } from '../../feature/listOfAll/listOfAllSlice';
 import Post from './post/Post.js';
-import Video from './video/Video.js'
+import Video from './video/Video.js';
+import VideoiOS from './video/VideoiOS.js';
 import { timeAgo } from '../../util/mathWork.js';
 
 const Card = (props) => {
@@ -15,15 +16,16 @@ const Card = (props) => {
     const allList = useSelector(selectListOfAll);
     const allPost = useSelector(selectPost);
 
+    // Boolean to see if client is using iOS so we dont render custom controls because iOS dont support it
+    // const iOS = /^(iPhone|iPad|iPod)/.test(navigator.userAgent || navigator.vendor || navigator.platform);
+    const iOS = /^(iPhone|iPad|iPod)/.test(navigator.platform);
+
     const location = useLocation();
     const path = location.pathname;
 
     const regex = /(\/dragon)?\//i;
     const regexResult = path.replace(regex, '');
     const idx = allList.findIndex(child => child.name === regexResult);
-
-    // console.log(subreddit?.video)
-    // console.log(subreddit)
 
     return (
         <>
@@ -59,6 +61,11 @@ const Card = (props) => {
                     
                     
                         subreddit?.video !== undefined ?
+                        iOS ?
+                        <VideoiOS
+                            src={subreddit?.video}
+                            // duration={subreddit?.duration}
+                        /> :
                         <Video 
                             src={subreddit?.video}
                             duration={subreddit?.duration}
