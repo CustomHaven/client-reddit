@@ -16,6 +16,9 @@ const Video = (props) => {
     const sliderRef = useRef();
     const fullScreen = useRef();
 
+    // Boolean to see if client is using iOS so we dont render custom controls because iOS dont support it
+    const iOS = /^(iPhone|iPad|iPod)/.test(navigator.userAgent || navigator.vendor || navigator.platform); 
+
     useEffect(() => {
         if (vidRef.current !== undefined) {
             if (playing) {
@@ -49,13 +52,20 @@ const Video = (props) => {
     }, [vidRef, sliderRef])
 
     const toggleFullScreen = () => {
-        screenfull.toggle(vidRef.current)
+        screenfull.toggle(fullScreen.current)
     }
 
     return (
-        <div className="reddit-img-container" ref={fullScreen} id="video-container">
-            <video ref={vidRef} id="video-player" src={src} type="video/mp4" className="video" loop></video>
-                {
+        <>
+            {
+                iOS ?
+                <div className="reddit-img-container" id="video-container">
+                <video id="video-player" src={src} type="video/mp4" className="video" loop controls ></video>
+                </div>
+                :
+                
+                <div ref={fullScreen} className="reddit-img-container" id="video-container">
+            <video ref={vidRef} id="video-player" src={src} type="video/mp4" className="video" loop></video>                
                     
                     <div id="video-controls">
                         <div className="video-controls-background"></div>
@@ -99,8 +109,10 @@ const Video = (props) => {
                             <GiSoundOff className="logo-attr sound" />
                         </Button>
                     </div>
-                }
-        </div>
+                    </div>
+               
+            }
+        </>
     )
 }
 

@@ -55,8 +55,6 @@ const Home = () => {
     body.style.backgroundImage = `url(${backgroundPics[4].img}`;
     const regexValidation = /\.(:?jpg|gif|png)$/;
 
-    const iOS = /^(iPhone|iPad|iPod)/.test(navigator.platform);
-
     if (loading) {
         return <Spinner
         thickness="40px"
@@ -69,12 +67,6 @@ const Home = () => {
 
     return (
         <>
-            {
-                iOS === true ?
-                <h1>This is an Iphone Device</h1>
-                : <h1>This is not an Iphone but a PC</h1>
-                
-            }
             {
                 subHome.map((home, index) => 
                     <div 
