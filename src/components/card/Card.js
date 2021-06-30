@@ -22,7 +22,7 @@ const Card = (props) => {
     const regexResult = path.replace(regex, '');
     const idx = allList.findIndex(child => child.name === regexResult);
 
-    console.log(subreddit?.video)
+    // console.log(subreddit?.video)
     // console.log(subreddit)
 
     return (
@@ -61,7 +61,7 @@ const Card = (props) => {
                         subreddit?.video !== undefined ?
                         <Video 
                             src={subreddit?.video}
-                            duration={subreddit?.duration}
+                            // duration={subreddit?.duration}
                         /> :
                         <div className="reddit-img-container" >
                     <img src={subreddit.url} alt="subreddit img"/>

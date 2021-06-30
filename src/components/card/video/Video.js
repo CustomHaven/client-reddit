@@ -9,7 +9,7 @@ import { clock } from '../../../util/mathWork.js';
 import screenfull from 'screenfull';
 
 const Video = (props) => {
-    const { src, duration } = props;
+    const { src } = props;
     // const [time, setTime] = useState(0);
     // const [playing, setPlaying] = useState(false);
     // const vidRef = useRef();
@@ -55,51 +55,7 @@ const Video = (props) => {
     return (
         <div className="reddit-img-container" id="video-container">
             <video id="video-player" src={src} type="video/mp4" className="video" controls loop></video>
-                {
-                    
-                    {/* <div id="video-controls">
-                        <div className="video-controls-background"></div>
-                        <Button colorScheme="transparent" 
-                            className="video-button video-control"                        
-                        >
-                            <FaReddit className="logo-attr logo-video" />
-                        </Button>
-
-                        {
-                            !playing ?
-                            <Button onClick={() => setPlaying(value => !value)} colorScheme="transparent" 
-                                className="video-button video-control"                        
-                            >
-                                <FaPlay className="logo-attr" />
-                            </Button> :
-                            <Button onClick={() => setPlaying(value => !value)} colorScheme="transparent" 
-                                className="video-button video-control"                        
-                            >
-                                <FaPause className="logo-attr" />
-                            </Button>
-
-                        }
-                        
-                        <span className="video-control">{clock(time)}</span>
-                        <input ref={sliderRef} className="video-control" type="range" />
-                        <span className="video-control">{clock(duration)}</span>
-                        <Button colorScheme="transparent" 
-                            className="video-button video-control"                        
-                        >
-                            <FaCog className="logo-attr" />
-                        </Button>
-                        <Button onClick={toggleFullScreen} colorScheme="transparent" 
-                            className="video-button video-control"                        
-                        >
-                            <BiFullscreen className="logo-attr" />
-                        </Button>
-                        <Button colorScheme="transparent" 
-                            className="video-button video-control"                        
-                        >
-                            <GiSoundOff className="logo-attr sound" />
-                        </Button>
-                    </div> */}
-                }
+                
         </div>
     )
 }
