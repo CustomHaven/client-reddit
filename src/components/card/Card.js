@@ -61,7 +61,11 @@ const Card = (props) => {
                     
                     
                         subreddit?.video !== undefined ?
- 
+                        iOS ? 
+                        <VideoiOS
+                            src={subreddit?.video}
+                            // duration={subreddit?.duration}
+                        /> : 
                         <Video 
                             src={subreddit?.video}
                             duration={subreddit?.duration}
