@@ -2,11 +2,15 @@
   height: 100%;
   width: 100%;
   position: relative;
+  /* top: 0px; */
+  outline: none;
 }
 
 #video-player {
   height: 100%;
   width: 100%;
+  position: relative;
+  z-index: 5;
 }
 
 #video-player:hover + #video-controls {
@@ -24,7 +28,7 @@
 
 #video-container:hover #video-controls .video-control,
 #video-container:hover #video-controls .video-controls-background {
-  opacity: 1;
+  /* opacity: 1; */
 }
 
 #video-controls .video-control {
@@ -34,7 +38,7 @@
 #video-controls {
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   position: absolute;
   bottom: 0px;
@@ -43,6 +47,16 @@
 
   z-index: 20;
 }
+
+/* #giant-container {
+  position: absolute;
+  bottom: 250px;
+  left: 400px;
+  margin: 0 auto;
+  width: 50px;
+  height: 50px;
+  background-color: red;
+} */
 
 #video-controls .video-controls-background {
   position: absolute;
@@ -55,14 +69,25 @@
   opacity: 0;
 }
 
+.every-button:focus {
+  outline: 0 !important;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important;
+}
+
+.sound-button {
+  cursor: default;
+}
+
 .sound {
   color: black !important;
   opacity: 1 !important;
   z-index: 2;
+  cursor: not-allowed;
 }
 
 .logo-video {
   color: var(--logo-color) !important;
+  cursor: crosshair;
 }
 
 .logo-attr {
@@ -71,4 +96,147 @@
   border: none;
   padding: 0px;
   background: none;
+}
+
+.slider-input {
+  width: 40%;
+}
+
+.cog-container {
+  position: relative;
+}
+
+.cog-info {
+  background-color: white;
+  position: absolute;
+  bottom: 35px;
+  right: -20px;
+  padding: 5px;
+  color: black;
+  font-size: 0.7rem;
+  font-style: italic;
+  font-weight: 700;
+  border-radius: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 95px;
+  height: 50px;
+  text-transform: uppercase;
+}
+
+.cog-info span:first-child {
+  cursor: not-allowed;
+}
+
+.cog-info span:last-child {
+  cursor: pointer;
+}
+
+.cog-pointer {
+  position: absolute;
+  /* background-color: white; */
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid white;
+  bottom: 29px;
+  right: 16px;
+}
+
+#giant-container {
+  position: absolute;
+  width: 100%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0px;
+}
+
+.giant-container {
+  position: relative;
+  z-index: 10;
+}
+
+#giant-circle {
+  background-color: transparent;
+  width: 7rem;
+  height: 7rem;
+  border: 10px solid rgba(173, 216, 230, 0.2);
+  border-radius: 60%;
+  position: absolute;
+  left: -40px;
+}
+
+#giant-play-button {
+  position: absolute;
+  top: 10px;
+  width: 0;
+  height: 0;
+  border-top: 3rem solid transparent;
+  border-bottom: 3rem solid transparent;
+  border-left: 4rem solid rgba(173, 216, 230, 0.2);
+}
+
+@media only screen and (max-width: 1080px) {
+  /* #giant-play-button {
+    top: 1px;
+  } */
+  /* #giant-circle {
+    top: -7px;
+    left: -44px;
+  } */
+}
+
+@media only screen and (max-width: 650px) {
+  /* #giant-play-button {
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    border-left: 40px solid rgba(173, 216, 230, 0.2);
+  } */
+  /* #giant-circle {
+    width: 70px;
+    height: 70px;
+    border: 6px solid rgba(173, 216, 230, 0.2);
+    top: -2px;
+    left: -23px;
+  } */
+}
+
+@media only screen and (max-width: 450px) {
+  .slider-input {
+    width: 80%;
+  }
+  /* #giant-play-button {
+    border-top: 25px solid transparent;
+    border-bottom: 25px solid transparent;
+    border-left: 35px solid rgba(173, 216, 230, 0.2);
+    top: 15px;
+    left: -10px;
+  } */
+  /* #giant-circle {
+    width: 55px;
+    height: 55px;
+    border: 4px solid rgba(173, 216, 230, 0.2);
+    left: -27px;
+    top: 15px;
+  } */
+  #giant-play-button {
+    border-top: 1.3rem solid transparent;
+    border-bottom: 1.3rem solid transparent;
+    border-left: 1.8rem solid rgba(173, 216, 230, 0.2);
+    /* top: 15px;
+    left: -10px; */
+  }
+  #giant-circle {
+    width: 3.5rem;
+    height: 3.5rem;
+    border: 7px solid rgba(173, 216, 230, 0.2);
+    left: -20px;
+    top: 5px;
+  }
 }

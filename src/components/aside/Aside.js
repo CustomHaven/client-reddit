@@ -22,7 +22,7 @@ const Aside = () => {
 
     const regex = /(\/dragon)?\//i;
     const regexResult = path.replace(regex, '');
-    const index = allList.findIndex(child => child.name === regexResult);
+    const index = allList?.findIndex(child => child.name === regexResult);
 
     return (
         <div className="aside-container">
