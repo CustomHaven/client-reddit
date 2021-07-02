@@ -1,11 +1,4 @@
 const API_REDDIT = 'https://www.reddit.com';
-// const secret = 'Ihok5Qj1ikuGNBJkqEztFiIZkdb-NQ';
-// const APPname = 'Mohamed';
-// const redirectURI = 'https://xenodochial-kilby-1c5b3b.netlify.app/';
-// const developers = 'HavenClub';
-// const firstPart = 'https://www.reddit.com/api/v1/authorize?client_id=CLIENT_ID&response_type=TYPE&';
-// const secondPart = 'state=RANDOM_STRING&redirect_uri=URI&duration=DURATION&scope=SCOPE_STRING';
-
 
 const reddit = {
     async getAccess() {
@@ -32,12 +25,12 @@ const reddit = {
     },
     async getHome() {
         try {
-            const response = await fetch(`${API_REDDIT}/r/Genshin_Impact.json`);
+            const response = await fetch(`${API_REDDIT}/r/Home.json`);
             if (response.ok) {
                 const jsonResponse = await response.json();
                 const children = jsonResponse.data.children.map(child => child.data)
                 // console.log(jsonResponse)
-                console.log(children)
+                // console.log(children)
                 return children;
             }
             throw new Error('Request Failed');

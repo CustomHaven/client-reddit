@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import CloseBurger from './closeBurger/CloseBurger.js';
 import { FaRedditSquare } from "react-icons/fa";
@@ -6,7 +6,6 @@ import { Button } from "@chakra-ui/react";
 import { selectMenu, displayMenu } from '../../../../feature/listOfAll/listOfAllSlice.js';
 
 export const NavUsers = () => {
-    const [dis, setDis] = useState(true);
     const mediaMenu = useSelector(selectMenu);
     const dispatch = useDispatch();
 

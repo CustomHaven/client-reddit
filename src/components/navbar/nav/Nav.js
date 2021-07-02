@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { NavUsers } from './navUser/NavUsers.js'
 
 export const Nav = (props) => {
