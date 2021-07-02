@@ -25,7 +25,7 @@ const reddit = {
     },
     async getHome() {
         try {
-            const response = await fetch(`${API_REDDIT}/r/Home.json`);
+            const response = await fetch(`${API_REDDIT}/r/Genshin_Impact.json`);
             if (response.ok) {
                 const jsonResponse = await response.json();
                 const children = jsonResponse.data.children.map(child => child.data)
