@@ -25,9 +25,9 @@ function App() {
         <Route exact path='/'>
           <Home />
         </Route>
-        <Route path='/popular'>
-          <Popular />
-        </Route>
+        {/* <Route path='/popular'>
+          <Popular /> FORGET THIS POPULAR CBA!
+        </Route> */}
         <Route path='/dragon/:prefix' children={<Subreddits />}></Route>
         </section>
       </Switch>

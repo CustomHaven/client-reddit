@@ -18,27 +18,33 @@ const Video = (props) => {
         let timeout = 0;
 
         const displayOpa = () => {
-            for (let i = vidControlsRef.current.children.length -2; i >= 0; i--) {
-                vidControlsRef.current.children[i].style.opacity = 1;
-            }
+                if (vidControlsRef.current !== null) {
+                    for (let i = vidControlsRef.current.children.length -2; i >= 0; i--) {
+                        vidControlsRef.current.children[i].style.opacity = 1;
+                    }
+                }
             clearTimeout(timeout);
 
             timeout = setTimeout(() => {
-            for (let i = vidControlsRef.current.children.length -2; i >= 0; i--) {
-                vidControlsRef.current.children[i].style.opacity = 0;
-            }
+                if (vidControlsRef.current !== null) {
+                    for (let i = vidControlsRef.current.children.length -2; i >= 0; i--) {
+                        vidControlsRef.current.children[i].style.opacity = 0;
+                    }
+                }
             }, 5000);
         };
-
-        giantRef.current.addEventListener('mousemove' || 'touchmove', displayOpa) || vidRef.current.addEventListener('mousemove' || 'touchmove', displayOpa);
-
+        if (vidRef.current !== null && giantRef.current !== null) {
+        giantRef.current.addEventListener('mousemove', displayOpa) || vidRef.current.addEventListener('mousemove', displayOpa);
+        }
         return () => {
-            giantRef.current.addEventListener('mousemove' || 'touchmove', displayOpa) || vidRef.current.removeEventListener('mousemove' || 'touchmove', displayOpa);
+            if (vidRef.current !== null && giantRef.current !== null) {
+            giantRef.current.addEventListener('mousemove', displayOpa) || vidRef.current.removeEventListener('mousemove', displayOpa);
+            }
         };
     })
 
     useEffect(() => {
-        if (vidRef.current !== undefined) {
+        if (vidRef.current !== null) {
             if (playing) {
                 vidRef.current.play()
             } else {
@@ -48,28 +54,39 @@ const Video = (props) => {
     }, [playing]);
 
     useEffect(() => {
-        if (looping) { 
-            vidRef?.current?.addEventListener('ended', loopingEffect)
-        } 
+        if (vidRef.current !== null) {
+            if (looping) { 
+                vidRef?.current?.addEventListener('ended', loopingEffect)
+            }
+        }
         return () => {
-            if (looping) {
-                vidRef?.current?.removeEventListener('ended', loopingEffect) // crucial dont mind the warning
+            if (vidRef.current !== null) {
+                if (looping) {
+                    vidRef?.current?.removeEventListener('ended', loopingEffect) // crucial dont mind the warning
+                }
             }
         }
     }); 
 
     useEffect(() => {
-        if (vidRef.current !== undefined) {
+        if (vidRef.current !== null && sliderRef.current !== null && giantRef.current !== null) {
             vidRef?.current?.addEventListener('timeupdate', (e) => {
-                giantRef.current.style.display = "none";
-                setTime(Math.floor(vidRef?.current?.currentTime));
-                sliderRef.current.value  = (100 / vidRef?.current?.duration) * vidRef?.current?.currentTime;
+                if (giantRef.current !== null && vidRef.current !== null && sliderRef.current !== null) {
+                    giantRef.current.style.display = "none";
+                    setTime(Math.floor(vidRef?.current?.currentTime));
+                    sliderRef.current.value  = (100 / vidRef?.current?.duration) * vidRef?.current?.currentTime;
+                }
+
             })
-            sliderRef?.current?.addEventListener('change', (e) => {
-                const slideValue = parseInt(sliderRef.current.value);
-                const point = slideValue / (100 / vidRef?.current?.duration);
-                vidRef.current.currentTime = point
-            })
+            if (sliderRef.current !== null) {
+                sliderRef?.current?.addEventListener('change', (e) => {
+                    if (sliderRef.current !== null && vidRef.current !== null) {
+                        const slideValue = parseInt(sliderRef.current.value);
+                        const point = slideValue / (100 / vidRef?.current?.duration);
+                        vidRef.current.currentTime = point
+                    }
+                })
+            }
         }
     }, [vidRef, sliderRef])
 

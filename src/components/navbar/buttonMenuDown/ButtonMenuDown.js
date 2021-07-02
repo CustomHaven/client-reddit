@@ -4,16 +4,7 @@ import { ButtonMenu } from './buttonMenu/ButtonMenu.js';
 export const ButtonMenuDown = (props) => {
 
     const { button, buttonHandleClick } = props;
-
-    // let buttonClip1;
-    // let buttonClip2;
-    // if (button) {
-    //     buttonClip1 = <i className="fas fa-clipboard-list board-clip"></i>;
-    //     buttonClip2 = <i className="fas fa-chevron-left board-clip-arrow"></i>;
-        // buttonMenu = ( // all will be linked remember when you do the api
-
-        // )
-    
+   
 
     return (
         <div className="button-div-down">

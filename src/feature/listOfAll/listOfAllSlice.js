@@ -13,8 +13,18 @@ const listOfAllSlice = createSlice({
     name: 'list',
     initialState: {
         listOfAll: [],
+        menu: true,
+        removeMenu: false,
         subListLoading: false,
         subListError: false
+    },
+    reducers: {
+        displayMenu(state, action) {
+            state.menu = action.payload;
+        },
+        takeMenuOff(state, action) {
+            state.removeMenu = action.payload;
+        }
     },
     extraReducers: {
         [listOfAllThunk.pending]: (state) => {
@@ -46,5 +56,8 @@ const listOfAllSlice = createSlice({
     }
 });
 
+export const { displayMenu, takeMenuOff } = listOfAllSlice.actions;
+export const selectMenu = state => state.listOfAll.menu;
+export const selectremoveMenu = state => state.listOfAll.removeMenu;
 export const selectListOfAll = state => state.listOfAll.listOfAll;
 export default listOfAllSlice.reducer;

@@ -31,10 +31,13 @@ span {
 
 .reddit-li {
   display: grid;
+  overflow: hidden;
   grid-template-columns: 0.2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 0.5fr;
   grid-template-rows:
-    1fr 1fr minmax(0.5fr 1fr) minmax(0.5fr 1fr) minmax(0.5fr 1fr)
-    minmax(0.5fr 1fr) minmax(0.5fr 1fr) minmax(0.2fr, 0.5fr);
+    minmax(0.4fr 1fr) minmax(0.5fr 1fr) minmax(0.5fr 1fr) minmax(0.5fr 1fr) minmax(
+      0.5fr 1fr
+    )
+    minmax(0.5fr 1fr) minmax(0.5fr 1fr) minmax(0.5fr 1fr) minmax(0.2fr, 0.5fr);
   grid-template-areas:
     "score subreddit . . . . . . the-utc"
     "score title title title title title title title title"
@@ -48,6 +51,27 @@ span {
   gap: 10px;
   /* height: 50vh; */
 }
+
+/* old one cant see the difference but keep it incase for now */
+/* .reddit-li { */
+/* display: grid; */
+/* grid-template-columns: 0.2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 0.5fr; */
+/* grid-template-rows: */
+/* 1fr 1fr minmax(0.5fr 1fr) minmax(0.5fr 1fr) minmax(0.5fr 1fr) */
+/* minmax(0.5fr 1fr) minmax(0.5fr 1fr) minmax(0.2fr, 0.5fr); */
+/* grid-template-areas: */
+/* "score subreddit . . . . . . the-utc" */
+/* "score title title title title title title title title" */
+/* "score title title title title title title title title" */
+/* "score img img img img img img img img" */
+/* "score img img img img img img img img" */
+/* "score img img img img img img img img" */
+/* "score img img img img img img img img" */
+/* "score img img img img img img img img" */
+/* "score comments comments comments comments comments . . author"; */
+/* gap: 10px; */
+/* height: 50vh; this was always commented out*/
+/* } */
 
 .reddit-score {
   grid-area: score;

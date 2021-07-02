@@ -1,22 +1,65 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import {CloseBurger} from './closeBurger/CloseBurger.js';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import CloseBurger from './closeBurger/CloseBurger.js';
+import { FaRedditSquare } from "react-icons/fa";
+import { Button } from "@chakra-ui/react";
+import { selectMenu, displayMenu } from '../../../../feature/listOfAll/listOfAllSlice.js';
 
-export const NavUsers = (props) => {
-    const {fa_2x} = props;
+export const NavUsers = () => {
+    const [dis, setDis] = useState(true);
+    const mediaMenu = useSelector(selectMenu);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+
+        const media768 = window.matchMedia( "(max-width: 768px)" );
+        
+        if (media768.matches) {
+            dispatch(displayMenu(false));
+            // setDis(false)
+        } else {
+            dispatch(displayMenu(true));
+            // setDis(true)
+        }
+
+        media768.addEventListener('change', () => {
+            if (media768.matches) {
+                dispatch(displayMenu(false));
+                // setDis(false)
+            } else {
+                dispatch(displayMenu(true));
+                // setDis(true)
+            }
+        })
+
+        return () => {
+            media768.removeEventListener('change', () => {
+                if (media768.matches) {
+                    dispatch(displayMenu(false));
+                    // setDis(false)
+                } else {
+                    dispatch(displayMenu(true));
+                    // setDis(true)
+                }
+            })
+        }
+
+    }, [dispatch, mediaMenu]);
+
     return (
         <div className="user-div">
-            <CloseBurger />
+            <CloseBurger 
+                mediaMenu={mediaMenu}
+            />
                 
-            <Link to="/username" className="all-links user-link-button"> 
-            <button className="user-button">
+            {
+                mediaMenu === true ?
+                <Button cursor="pointer" variant="none" className="user-button">
+                    <FaRedditSquare className="square-logo" />
+                    <p className="user-name">Welcome</p>
                 
-                    <i className={`fab fa-reddit-square ${fa_2x} all-links fontA`}></i>
-                    <p className="user-name">User Name</p>
-                    <i className="fas fa-chevron-down user-down-arrow fontA"></i>
-                
-            </button>
-            </Link>
+            </Button> : null
+            }
         </div>
     )
 }

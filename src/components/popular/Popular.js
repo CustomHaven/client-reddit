@@ -2,17 +2,27 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams, Link } from 'react-router-dom';
 import '../home/Home.css';
+import { Spinner } from "@chakra-ui/react";
 import { selectPopular, selectPopLoading, popularThunk } from '../../feature/popular/popularSlice.js';
+import { postThunk, repliesList, clearAllReplies, indexReset } from '../../feature/post/postSlice';
+import Card from '../card/Card.js';
 import { colorNum, formatter } from '../../util/mathWork.js';
 import { backgroundPics } from '../../util/imagesContainer.js';
 import reddit from '../../util/reddit-data';
 
 const Popular = () => {
 
+    console.log(" we are dropping this component cant be asked wid it :@@@@@@@@@@@@@@@@")
+
     console.log(reddit.getPopular())
+
+    const [divPress, setDivPress] = useState(null);
+    const [repliesClick, setRepliesClick] = useState(null);
 
     const loading = useSelector(selectPopLoading);
     const popular = useSelector(selectPopular);
+
+    const refDivClick = useRef([document.getElementsByClassName('target-divs')]);// will delete see what happens
 
     const dispatch = useDispatch();
     
@@ -27,26 +37,69 @@ const Popular = () => {
         }
     }, [dispatch]);
 
+        /// THIS SECTION HERE IS THE CLICK HANDLER
+    const commentsHandler = (perma, index) => {
+        if (divPress === index) {
+            dispatch(clearAllReplies([]));
+            dispatch(indexReset(0));
+            setDivPress(null)
+        } else {
+            dispatch(clearAllReplies([]));
+            dispatch(indexReset(0));
+            setDivPress(index)
+            dispatch(postThunk(perma));
+        }
+    }
+
+    const replyHandler = (replies, index) => {
+        if (repliesClick === index){
+            dispatch(clearAllReplies([]));
+            dispatch(indexReset(0));
+            setRepliesClick(null);
+        } else {
+            dispatch(clearAllReplies([]));
+            dispatch(indexReset(0));
+            setRepliesClick(index)
+            dispatch(repliesList(replies));
+        }
+    }
+
     const body = document.body;
     body.style.backgroundImage = `url(${backgroundPics[4].img}`;
 
     const regexValidation = /\.(:?jpg|gif|png)$/;
 
     if (loading) {
-        return <div style={{position: 'relative', top: '180px'}}>Loading...</div>
+        return <Spinner
+        thickness="40px"
+        speed="1s"
+        emptyColor="gray.200"
+        color="blue.500"
+        size="xl"
+      />
     }
 
 
     
     return (
         <>
+        <h1>FORGET POPULAR</h1>
             {
-                popular.map(pop => 
+                popular.map((pop, index) => 
                     
-                    <div 
-                        style={{backgroundColor: `rgb(${colorNum()}, ${colorNum()}, ${colorNum()})`}}
-                        className="reddit-div">
+                    <div className="reddit-div">
                         
+                    {/* <Card 
+                            index={index}
+                            subreddit={pop}
+                            rgx={regexValidation}
+                            formatter={formatter}
+                            commentsHandler={commentsHandler}
+                            replyHandler={replyHandler}
+                            divPress={divPress}
+                            referance={refDivClick}
+                            repliesClick={repliesClick}
+                    />  */}
 
                         <ul className="reddit-ul" >
                             
