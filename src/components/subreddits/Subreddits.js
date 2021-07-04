@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { Spinner } from "@chakra-ui/react";
+import Loading from '../loading/Loading.js';
 import { subredditsThunk, selectSubIsLoading, selectSubreddits } from '../../feature/subreddits/subredditsSlice.js';
 import { postThunk, repliesList, clearAllReplies, indexReset } from '../../feature/post/postSlice.js';
 import { formatter } from '../../util/mathWork.js';
@@ -62,13 +62,7 @@ const Subreddits = () => {
     const regexValidation = /\.(:?jpg|gif|png)$/;
 
     if (redditLoading) {
-        return <Spinner
-        thickness="40px"
-        speed="1s"
-        emptyColor="gray.200"
-        color="blue.500"
-        size="xl"
-      />
+        return <Loading />
     }
     
     return (

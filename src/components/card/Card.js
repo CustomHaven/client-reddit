@@ -88,7 +88,7 @@ const Card = (props) => {
                     >
                         <TiMessage className="reddit-symbol"/>
                         
-                        <p value={subreddit.permalink}>Comments {formatter(subreddit.comments)}</p>
+                        <p className={""} value={subreddit.permalink}>Comments {formatter(subreddit.comments)}</p>
                     </div>
                 } 
 
@@ -101,7 +101,7 @@ const Card = (props) => {
             divPress={divPress}
             allPost={allPost}
             index={index}
-            home={subreddit}
+            // home={subreddit}
             replyHandler={replyHandler}
             repliesClick={repliesClick}
         />

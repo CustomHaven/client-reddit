@@ -1,10 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import './SearchContent.css';
 import { ImCrying, ImShocked } from "react-icons/im";
 import { Spinner } from "@chakra-ui/react";
-import { selectSearch, selectSearchLoading, selectSearchError } from '../../feature/search/searchSlice.js';
+import { selectSearch, selectSearchLoading } from '../../feature/search/searchSlice.js';
 import { postThunk, repliesList, clearAllReplies, indexReset } from '../../feature/post/postSlice.js';
 import { formatter } from '../../util/mathWork.js';
 import '../home/Home.css';
@@ -12,13 +12,11 @@ import Card from '../card/Card.js';
 
 const SearchCard = () => {
     const location = useLocation();
-
     const [divPress, setDivPress] = useState(null);
     const [repliesClick, setRepliesClick] = useState(null);
     const loading = useSelector(selectSearchLoading);
     const search = useSelector(selectSearch);
     const dispatch = useDispatch();
-    // const refDivClick = useRef([document.getElementsByClassName('target-divs')]); // might just delete // only sendinf 1 back wtf
 
     /// THIS SECTION HERE IS THE CLICK HANDLER
     const commentsHandler = (perma, index) => {
@@ -89,7 +87,6 @@ const SearchCard = () => {
                     <div 
                         className="reddit-div">
                         <Card 
-                            // key={uuidv4()}
                             index={index}
                             subreddit={reddit}
                             rgx={regexValidation}
@@ -97,7 +94,6 @@ const SearchCard = () => {
                             commentsHandler={commentsHandler}
                             replyHandler={replyHandler}
                             divPress={divPress}
-                            // referance={refDivClick}
                             repliesClick={repliesClick}
                         />       
                     </div>

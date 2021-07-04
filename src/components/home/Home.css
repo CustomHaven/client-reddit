@@ -52,6 +52,101 @@ span {
   /* height: 50vh; */
 }
 
+.loading {
+  background-color: blue;
+  background: -webkit-linear-gradient(
+    left,
+    rgb(182, 182, 182) 0%,
+    #e8e8e8 50%,
+    rgb(182, 182, 182) 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 300%;
+  background-position: left;
+  transition: background-position 1s;
+  animation: skeleton 1s infinite;
+  /* backgrou, 1nd: -webkit-linear-gradient(left, gray 0%, #fff 50%, gray 100%); */
+  color: transparent;
+}
+
+.reddit-symbol.loading {
+  border-radius: 50%;
+  /* background-color: blue; */
+  background: -webkit-linear-gradient(
+    left,
+    rgb(182, 182, 182) 0%,
+    #e8e8e8 50%,
+    rgb(182, 182, 182) 100%
+  );
+  background-size: 300%;
+  background-repeat: no-repeat;
+  background-position: left;
+  transition: background-position 1s;
+  animation: skeleton 1s infinite;
+  /* background: -webkit-linear-gradient(left, gray 0%, #fff 50%, gray 100%); */
+}
+
+.smallsizeImage.loading {
+  border-radius: 50%;
+  /* background-color: blue; */
+  background: -webkit-linear-gradient(
+    left,
+    rgb(182, 182, 182) 0%,
+    #e8e8e8 50%,
+    rgb(182, 182, 182) 100%
+  );
+  background-size: 600px;
+  background-repeat: no-repeat;
+  background-position: left;
+  transition: background-position 1s;
+  animation: skeleton 1s infinite;
+  /* background: -webkit-linear-gradient(left, gray 0%, #fff 50%, gray 100%); */
+  width: 100%;
+  height: 100%;
+}
+
+.reddit-time-utc.loading {
+  /* background-color: blue; */
+  background: -webkit-linear-gradient(
+    left,
+    rgb(182, 182, 182) 0%,
+    #e8e8e8 50%,
+    rgb(182, 182, 182) 100%
+  );
+  background-size: 300%;
+  background-repeat: no-repeat;
+  background-position: left;
+  transition: background-position 1s;
+  animation: skeleton 1s infinite;
+  /* background: -webkit-linear-gradient(left, gray 0%, #fff 50%, gray 100%); */
+  color: transparent;
+}
+
+.reddit-author.loading {
+  /* background-color: #ddd; */
+  background: -webkit-linear-gradient(
+    left,
+    rgb(182, 182, 182) 0%,
+    #e8e8e8 50%,
+    rgb(182, 182, 182) 100%
+  );
+  background-size: 300%;
+  background-repeat: no-repeat;
+  background-position: left;
+  transition: background-position 1s;
+  animation: skeleton 1s infinite;
+  /* background: -webkit-linear-gradient(left, gray 0%, #fff 50%, gray 100%); */
+  color: transparent;
+}
+
+@keyframes skeleton {
+  0% {
+    background-position: right;
+  }
+  100% {
+    background-position: left;
+  }
+}
 /* old one cant see the difference but keep it incase for now */
 /* .reddit-li { */
 /* display: grid; */

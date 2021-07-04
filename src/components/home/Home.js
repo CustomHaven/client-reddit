@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import './Home.css';
-import { Spinner } from "@chakra-ui/react";
+import Loading from '../loading/Loading.js';
 import { homeSubredditThunk, selectHome, isLoading } from '../../feature/home/homeSlice.js';
 import { postThunk, repliesList, clearAllReplies, indexReset } from '../../feature/post/postSlice';
 import { formatter } from '../../util/mathWork.js';
@@ -56,13 +56,7 @@ const Home = () => {
     const regexValidation = /\.(:?jpg|gif|png)$/;
 
     if (loading) {
-        return <Spinner
-        thickness="40px"
-        speed="1s"
-        emptyColor="gray.200"
-        color="blue.500"
-        size="xl"
-      />
+        return <Loading />
     }
 
     return (
@@ -81,6 +75,7 @@ const Home = () => {
                             divPress={divPress}
                             referance={refDivClick}
                             repliesClick={repliesClick}
+                            loading={loading}
                         /> 
                     </div>
                 )

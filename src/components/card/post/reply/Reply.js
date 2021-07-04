@@ -37,31 +37,32 @@ const Reply = (props) => {
                 <div className="reply-container">
                     {   
                         allReplies.length > 0 && allReplies?.map((reply, index) =>
-                         <>
-                        {
-                            
-                            <div key={reply?.id} className="reply-div">
-                                <p className="reply-author">{reply?.author}</p>
-                                <p className="reply-text">{reply?.body}</p>
-                                <p className="utc-time">{timeAgo(reply?.utc * 1000)}</p>
+                            <>
                                 {
-                                    typeof reply?.replies === "object" &&
-                                    recursionReplies(reply?.replies, index, reply?.id)
-                                }
-                                {
-                                    typeof reply?.replies === "object" &&
-                                    
-                                    <>
+                                    <div key={reply?.id} className="reply-div">
+                                        <p className="reply-author">{reply?.author}</p>
+                                        <p className="reply-text">{reply?.body}</p>
+                                        <p className="utc-time">{timeAgo(reply?.utc * 1000)}</p>
+                                        {
+                                            typeof reply?.replies === "object" &&
+                                            recursionReplies(reply?.replies, index, reply?.id)
+                                        }
+                                        {
+                                            typeof reply?.replies === "object" &&
+                                            
+                                            <>
 
-                                    <RepeatedReplies 
-                                        list={reply?.replies?.data?.children.map(child => child.data)}
-                                        recursion={recursionReplies}
-                                        timeAgo={timeAgo}
-                                    />
-                                    
-                                    </>
-                                }      
-                           </div> } </>
+                                            <RepeatedReplies 
+                                                list={reply?.replies?.data?.children.map(child => child.data)}
+                                                recursion={recursionReplies}
+                                                timeAgo={timeAgo}
+                                            />
+                                            
+                                            </>
+                                        }
+                                    </div> 
+                                }
+                            </>
                         )
                     }            
                 </div>

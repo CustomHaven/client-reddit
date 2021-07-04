@@ -12,9 +12,9 @@ export const Navbar = () => {
  
     const button = useSelector(selectButtonMenu);
     const dispatch = useDispatch();
-    const [main, setMain] = useState(document.getElementsByClassName('the-flex-container'));
-    const [banner, setBanner] = useState(document.getElementsByClassName('banner-img-wrapper'));
-    const [title, setTitle] = useState(document.getElementsByClassName('title-section'));
+    const [main] = useState(document.getElementsByClassName('the-flex-container')); // removed the setState WTF LOL! see if it still works
+    const [banner] = useState(document.getElementsByClassName('banner-img-wrapper')); // removed the setState WTF LOL! see if it still works
+    const [title] = useState(document.getElementsByClassName('title-section')); // removed the setState WTF LOL! see if it still works
 
     useEffect(() => {
         if (main !== null || main !== undefined) {
