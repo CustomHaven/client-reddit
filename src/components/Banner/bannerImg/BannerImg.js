@@ -16,7 +16,7 @@ const BannerImg = (props) => {
             : 
             <div 
                 // key={allList[idx].id}
-                className="no-img"
+                className="no-img banner-img-wrapper"
                 style={{backgroundColor: `rgb(${colorNum()}, ${colorNum()}, ${colorNum()})`}}>
             </div>
         }

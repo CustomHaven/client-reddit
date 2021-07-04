@@ -15,7 +15,6 @@ body {
   background-color: rgb(218, 224, 230);
   color: var(--text-color);
   font-family: "Open Sans", sans-serif;
-  /* background: no-repeat center center fixed; */
   background-repeat: no-repeat;
   background-position: center;
   -webkit-background-size: cover;
@@ -23,7 +22,4 @@ body {
   -o-background-size: cover;
   background-size: 100% 100%;
   background-attachment: fixed;
-  /* position: fixed; */
-  /* height: 100vh; */
-  /* z-index: 10; */
 }

@@ -1,69 +1,82 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import './Navbar.css';
+import { FaReddit } from "react-icons/fa";
 import { ButtonMenuDown } from './buttonMenuDown/ButtonMenuDown.js'
 import { SearchForm } from './searchForm/SearchForm.js';
 import { Nav } from './nav/Nav.js';
-import { ButtonMenu } from './buttonMenuDown/buttonMenu/ButtonMenu.js';
-import { useMediaQuery } from 'beautiful-react-hooks';
+import { buttonToggle, selectButtonMenu } from '../../feature/search/searchSlice.js';
 
 export const Navbar = () => {
-    
-    /// comeback to this 
-    const [main, setMain] = useState(document.getElementsByClassName('the-flex-container'))
-    const [button, setButton] = useState(false);
-    const [fa_2x, setFa_2x] = useState('fa-2x');
+ 
+    const button = useSelector(selectButtonMenu);
+    const dispatch = useDispatch();
+    const [main, setMain] = useState(document.getElementsByClassName('the-flex-container'));
+    const [banner, setBanner] = useState(document.getElementsByClassName('banner-img-wrapper'));
+    const [title, setTitle] = useState(document.getElementsByClassName('title-section'));
 
     useEffect(() => {
-        main[0].addEventListener('click', fu)
-
-    }, [main])
-
-    const fu = () => {
-        return setButton(false)
-    }
-
-
-    useEffect(() => {
-
-        const media960 = window.matchMedia( "(max-width: 960px)" );
-        
-        if (media960.matches) {
-            setFa_2x('');
-        } else {
-            setFa_2x('fa-2x');
+        if (main !== null || main !== undefined) {
+            main[0].addEventListener('click', toggleHomeMenu);
         }
-    }, [fa_2x, button]);
+        return () => {
+            if (main !== null || main !== undefined) {
+                main[0].removeEventListener('click', toggleHomeMenu)
+            }
+        }
+    })
 
-   
-    const buttonHandleClick = () => {
-        setButton(!button)     
+    useEffect(() => {
+        if (banner !== null || banner !== undefined) {
+            banner[0].addEventListener('click', toggleHomeMenu);
+        }
+        return () => {
+            if (banner !== null || banner !== undefined) {
+                banner[0].removeEventListener('click', toggleHomeMenu)
+            }
+        }
+    })
+
+    useEffect(() => {
+        if (title !== null || title !== undefined) {
+            title[0].addEventListener('click', toggleHomeMenu);
+        }
+        return () => {
+            if (title !== null || title !== undefined) {
+                title[0].removeEventListener('click', toggleHomeMenu);
+            }
+        }
+    })
+
+    const toggleHomeMenu = () => {
+        dispatch(buttonToggle(false))
     }
-    
-    
+
+    const buttonHandleClick = () => {
+        if (button === true) {
+            dispatch(buttonToggle(false));
+        } else {
+            dispatch(buttonToggle(true));
+        }
+    }
+
     return (
         <header>
             <div className="home-nav-div logo-div">
                 <Link to="/" className="home-nav-link all-links">
-                    <i className="fab fa-reddit fa-3x"></i>
-                    <p className="reddit">client</p>
+                    <FaReddit className="square-logo" />
+                    <p className="reddit">Reddit</p>
                 </Link>
             </div>
             
             <ButtonMenuDown 
                 button={button}
                 buttonHandleClick={buttonHandleClick}
-                // buttonClip1={buttonClip1}
-                // buttonClip2={buttonClip2}
-                // buttonMenu={buttonMenu}
             />
-            
-            
+           
             <SearchForm />
-            <Nav fa_2x={fa_2x} />            
+            <Nav /> {/*     delete the NAV component and replace with NavUsers because it is empty now       */}
         </header>
-    )
-    
+    )   
 }
-

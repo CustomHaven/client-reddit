@@ -38,7 +38,7 @@ const Reply = (props) => {
                     {   
                         allReplies.length > 0 && allReplies?.map((reply, index) =>
                          <>
-                        {!theCollector.includes(reply?.id) &&
+                        {
                             
                             <div key={reply?.id} className="reply-div">
                                 <p className="reply-author">{reply?.author}</p>
@@ -46,6 +46,11 @@ const Reply = (props) => {
                                 <p className="utc-time">{timeAgo(reply?.utc * 1000)}</p>
                                 {
                                     typeof reply?.replies === "object" &&
+                                    recursionReplies(reply?.replies, index, reply?.id)
+                                }
+                                {
+                                    typeof reply?.replies === "object" &&
+                                    
                                     <>
 
                                     <RepeatedReplies 

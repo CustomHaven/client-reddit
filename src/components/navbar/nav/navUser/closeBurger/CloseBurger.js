@@ -4,7 +4,6 @@ import Menu from './menu/Menu';
 const CloseBurger = (props) => {
     const { mediaMenu } = props;
     const [menu, setMenu] = useState(false);
-    // const [remove, setRemove] = useState(false);
 
     const handleClick = () => {
         setMenu(!menu);

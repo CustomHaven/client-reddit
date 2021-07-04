@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaReddit } from "react-icons/fa";
-
+// this components Props is coming from 3 different places so it will render for those three accordingly
 const AllReddits = (props) => {
     const { list, articleClick } = props;
     return (

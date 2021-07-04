@@ -2,11 +2,11 @@ import React from 'react';
 import { NavUsers } from './navUser/NavUsers.js'
 
 export const Nav = (props) => {
-    const {fa_2x} = props;
+    // delete and replace this component with NavUsers cuz its empty!!
 
     return (
         <nav className="navbar">              
-            <NavUsers fa_2x={fa_2x} />      
+            <NavUsers />      
         </nav>
     )
 }

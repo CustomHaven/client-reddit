@@ -11,15 +11,19 @@ const Banner = () => {
 
     const dispatch = useDispatch();
     const allList = useSelector(selectListOfAll);
-    let locationPath = useLocation()
+    const location = useLocation()
+    
 
     useEffect(() => {
         dispatch(listOfAllThunk());
     }, [dispatch]);
 
-    const location = locationPath.pathname;
+    const locationPath = location.pathname;
+    const locationSearch = location.search;
     const regex = /(\/dragon)?\//i;
-    const regexResult = location.replace(regex, '');
+    const regexSearch = /\?query=/i;
+    const searchResult = locationSearch.replace(regexSearch, '');
+    const regexResult = locationPath.replace(regex, '');
     const index = allList.findIndex(child => child.name === regexResult)
 
     return (
@@ -36,6 +40,7 @@ const Banner = () => {
 
             <TitleImg 
                 rgx={regexResult}
+                rgxSearch={searchResult}
                 idx={index}
                 allList={allList}
             />

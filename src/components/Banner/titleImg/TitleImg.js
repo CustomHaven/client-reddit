@@ -3,7 +3,7 @@ import { FaReddit } from "react-icons/fa";
 
 const TitleImg = (props) => {
     
-    const { rgx, idx, allList } = props;
+    const { rgx, idx, allList, rgxSearch } = props;
 
     return (
         <div className="title-section">
@@ -22,12 +22,20 @@ const TitleImg = (props) => {
             </div>
 
             <div className="header-title">
-                <h1>{idx !== -1 ? allList[idx].title 
-                : rgx.length > 0 ? `${rgx.slice(0, 1).toUpperCase()}${rgx.slice(1, rgx.length)}` : 'Home'}</h1>
+                <h1>{
+                    rgxSearch.length > 0 ? null :
+                    idx !== -1 ? allList[idx].title 
+                    : rgx.length > 0 ? `${rgx.slice(0, 1).toUpperCase()}${rgx.slice(1, rgx.length)}` : 'Home'
+                    }
+                </h1>
             </div>
             <div className="header-title">
-                <h1>{idx !== -1 ? allList[idx].prefix 
-                : rgx.length > 0 ? `r/${rgx.slice(0, 1).toUpperCase()}${rgx.slice(1, rgx.length)}` : 'r/Home'}</h1>
+                <h1>{
+                    rgxSearch.length > 0 
+                    ? `${rgxSearch.slice(0, 1).toUpperCase()}${rgxSearch.slice(1, rgxSearch.length)}` :
+                    idx !== -1 ? allList[idx].prefix 
+                    : rgx.length > 0 ? `r/${rgx.slice(0, 1).toUpperCase()}${rgx.slice(1, rgx.length)}` : 'r/Home'}
+                </h1>
             </div>
             
         </div>

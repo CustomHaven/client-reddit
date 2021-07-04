@@ -10,15 +10,12 @@ export const NavUsers = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-
         const media768 = window.matchMedia( "(max-width: 768px)" );
         
         if (media768.matches) {
             dispatch(displayMenu(false));
-            // setDis(false)
         } else {
             dispatch(displayMenu(true));
-            // setDis(true)
         }
 
         media768.addEventListener('change', () => {
@@ -35,29 +32,25 @@ export const NavUsers = () => {
             media768.removeEventListener('change', () => {
                 if (media768.matches) {
                     dispatch(displayMenu(false));
-                    // setDis(false)
                 } else {
                     dispatch(displayMenu(true));
-                    // setDis(true)
                 }
             })
         }
-
     }, [dispatch, mediaMenu]);
 
     return (
         <div className="user-div">
             <CloseBurger 
                 mediaMenu={mediaMenu}
-            />
-                
+            />       
             {
                 mediaMenu === true ?
                 <Button cursor="pointer" variant="none" className="user-button">
                     <FaRedditSquare className="square-logo" />
                     <p className="user-name">Welcome</p>
                 
-            </Button> : null
+                </Button> : null
             }
         </div>
     )
