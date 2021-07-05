@@ -12,9 +12,9 @@ export const Navbar = () => {
  
     const button = useSelector(selectButtonMenu);
     const dispatch = useDispatch();
-    const [main] = useState(document.getElementsByClassName('the-flex-container')); // removed the setState WTF LOL! see if it still works
-    const [banner] = useState(document.getElementsByClassName('banner-img-wrapper')); // removed the setState WTF LOL! see if it still works
-    const [title] = useState(document.getElementsByClassName('title-section')); // removed the setState WTF LOL! see if it still works
+    const [main] = useState(document.getElementsByClassName('the-flex-container'));
+    const [banner] = useState(document.getElementsByClassName('banner-img-wrapper'));
+    const [title] = useState(document.getElementsByClassName('title-section'));
 
     useEffect(() => {
         if (main !== null || main !== undefined) {
@@ -76,7 +76,7 @@ export const Navbar = () => {
             />
            
             <SearchForm />
-            <Nav /> {/*     delete the NAV component and replace with NavUsers because it is empty now       */}
+            <Nav />
         </header>
     )   
 }

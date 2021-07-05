@@ -5,7 +5,6 @@ export const ButtonMenuDown = (props) => {
 
     const { button, buttonHandleClick } = props;
    
-
     return (
         <div className="button-div-down">
             <button className="button-nav-down" onClick={buttonHandleClick}>

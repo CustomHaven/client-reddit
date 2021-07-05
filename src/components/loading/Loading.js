@@ -3,11 +3,11 @@ import { v4 } from 'uuid';
 import { TiArrowUpOutline, TiArrowDownOutline, TiMessage, } from "react-icons/ti";
 
 const Loading = () => {
-    const array1 = new Array(20).fill(10, 0, 20)
+    const fakeArray = new Array(20).fill(10, 0, 20)
     return (
         <>
             {
-                array1.map((arr) => 
+                fakeArray.map((arr) => 
                     <div className="reddit-div" key={v4()}>
                         <ul className="reddit-ul" >
                         

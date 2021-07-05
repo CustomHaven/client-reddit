@@ -29,39 +29,39 @@ export const timeAgo = (old) => {
 
   // then sending them forth into the conditional statement to take output
   if (diff < msPerMin) {
-    return Math.round(diff/1000) + ' seconds ago';   //
+    return Math.floor(diff/1000) + ' seconds ago';   //
   }
   
   else if (diff < msPerHr) {
-    return Math.round(diff/msPerMin) + ' minutes ago'; //  
+    return Math.floor(diff/msPerMin) + ' minutes ago'; //  
   }
   
   else if (diff < msPerDay ) {
-    return Math.round(diff/msPerHr ) + ' hours ago';   //
+    return Math.floor(diff/msPerHr ) + ' hours ago';   //
   }
   
   else if (diff < msPerDay * 2) {
-    return Math.round(diff/msPerDay) + ' day ago'; //
+    return Math.floor(diff/msPerDay) + ' day ago'; //
   }
   
   else if (diff < msPerMonth) {
-    return 'approximately ' + Math.round(diff/msPerDay) + ' days ago';   //
+    return Math.floor(diff/msPerDay) + ' days ago';   //
   }
   
   else if (diff < msPerMonth * 2) {
-    return 'approximately ' + Math.round(diff/msPerMonth) + ' month ago';   //
+    return Math.floor(diff/msPerMonth) + ' month ago';   //
   }
   
   else if (diff < msPerYear) {
-    return 'approximately ' + Math.round(diff/msPerMonth) + ' months ago';  // 
+    return Math.floor(diff/msPerMonth) + ' months ago';  // 
   }
   
   else if (diff < msPerYear * 2) {
-    return 'approximately ' + Math.round(diff/msPerYear) + ' year ago';   //
+    return Math.floor(diff/msPerYear) + ' year ago';   //
   }
   
   else {
-    return 'approximately ' + Math.round(diff/msPerYear ) + ' years ago';   
+    return Math.floor(diff/msPerYear ) + ' years ago';   
   }
 
 }

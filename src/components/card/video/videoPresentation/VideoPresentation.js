@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaReddit, FaPlay, FaPause, FaCog, FaRedditAlien } from "react-icons/fa";
+import { FaPlay, FaPause, FaCog, FaRedditAlien } from "react-icons/fa";
 import { BiFullscreen } from "react-icons/bi";
 import { GiSoundOff } from "react-icons/gi";
 import { Button } from "@chakra-ui/react";

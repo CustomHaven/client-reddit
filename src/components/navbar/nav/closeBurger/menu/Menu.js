@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import AllReddits from '../../../../../aside/listOfAllReddit/allReddits/AllReddits';
-import { selectListOfAll } from '../../../../../../feature/listOfAll/listOfAllSlice';
-import { selectSearchQuery, querySearch, searchThunk } from '../../../../../../feature/search/searchSlice.js';
+import AllReddits from '../../../../aside/listOfAllReddit/allReddits/AllReddits';
+import { selectListOfAll } from '../../../../../feature/listOfAll/listOfAllSlice';
+import { selectSearchQuery, querySearch, searchThunk } from '../../../../../feature/search/searchSlice.js';
 
 const Menu = (props) => {
     const { setMenu } = props;

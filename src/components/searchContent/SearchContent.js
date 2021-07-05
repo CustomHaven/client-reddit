@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import './SearchContent.css';
 import { ImCrying, ImShocked } from "react-icons/im";
-import { Spinner } from "@chakra-ui/react";
+import Loading from '../loading/Loading.js';
 import { selectSearch, selectSearchLoading } from '../../feature/search/searchSlice.js';
 import { postThunk, repliesList, clearAllReplies, indexReset } from '../../feature/post/postSlice.js';
 import { formatter } from '../../util/mathWork.js';
@@ -46,18 +46,12 @@ const SearchCard = () => {
     }
 
     const locationSearch = location.search;
-    const regexSearch = /\?query=/
+    const regexSearch = /\?query=/i;
     const searchResult = locationSearch.replace(regexSearch, '');
     const regexValidation = /\.(:?jpg|gif|png)$/;
 
     if (loading) {
-        return <Spinner
-        thickness="40px"
-        speed="1s"
-        emptyColor="gray.200"
-        color="blue.500"
-        size="xl"
-      />
+        return <Loading />
     }
 
     if (searchResult.length === 0) {

@@ -40,8 +40,7 @@ const Aside = () => {
                 : 'Everything home related..'}</p>
 
             <p className="total-subs" >Total Subscribers: {subreddit.length > 0 && formatter(subreddit[0].subscribers)}</p>
-            
-
+        
         </aside>
         <ListOfAllReddit
             allList={allList}

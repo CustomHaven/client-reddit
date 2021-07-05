@@ -82,5 +82,3 @@ const reddit = {
 }
 
 export default reddit;
-
-//https://www.reddit.com/search.json?q=Genshin_Impact

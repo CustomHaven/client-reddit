@@ -12,7 +12,7 @@ import VideoiOS from './video/VideoiOS.js';
 import { timeAgo } from '../../util/mathWork.js';
 
 const Card = (props) => {
-    const { subreddit, index, rgx, formatter, commentsHandler, replyHandler, divPress, referance, repliesClick } = props;
+    const { subreddit, index, rgx, formatter, commentsHandler, replyHandler, divPress, repliesClick } = props;
     const allList = useSelector(selectListOfAll);
     const allPost = useSelector(selectPost);
 
@@ -64,7 +64,6 @@ const Card = (props) => {
                         iOS ? 
                         <VideoiOS
                             src={subreddit?.video}
-                            // duration={subreddit?.duration}
                         /> : 
                         <Video 
                             src={subreddit?.video}
@@ -79,8 +78,7 @@ const Card = (props) => {
 
                 {
                     subreddit.comments > 0 &&
-                    <div 
-                        ref={referance} 
+                    <div
                         key={subreddit.id}
                         value={subreddit.permalink} 
                         onClick={(e) => commentsHandler(subreddit.permalink, index)} 
@@ -101,7 +99,6 @@ const Card = (props) => {
             divPress={divPress}
             allPost={allPost}
             index={index}
-            // home={subreddit}
             replyHandler={replyHandler}
             repliesClick={repliesClick}
         />

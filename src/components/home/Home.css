@@ -1,12 +1,8 @@
 p,
 span {
   line-height: 1.5;
-  /* word-spacing: 5; */
 }
 
-.section-name {
-  /* background-color: aqua; */
-}
 /* var(--nice-background-color); */
 .reddit-div {
   position: relative;
@@ -24,9 +20,6 @@ span {
   box-shadow: var(--box-shadow-hover);
   border-radius: 0;
   /* padding: 10px; */
-}
-
-.reddit-ul {
 }
 
 .reddit-li {

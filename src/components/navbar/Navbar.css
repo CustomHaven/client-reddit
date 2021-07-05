@@ -182,20 +182,6 @@
   display: flex;
 }
 
-.navbar-ul-first,
-.navbar-ul-second {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  border-right: 5px solid var(--nice-background-color);
-  padding: 0 10px;
-}
-
-.navbar-li:hover {
-  background-color: var(--nice-background-color);
-  padding: 10px;
-}
-
 .user-div {
   padding-left: 5px;
   position: relative;

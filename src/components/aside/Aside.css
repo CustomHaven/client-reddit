@@ -8,7 +8,6 @@
 
 aside.public-info {
   width: 25vw;
-  /* border: 2px solid black; */
   display: flex;
   flex-direction: column;
   background-color: #fcfcfc;
@@ -55,7 +54,6 @@ aside.public-info:hover {
 }
 
 .pub-info:hover {
-  /* font-size: 1.3rem; */
   font-weight: 700;
 }
 
@@ -102,7 +100,6 @@ aside.public-info:hover {
   display: flex;
   align-items: center;
   gap: 30px;
-  /* border-bottom: 2px solid rgba(173, 216, 230, 0.2); */
   padding: 10px;
   position: relative;
 }

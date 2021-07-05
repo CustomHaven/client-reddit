@@ -11,8 +11,7 @@ const Banner = () => {
 
     const dispatch = useDispatch();
     const allList = useSelector(selectListOfAll);
-    const location = useLocation()
-    
+    const location = useLocation();    
 
     useEffect(() => {
         dispatch(listOfAllThunk());

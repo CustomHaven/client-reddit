@@ -18,8 +18,7 @@ const HeaderImg = (props) => {
                 alt="header-display" 
             />
             :
-            <img 
-                // key={allList[idx].id} 
+            <img  
                 src="https://b.thumbs.redditmedia.com/hOn2BgW06eQdpNY-RvF3UGBtbG_CFbr4XkotMYLWhEc.png" 
                 alt="header-display" 
             />

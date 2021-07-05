@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Loading from '../loading/Loading.js';
@@ -17,7 +17,6 @@ const Subreddits = () => {
     const redditLoading = useSelector(selectSubIsLoading)
     const subreddit = useSelector(selectSubreddits);
     const dispatch = useDispatch();
-    const refDivClick = useRef([document.getElementsByClassName('target-divs')]); // might just delete // only sendinf 1 back wtf
     const [foundImg, setFoundImg] = useState('');
 
     useEffect(() => {        
@@ -70,10 +69,8 @@ const Subreddits = () => {
             {
                 subreddit.map((reddit, index) => 
                     <div 
-                        // style={{backgroundColor: `rgba(${colorNum()}, ${colorNum()}, ${colorNum()}, 0.4)`}} 
                         className="reddit-div">
                         <Card 
-                            // key={uuidv4()}
                             index={index}
                             subreddit={reddit}
                             rgx={regexValidation}
@@ -81,7 +78,6 @@ const Subreddits = () => {
                             commentsHandler={commentsHandler}
                             replyHandler={replyHandler}
                             divPress={divPress}
-                            referance={refDivClick}
                             repliesClick={repliesClick}
                         />       
                     </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import './Home.css';
 import Loading from '../loading/Loading.js';
@@ -15,7 +15,6 @@ const Home = () => {
 
     const loading = useSelector(isLoading);
     const subHome = useSelector(selectHome);
-    const refDivClick = useRef([document.getElementsByClassName('target-divs')]);// will delete see what happens
 
     const dispatch = useDispatch();
     
@@ -73,7 +72,6 @@ const Home = () => {
                             commentsHandler={commentsHandler}
                             replyHandler={replyHandler}
                             divPress={divPress}
-                            referance={refDivClick}
                             repliesClick={repliesClick}
                             loading={loading}
                         /> 

@@ -38,9 +38,11 @@ const Video = (props) => {
         }
         return () => {
             if (vidRef.current !== null && giantRef.current !== null) {
+            // eslint-disable-next-line react-hooks/exhaustive-deps
             giantRef.current.addEventListener('mousemove', displayOpa) || vidRef.current.removeEventListener('mousemove', displayOpa);
             }
         };
+
     })
 
     useEffect(() => {
@@ -62,6 +64,7 @@ const Video = (props) => {
         return () => {
             if (vidRef.current !== null) {
                 if (looping) {
+                    // eslint-disable-next-line react-hooks/exhaustive-deps
                     vidRef?.current?.removeEventListener('ended', loopingEffect) // crucial dont mind the warning
                 }
             }

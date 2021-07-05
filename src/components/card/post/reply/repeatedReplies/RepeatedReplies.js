@@ -7,7 +7,7 @@ const RepeatedReplies = (props) => {
         list.map((reply, index) =>
             <>
                 {
-                    reply?.id?.length > 1 &&
+                    reply?.id?.length > 1 ?
                     <div key={reply?.id} className="reply-div">
                         <p className="reply-author">{reply?.author}</p>
                         <p className="reply-text">{reply?.body}</p>
@@ -27,6 +27,7 @@ const RepeatedReplies = (props) => {
                             </>
                         }
                     </div>
+                    : null
                 }
             </>
         )
